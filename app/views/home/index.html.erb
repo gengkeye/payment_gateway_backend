@@ -1,0 +1,142 @@
+<section class='landing home'>
+	<header class='loaderReveal loaderRevealDelay400 loaderRevealSpeed600'>
+		<div class='navContainer'>
+			<a class="logo" href="/"><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Skyluster logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></a>
+			<nav class='secondary inline'>
+				<ul>
+					<li>
+						<% if current_user.present? %>
+							<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= destroy_user_session_path %>" data-method="delete"><span>Log out</span>
+								<div class='icon-login'></div>
+								<div class='loaderContainer'>
+									<div class='loader'></div>
+								</div>
+							</a>
+						<% else %>
+							<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= new_user_session_path %>"><span>Log in</span>
+								<div class='icon-login'></div>
+								<div class='loaderContainer'>
+									<div class='loader'></div>
+								</div>
+							</a>
+						<% end %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class='pure-g'>
+		<div class='pure-u-1-1 pure-u-lg-16-24 pure-u-xl-3-5'>
+			<div class='content loaderReveal loaderRevealDelay700 loaderRevealSpeed600'>
+				<div class='contentHero'>
+					<h1>21st century <br/><em>business solutions</em></h1>
+					<p>Skyluster provides ultimate business solutions for small and large businesses who want to take advantage of Bitcoin and the blockchain:</p>
+					<ul class='menuFramedLinks'>
+						<li>
+							<a href="/payments_processing">Bitcoin <br/>payments processing</a>
+						</li>
+						<li>
+							<a href="/joint_escrow">Joint Escrow <br/>smart contracts</a>
+						</li>
+						<li>
+							<a href="/payroll">Automated <br/>Bitcoin Payroll</a>
+						</li>
+					</ul>
+					<div class='callToAction'>
+						<p>Start accepting Bitcoin payments in less than 5 minutes</p>
+						<a class="buttonRounded buttonPrimary buttonLarge" href="<%= new_user_registration_path %>"><span>Sign up for Skyluster</span>
+							<div class='loaderContainer'>
+								<div class='loader'></div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='pure-u-1-1 pure-u-lg-8-24 pure-u-xl-2-5 pure-hidden-lg pure-hidden-xl pure-hidden-xxl'>
+			<div class='contentSideHero loaderReveal loaderRevealDelay900 loaderRevealSpeed600'>
+				<div class='point'>
+					<h2>
+						<div class='icon-store'></div>
+						<span>Are you a small online store <br/>or a big retailer?</span>
+					</h2>
+					<p>Start accepting Bitcoin payments for free with our easy to install widget or a sophisticated API. Gear doesn’t hold your money, they go straight into your wallet.</p>
+				</div>
+				<div class='point'>
+					<h2>
+						<div class='icon-people'></div>
+						<span>Do you work with people <br/>from all over the world?</span>
+					</h2>
+					<p>Use our Joint Escrow feature to guarantee safety of your deals with anyone in the world, regardless of the jurisdiction.</p>
+				</div>
+				<div class='point'>
+					<h2>
+						<div class='icon-wallet2'></div>
+						<span>Do you pay your employees in Bitcoin?</span>
+					</h2>
+					<p>Automate the process and spend no more than 30 seconds per month sending payments, no matter the size of the organization.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class='contentSideHero cover loaderReveal loaderRevealDelay900 loaderRevealSpeed600 pure-hidden-xs pure-hidden-sm pure-hidden-md'>
+	<div class='pointsContainer'>
+		<div class='point'>
+			<h2>
+				<div class='icon-store'></div>
+				<span>Are you a small online store <br/>or a big retailer?</span>
+			</h2>
+			<p>Start accepting Bitcoin payments for free with our easy to install widget or a sophisticated API. Gear doesn’t hold your money, they go straight into your wallet.</p>
+		</div>
+		<div class='point'>
+			<h2>
+				<div class='icon-people'></div>
+				<span>Do you work with people <br/>from all over the world?</span>
+			</h2>
+			<p>Use our Joint Escrow feature to guarantee safety of your deals with anyone in the world, regardless of the jurisdiction.</p>
+		</div>
+		<div class='point'>
+			<h2>
+				<div class='icon-wallet2'></div>
+				<span>Do you pay your employees in Bitcoin?</span>
+			</h2>
+			<p>Automate the process and spend no more than 30 seconds per month sending payments, no matter the size of the organization.</p>
+		</div>
+	</div>
+</div>
+<footer class='dark loaderReveal loaderRevealDelay1000 loaderRevealSpeed600'>
+	<div class='copyright'>Skyluster Admin is a product of Skyluster &copy; 2016</div>
+	<nav class='social contain light inline'>
+		<ul>
+			<li>
+				<a href='https://telegram.me/MyceliumGear' target='_blank'>
+					<div class='icon-telegram'></div>
+				</a>
+			</li>
+			<li>
+				<a href='https://twitter.com/myceliumgear' target='_blank'>
+					<div class='icon-twitter'></div>
+				</a>
+			</li>
+			<li>
+				<a href='https://mycelium-gear.slack.com/' target='_blank'>
+					<div class='icon-slack'></div>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</footer>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-27436274-25', 'auto');
+	ga('send', 'pageview');
+
+</script>
+

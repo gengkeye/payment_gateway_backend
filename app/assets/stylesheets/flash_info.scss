@@ -1,0 +1,20 @@
+.alert{
+    line-height: 77px;
+    text-align: center;
+    font-style: normal;
+    font-size: 80%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+}
+.alert-notice{
+	background-color: #228B22;
+}
+.alert-alert{
+	background-color: #A52A2A;
+}
+.icon-close{
+	float: right;
+	line-height: inherit;
+	padding-right: 20px;
+}
