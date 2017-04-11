@@ -15,7 +15,7 @@ set :deploy_via,      :remote_cache
 # set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 # set :puma_access_log, "#{release_path}/log/puma.error.log"
 # set :puma_error_log,  "#{release_path}/log/puma.access.log"
-set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
+set :ssh_options,     { forward_agent: true } # , user: 'oldseven', keys: %w(~/.ssh/id_rsa.pub)
 # set :puma_preload_app, true
 # set :puma_worker_timeout, nil
 
@@ -37,18 +37,6 @@ set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets }
 # in order to prevent bundler from overwriting the version controlled binstubs
 set :bundle_binstubs, nil
 
-namespace :puma do
-  # desc 'Create Directories for Puma Pids and Socket'
-  # task :make_dirs do
-  #   on roles(:app) do
-  #     # execute "mkdir #{shared_path}/tmp/sockets -p"
-  #     # execute "mkdir #{shared_path}/tmp/pids -p"
-  #   end
-  # end
-
-  # before :start, :make_dirs
-end
-
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
@@ -69,19 +57,8 @@ namespace :deploy do
     end
   end
 
-  # desc 'Restart application'
-  # task :restart do
-  #   on roles(:app), in: :sequence, wait: 5 do
-  #     invoke 'puma:restart'
-  #   end
-  # end
-
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
-
-# ps aux | grep puma    # Get puma pid
-# kill -s SIGUSR2 pid   # Restart puma
-# kill -s SIGTERM pid   # Stop puma
