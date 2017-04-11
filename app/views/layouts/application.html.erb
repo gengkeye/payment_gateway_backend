@@ -15,15 +15,19 @@
   	<script src="https://dwsv3vn9of50v.cloudfront.net/assets/landing-f1b282b1d9304327f11ba8bc9beddb891ed5717d1f086eac4742dc8576ebfb64.js"></script>
   	<script src="https://gateway.gear.mycelium.com/gear-widget-host.js"></script>
 	  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'flash_info', 'data-turbolinks-track' => false %>
   </head>
-
-  <body>
-  	  <% flash.each  do |message_type, message| %>
-  	  	<div class="alert alert-<%= message_type %>">
-  	  		<%= message %>
-  	  		<span class='icon-close' id='close_notification_ico'></span>
-  	  	</div>
-  	  <% end %>
-	  <%= yield %>
-  </body>
+<body class='unauthenticated'>
+  <img class="ajaxLoader" src="https://dwsv3vn9of50v.cloudfront.net/assets/ajax-loader-dark-389c885ad1d1f874c6285cd29cd12877a175927d2dd001734ac2c3c8917c8c35.gif" alt="Ajax loader dark 389c885ad1d1f874c6285cd29cd12877a175927d2dd001734ac2c3c8917c8c35" />
+  <div id='spaceBgContainer'>
+  </div>
+  <% flash.each  do |message_type, message| %>
+  	<div class="alert alert-<%= message_type %>">
+  		<%= message %>
+  		<span class='icon-close' id='close_notification_ico'></span>
+  	</div>
+  <% end %>
+	<%= yield %>
+</body>
 </html>

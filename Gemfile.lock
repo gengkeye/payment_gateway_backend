@@ -39,6 +39,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.1.7)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
@@ -63,6 +70,7 @@ GEM
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    htmlentities (4.3.4)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -90,6 +98,12 @@ GEM
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pdf-core (0.7.0)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -97,6 +111,8 @@ GEM
     pry-rails (0.3.5)
       pry (>= 0.9.10)
     puma (3.8.2)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -129,6 +145,7 @@ GEM
       ffi (>= 0.5.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rubyzip (1.1.7)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -153,6 +170,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    ttfunk (1.5.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -175,6 +193,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx (~> 2.1.0.pre)
+  axlsx_rails
   byebug
   coffee-rails (~> 4.2)
   devise
@@ -182,8 +202,11 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mysql2
+  prawn
+  prawn-table
   pry-rails
   puma (~> 3.0)
+  pundit
   rails (~> 5.0.2)
   sass-rails (~> 5.0)
   spring

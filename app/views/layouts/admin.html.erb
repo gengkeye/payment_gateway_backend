@@ -24,14 +24,26 @@
   	<%= csrf_meta_tags %>
   </head>
 
-  <body>
-  	  <% flash.each  do |message_type, message| %>
-  	  	<div class="alert alert-<%= message_type %>">
-  	  		<%= message %>
-  	  		<span class='icon-close' id='close_notification_ico'></span>
-  	  	</div>
-  	  <% end %>
-    <%= render 'share/left_sidebar' %>
-	  <%= yield %>
+  <body class="authenticated" data-no-turbo-links>
+      <% flash.each  do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+          <span class='icon-close' id='close_notification_ico'></span>
+        </div>
+      <% end %>
+      <img class="ajaxLoader" src="https://dwsv3vn9of50v.cloudfront.net/assets/ajax-loader-91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2.gif" alt="Ajax loader 91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2">
+      <%= render 'share/left_sidebar' %>
+      <div class="pageContainer">
+        <div class="pageContent">
+          <%= render 'share/topbar' %>
+          <div class="container">
+            <div class="page orders index">
+              <div class="pageWrapper">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
   </body>
 </html>

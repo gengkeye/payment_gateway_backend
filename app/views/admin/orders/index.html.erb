@@ -1,0 +1,85 @@
+<div class="contentHeader marginSmall">
+	<h1 class="pageTitle">Orders</h1>
+</div>
+<div class="actions tile tiny">
+	<div class="filters">
+		<div class="pageWrapper">
+			<div class="pure-g">
+				<div class="pure-u-1-2">
+					<div class="columnContainer chosenSizeLarge">
+						<label>Status</label>
+						<div class="chosenStandardWhite chosenSmallFont">
+							<select name="filter_by_status[]" id="filter_by_status" data-placeholder="Show all..." multiple="multiple" style="display: none;">
+							    <option value="0">new</option>
+								<option value="1">unconfirmed</option>
+								<option value="2">paid</option>
+								<option value="3">underpaid</option>
+								<option value="4">overpaid</option>
+								<option value="5">expired</option>
+								<option value="6">canceled</option>
+								<option value="-3">partially paid</option>
+							</select>
+							<div class="chosen-container chosen-container-multi" style="width: 161px;" title="" id="filter_by_status_chosen">
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="list tile data clearfix">
+		<table class="standardWhite">
+			<colgroup>
+			<col span="1" style="width: 12%;">
+			<col span="1" style="width: 12%;">
+			<col span="1" style="width: 28%;">
+			<col span="1" style="width: 12%;">
+			<col span="1" style="width: 12%;">
+			<col span="1" style="width: 12%;">
+			<col span="1" style="width: 12%;">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Amount<small>(BTC)</small></th>
+				<th>Paid Amount<small>(BTC)</small></th>
+				<th>Address</th>
+				<th>Gateway</th>
+				<th>Value<small>(at the time of purchase)</small></th>
+				<th>Created at</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% if @orders.blank? %>
+				<tr class="noRecords">
+					<td colspan="7">
+						<span>
+							No matching record found
+						</span>
+					</td>
+				</tr>
+			<% else %>
+				<% @orders.each do |order| %>
+					<tr>
+						<td><%= order.amount %></td>
+						<td><%= order.amount_paid %></td>
+						<td><%= order.address %></td>
+						<td><%= order.gateway_id %></td>
+						<td><%= order.amount_with_currency %></td>
+						<td><%= order.created_at %></td>
+						<td><%= order.status %></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+    <%= paginate @orders %>
+	<div class="export">Export to: <a href="#" id="export_to_xlsx">xlsx</a> | <a href="/orders.csv">CSV</a> | <a href="/orders.json">JSON</a> | <a href="/orders.xml">XML</a></div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#export_to_xlsx").click(function(){
+			alert(1)
+		})
+	})
+</script>

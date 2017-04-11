@@ -17,6 +17,17 @@ gem 'puma', '~> 3.0'
 gem 'mysql2'
 gem 'devise'
 
+# Create axlsx
+gem 'axlsx', '~> 2.1.0.pre'
+gem 'axlsx_rails'
+
+# Create pdf
+gem 'prawn'
+gem 'prawn-table'
+
+# policy
+gem 'pundit'
+
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

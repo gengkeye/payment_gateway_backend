@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  title_cell = s.add_style  :sz => 16, :alignment => { horizontal: :center, vertical: :center }, b: true
+  center_cell = s.add_style height: 25,  :sz => 16, :alignment => { horizontal: :center, vertical: :center }
+  basic_cell = s.add_style sz: 14, height: 25, :alignment => { horizontal: :center, vertical: :center }, b: true
+  bottom_border = s.add_style border: { :style => :thin, :color => "00", :edges => [:bottom] }
+  all_border = s.add_style sz:12, height: 25, border: { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right], }, :alignment => { horizontal: :center, vertical: :center }
+  wrap_text = s.add_style   :b => true,
+  :sz => 16,
+  :border => { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right] },
+  :alignment => { :horizontal => :center,
+    :vertical => :center,
+    :wrap_text => true}
+
+  wb.add_worksheet(name: 'Orders list') do |sheet|
+    sheet.add_row %w(Amount(mBTC) Paid_Amount(mBTC) Address Gateway Value(at the time of purchase) Created_at Status), height: 40
+    sheet["A1:G1"].each { |c| c.style = title_cell }
+    n = 1
+    @orders.each do |order|
+      n += 1
+      sheet.add_row [
+         order.amout * 1000,
+         order.amount_paid * 1000,
+         order.address,
+         order.gateway_id,
+         order.amount_with_currency,
+         order.created_at,
+         order.status
+      ],types: :string
+      sheet["A#{n}:G#{n}"].each { |c| c.style = center_cell }
+    end
+    sheet.column_widths 30, 30, 40, 40, 40, 30, 30
+  end
+end
