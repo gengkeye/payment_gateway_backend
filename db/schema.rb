@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170411031757) do
     t.boolean  "enabled_two_factor_auth",                default: false
     t.string   "reserve_tokens"
     t.boolean  "enabled_sending_mail",                   default: true
+    t.integer  "role",                                   default: 1
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

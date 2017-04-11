@@ -6,5 +6,6 @@ class AddSomeColumnsToUsers < ActiveRecord::Migration[5.0]
   	add_column :users, :reserve_tokens, :string
   	add_column :users, :phone, :string, after: :name
   	add_column :users, :enabled_sending_mail, :boolean, default: true
+  	add_column :users, :role, :integer, default: 1
   end
 end
