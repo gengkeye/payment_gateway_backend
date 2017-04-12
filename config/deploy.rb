@@ -23,6 +23,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # puma
 set :puma_role, :app
 set :puma_config_file, 'config/puma-web.rb'
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -36,6 +37,7 @@ set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets }
 
 # in order to prevent bundler from overwriting the version controlled binstubs
 set :bundle_binstubs, nil
+
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
@@ -62,3 +64,4 @@ namespace :deploy do
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
+after 'deploy:publishing', 'deploy:restart'
