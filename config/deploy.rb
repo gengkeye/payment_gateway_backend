@@ -1,4 +1,4 @@
-set :repo_url,        'git@git.nn.com:oldseven/payment_gateway_backend.git' # Gitlab Address
+set :repo_url,        'git@119.92.199.199:oldseven/payment_gateway_backend.git' # Gitlab Address
 set :application,     'payment_gateway_backend'
 
 set :puma_threads,    [4, 16]
