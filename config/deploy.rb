@@ -1,9 +1,6 @@
 set :repo_url,        'git@119.92.199.199:oldseven/payment_gateway_backend.git' # Gitlab Address
 set :application,     'payment_gateway_backend'
 
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
-
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
@@ -15,14 +12,16 @@ set :deploy_via,      :remote_cache
 # set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 # set :puma_access_log, "#{release_path}/log/puma.error.log"
 # set :puma_error_log,  "#{release_path}/log/puma.access.log"
-set :ssh_options,     { forward_agent: true }
+# set :ssh_options,     { forward_agent: true }
 # set :puma_preload_app, true
 # set :puma_worker_timeout, nil
 
-set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 # puma
+set :puma_threads,    [4, 16]
+set :puma_workers,    0
+set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 set :puma_role, :app
-set :puma_config_file, 'config/puma-web.rb'
+set :puma_config_file, 'puma.rb'
 
 ## Defaults:
 # set :scm,           :git
@@ -34,6 +33,9 @@ set :puma_config_file, 'config/puma-web.rb'
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/environments.yml config/secrets.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets }
+
+set :nginx_sites_available_path, "/etc/nginx/sites-available"
+set :nginx_sites_enabled_path, "/etc/nginx/sites-enabled"
 
 # in order to prevent bundler from overwriting the version controlled binstubs
 set :bundle_binstubs, nil
