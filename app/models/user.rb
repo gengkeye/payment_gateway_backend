@@ -4,4 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :gateways
+
+  enum role: {
+  	admin: 0,
+  	merchant: 1
+  }
 end

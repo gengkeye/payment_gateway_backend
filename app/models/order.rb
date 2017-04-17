@@ -1,3 +1,5 @@
+require 'csv'
+
 class Order < ApplicationRecord
 	belongs_to :gateway
 	enum status: {
@@ -8,4 +10,16 @@ class Order < ApplicationRecord
 		expired: 5, 
 		canceled: 6
 	}
+
+	def self.to_csv
+	  attributes = Order.column_names
+
+	  CSV.generate(headers: true) do |csv|
+	    csv << attributes
+
+	    all.each do |user|
+	      csv << attributes.map{ |attr| user.send(attr) }
+	    end
+	  end
+	end
 end

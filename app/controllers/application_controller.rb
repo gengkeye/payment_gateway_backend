@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+  # config pundit
   include Pundit
   after_action :verify_authorized, except: :index # raise an exception if authorize has not yet been called
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_policy_scoped, only: :index # raise an exception if policy_scope has not yet been called
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 

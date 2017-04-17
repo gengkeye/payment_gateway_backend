@@ -8,40 +8,47 @@ class OrdersController < ApplicationController
 
   def index
   	respond_to do |format|
-	  format.html do
-		@orders = @orders.page(params[:page] || 1)
-	  end
-  	  format.xls do
-  	    headers['Content-Disposition'] = "attachment; filename=\"orders_#{Time.current.to_i}.xls\""
-  	    headers['Content-Type'] ||= 'application/xls'
+  	  format.html do
+  		  @orders = @orders.page params[:page]
   	  end
+
+  	  # format.xls do
+  	  #   headers['Content-Disposition'] = "attachment; filename=\"orders_#{Time.current.to_i}.xls\""
+  	  #   headers['Content-Type'] ||= 'application/xls'
+  	  # end
+
   	  format.xlsx do
   	    headers['Content-Disposition'] = "attachment; filename=\"orders_#{Time.current.to_i}.xlsx\""
   	    headers['Content-Type'] ||= 'application/xls'
   	  end
-  	  format.pdf { render pdf: generate_pdf(@orders)}
+
+      format.csv { send_data @orders.to_csv, filename: "orders-#{Date.today}" }
+      format.json { send_data @orders.to_json }
+      format.xml { send_data @orders.to_xml }
+
+  	  # format.pdf { render pdf: generate_pdf(@orders)}
   	end
   end
 
   def search_order
   	@orders = policy_scope(Order).order('orders.id desc')
-    @orders = @orders.where(status: params[:statuses].split(','))
+    @orders = @orders.where(status: params[:statuses].split(',')) unless params[:statuses].blank?
   end
  
   private
 
-  def generate_pdf(orders)
-    Prawn::Document.new do
-      orders.each do |order|
-	      text order.address, align: :center
-	      text order.status, align: :center
-	      text order.amount, align: :center
-	      text order.amount_paid, align: :center
-	      text order.amount_with_currency, align: :center
-	      text order.gateway_id, align: :center
-	      text order.created_at, align: :center
-	   end
-    end.render
-  end
+  # def generate_pdf(orders)
+  #   Prawn::Document.new do
+  #     orders.each do |order|
+	 #      text order.address, align: :center
+	 #      text order.status, align: :center
+	 #      text order.amount, align: :center
+	 #      text order.amount_paid, align: :center
+	 #      text order.amount_with_currency, align: :center
+	 #      text order.gateway_id, align: :center
+	 #      text order.created_at, align: :center
+	 #   end
+  #   end.render
+  # end
 end
 end

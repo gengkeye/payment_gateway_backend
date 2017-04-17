@@ -18,6 +18,9 @@ gem 'sqlite3'
 gem 'mysql2'
 gem 'devise'
 
+# paginate 
+gem 'kaminari'
+
 # Create axlsx
 gem 'axlsx', '~> 2.1.0.pre'
 gem 'axlsx_rails'

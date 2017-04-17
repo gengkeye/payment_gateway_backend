@@ -74,12 +74,12 @@
 		</tbody>
 	</table>
     <%= paginate @orders %>
-	<div class="export">Export to: <a href="#" id="export_to_xlsx">xlsx</a> | <a href="/orders.csv">CSV</a> | <a href="/orders.json">JSON</a> | <a href="/orders.xml">XML</a></div>
+	<div class="export">Export to: <a href="<%= admin_orders_path(params: params, format: :xlsx)%>">XLSX</a> | <a href="<%= admin_orders_path(params: params, format: :csv)%>">CSV</a> | <a href="<%= admin_orders_path(params: params, format: :json)%>">JSON</a> | <a href="<%= admin_orders_path(params: params, format: :xml)%>">XML</a> 
 </div>
 <script type="text/javascript">
 	$(function(){
-		$("#export_to_xlsx").click(function(){
-			alert(1)
-		})
+		// $("#export_to_xlsx").click(function(){
+			
+		// })
 	})
 </script>

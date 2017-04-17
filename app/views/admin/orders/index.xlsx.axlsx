@@ -13,7 +13,7 @@ wb.styles do |s|
     :wrap_text => true}
 
   wb.add_worksheet(name: 'Orders list') do |sheet|
-    sheet.add_row %w(Amount(mBTC) Paid_Amount(mBTC) Address Gateway Value(at the time of purchase) Created_at Status), height: 40
+    sheet.add_row %w(Amount(mBTC) Paid_Amount(mBTC) Address Gateway Value_of_purchase Created_at Status), height: 40
     sheet["A1:G1"].each { |c| c.style = title_cell }
     n = 1
     @orders.each do |order|

@@ -8,7 +8,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    user.admin? || user.merchant
   end
 
   def show?
@@ -16,7 +16,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user.merchant?
   end
 
   def new?
@@ -24,15 +24,15 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    create?
   end
 
   def edit?
-    update?
+    create?
   end
 
   def destroy?
-    false
+    user.admin?
   end
 
   def scope
