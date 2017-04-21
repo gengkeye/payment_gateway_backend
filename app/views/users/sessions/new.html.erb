@@ -5,16 +5,32 @@
         <h2>Log in</h2>
       </div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="input email optional user_email"><label class="email optional control-label" for="user_email">Email</label><input class="string email optional" autofocus="autofocus" type="text" name="user[email]" id="user_email" /></div>
-        <div class="input password optional user_password"><label class="password optional control-label" for="user_password">Password</label><input class="password optional" type="password" name="user[password]" id="user_password" /></div>
+        <div class="input email optional user_email">
+          <%= f.label :login, class: 'email optional control-label' %>
+          <%= f.text_field :login, class: 'string email optional', autofocus: true %>
+        </div>
+
+        <div class="input password optional user_password">
+          <%= f.label :password, class: 'password optional control-label' %>
+          <%= f.password_field :password, class: 'password optional'%>
+        </div>
+
         <div class='checkBoxContainer spacedBetween'>
-          <div class="input checkbox optional user_remember_me"><div class="formControl checkbox"><input name="user[remember_me]" type="hidden" value="0" /><input as="checkbox" class="centered" maxlength="false" placeholder="false" pattern="false" min_max="false" label="false" hint="false" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" /><label class="hint" for="user_remember_me"><span>Remember me</span></label></div></div>
+          <div class="input checkbox optional user_remember_me">
+            <div class="formControl checkbox">
+              <input name="user[remember_me]" type="hidden" value="0" />
+              <input as="checkbox" class="centered" maxlength="false" placeholder="false" pattern="false" min_max="false" label="false" hint="false" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
+              <label class="hint" for="user_remember_me">
+                <span>Remember me</span>
+              </label>
+            </div>
+          </div>
           <a href="/users/password/new">Forgot your password?</a>
         </div>
-      </div>
-      <div class='form-actions'>
-        <button type="submit" class="btn button buttonYellow large"><span>Log in</span><div class="loaderContainer"><div class="loader"></div></div></button>
-      </div>
+        </div>
+        <div class='form-actions'>
+          <button type="submit" class="btn button buttonYellow large"><span>Log in</span><div class="loaderContainer"><div class="loader"></div></div></button>
+        </div>
     <% end %>
   </div>
 </div>

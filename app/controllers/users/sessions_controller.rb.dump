@@ -13,7 +13,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   # def create
   #   if user = User.authenticate(params[:user][:login], params[:user][:password])
-  #     # Œ¢Ê¹ÓÃÕßµÄ ID ´æÔÚ Session£¬¹©Ö®ááµÄ Request Ê¹ÓÃ¡£
+  #     # å°‡ä½¿ç”¨è€…çš„ ID å­˜åœ¨ Sessionï¼Œä¾›ä¹‹å¾Œçš„ Request ä½¿ç”¨ã€‚
   #     session[:current_user_id] = user.id
   #     redirect_to user_root_path
   #   else

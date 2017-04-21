@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411031757) do
+ActiveRecord::Schema.define(version: 20170420062535) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20170411031757) do
     t.text     "back_url",                       limit: 65535
     t.text     "custom_css_url",                 limit: 65535
     t.boolean  "donation_mode",                                default: false
+    t.string   "country"
+    t.string   "region"
+    t.string   "city"
+    t.text     "description",                    limit: 65535
+    t.string   "convert_currency_to",                          default: "BTC"
+    t.boolean  "receive_payments_notifications",               default: false
     t.index ["hashed_id"], name: "gateways_hashed_id_index", using: :btree
     t.index ["id"], name: "gateways_id_index", unique: true, using: :btree
     t.index ["pubkey"], name: "gateways_pubkey_index", unique: true, using: :btree
@@ -95,27 +101,29 @@ ActiveRecord::Schema.define(version: 20170411031757) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "email",                                  default: "",    null: false
-    t.string   "encrypted_password",                     default: "",    null: false
+    t.string   "email",                                           default: "",    null: false
+    t.string   "encrypted_password",                              default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                          default: 0,     null: false
+    t.integer  "sign_in_count",                                   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.string   "name",                                   default: ""
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.string   "name",                                            default: ""
     t.string   "phone"
-    t.decimal  "balance_of_btc",          precision: 10, default: 0
-    t.boolean  "enabled_dev_api",                        default: false
+    t.decimal  "balance_of_btc",                   precision: 10, default: 0
+    t.boolean  "enabled_dev_api",                                 default: false
     t.string   "api_secret"
-    t.boolean  "enabled_two_factor_auth",                default: false
+    t.boolean  "enabled_two_factor_auth",                         default: false
     t.string   "reserve_tokens"
-    t.boolean  "enabled_sending_mail",                   default: true
-    t.integer  "role",                                   default: 1
+    t.boolean  "enabled_sending_mail",                            default: true
+    t.integer  "role",                                            default: 1
+    t.boolean  "toggle_dev_api",                                  default: false
+    t.string   "updates_email_subscription_level"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

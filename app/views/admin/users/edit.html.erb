@@ -1,2 +1,142 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<div class='contentHeader'>
+	<h1>Edit your account</h1>
+</div>
+
+<%= form_for [:admin, @user] do |f|%>
+		<div class='form-inputs'>
+			<div class='formWrapper medium spacedBottom'>
+				<div class='pure-g'>
+					<div class='pure-u-1-2'>
+						<div class="input string optional user_name">
+							<label class="string optional control-label" for="user_name">Name</label>
+							<%= f.text_field :name, class: 'string optional', autofocus: true %>
+						</div>
+						<div class="input email required user_email">
+							<label class="email required control-label" for="user_email"><abbr title="required">*</abbr> Email</label>
+							<%= f.text_field :email, class: 'string optional'%>
+						</div>
+						<div class="input select optional user_updates_email_subscription_level">
+							<label class="select optional control-label" for="user_updates_email_subscription_level">Send me updates</label>
+							<%= f.select :updates_email_subscription_level, options_for_select(User.updates_email_subscription_levels.keys),class: 'select optional'%>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='formBlock'>
+				<div class='formWrapper medium'>
+					<h3>If you want to change the password, enter the new one and confirm it again in the second field</h3>
+					<div class='pure-g'>
+						<div class='pure-u-1-2'>
+							<div class='columnContainer inputSpacingSmall'>
+								<div class="input password optional user_password field_with_hint">
+									<label class="password optional control-label" for="user_password">New password</label>
+									<input class="password optional" type="password" name="user[password]" id="user_password" />
+									<span class="hint">leave it blank if you don&#39;t want to change it</span>
+								</div>
+							</div>
+						</div>
+						<div class='pure-u-1-2'>
+							<div class='columnContainer inputSpacingSmall'>
+								<div class="input password optional user_password_confirmation field_with_hint">
+									<label class="password optional control-label" for="user_password_confirmation">New password again</label>
+									<input class="password optional" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+									<span class="hint">to confirm it and make sure you didn&#39;t make any mistakes</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class='formBlock'>
+				<div class='formWrapper medium'>
+					<h3>Two factor authentication</h3>
+					<p class='twoFactorAuth green'>
+						<img src="https://dwsv3vn9of50v.cloudfront.net/assets/sidebar_icons/two_factor_auth-5102f23355adbc50a8b77ec041ebee04c06645a88c6d80b16fbe4819d5bf6c6e.png" alt="Two factor auth 5102f23355adbc50a8b77ec041ebee04c06645a88c6d80b16fbe4819d5bf6c6e" />
+						<span>You have two factor authentication already <b>enabled</b>. Would you like to <a href="/users/displayqr">disable it?</a></span>
+						<p>
+							<div class='reveal reservedTokensList'>
+								<div class='reveal-toggle'>
+									<div class='reveal-link'>Show my reserve tokens</div>
+								</div>
+								<div class='reveal-content'>
+									<p>
+										Your reserve tokens:
+										<span>721975, 816374, 727289, 519801, 352085, 193976, 409580, 406917, 577793, 314107</span>
+									</p>
+								</div>
+							</div>
+							<a class="button buttonSecondary small" rel="nofollow" data-method="post" href="/generate_new_reserved_tokens"><span>Regenerate reserve tokens</span>
+								<div class='loaderContainer'>
+									<div class='loader'></div>
+								</div>
+							</a></p>
+						</p>
+					</div>
+				</div>
+			</div> -->
+				<div class='formWrapper medium'>
+					<div class='pure-g'>
+						<div class='pure-u-1-2'>
+							<div class='columnContainer'>
+								<div class="input password required user_current_password field_with_errors">
+									<label class="password required control-label" for="user_current_password"><abbr title="required">*</abbr> To save changes, you must enter the current password</label>
+									<input class="password required" type="password" name="user[current_password]" id="user_current_password" />
+									<span class="error" style="display: none">can&#39;t be blank</span>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='formWrapper medium'>
+					<div class='pure-g'>
+						<div class='pure-u-1-2'>
+							<div class='columnContainer'>
+								<div class="input checkbox_with_hint optional user_toggle_dev_api">
+									<label>Enable developers API</label>
+									<div class="formControl checkbox">
+										<%= f.check_box :toggle_dev_api %>
+										<label class="hint" for="user_toggle_dev_api">
+											<span>Check this if you would like to enable Developers API. For secure authorization you will be given a Secret Key.</span>
+										</label>
+									</div>
+									<div class='reveal reservedTokensList'>
+										<div class='reveal-toggle'>
+											<div class='reveal-link'>Show my api secret</div>
+										</div>
+										<div class='reveal-content'>
+											<p>
+												Your api_secret:
+												<span><%= @user.api_secret %></span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='formWrapper medium'>
+					<div class='pure-g'>
+						<div class='pure-u-1-2'>
+							<div class='columnContainer'>
+								<div class="input checkbox_with_hint optional user_regenerate_secret">
+									<label>Regenerate API secret</label>
+									<div class="formControl checkbox">
+										<%= f.check_box :regenerate_secret %>
+										<label class="hint" for="user_regenerate_secret">
+											<span>Check this if you would like to get a new Secret Key. Old one will no longer be accepted.</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='form-actions actions spacedTop'>
+				<%= f.submit 'Save changes', class: 'btn button'%>
+			</div>
+<% end %>
+
+	

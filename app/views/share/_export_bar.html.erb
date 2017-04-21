@@ -1,0 +1,6 @@
+<div class="export">Export to: 
+	<% %w(xlsx csv json xml).each do |export_format| %>
+		<a href="<%= eval("admin_#{export_obj}_path(params: params, :format => export_format.to_sym)") %>"><%= "#{export_format.upcase}" %></a> |
+	<% end %>
+</div>
+

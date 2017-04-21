@@ -20,22 +20,30 @@
     <script src="https://dwsv3vn9of50v.cloudfront.net/assets/chosen.jquery-114531082853a917e4c619c8fbf41d11850a9f89f4c46ba7f97ea2d5389a6f10.js"></script>
     <script src="https://dwsv3vn9of50v.cloudfront.net/assets/application-f247efea850ab06adc9f9693ea41b97625bf8f5c29b14b467d2c0268e46ce18d.js"></script>
     <script src="https://dwsv3vn9of50v.cloudfront.net/assets/joint-escrow/vendor-07f009021baad33795ca8d716e00dbfe2a1766b8d4170ed14574fbb10d2937d2.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
 
   	<%= csrf_meta_tags %>
   </head>
 
   <body class="authenticated" data-no-turbo-links>
-      <% flash.each  do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-          <span class='icon-close' id='close_notification_ico'></span>
-        </div>
-      <% end %>
       <img class="ajaxLoader" src="https://dwsv3vn9of50v.cloudfront.net/assets/ajax-loader-91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2.gif" alt="Ajax loader 91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2">
       <%= render 'share/left_sidebar' %>
       <div class="pageContainer">
         <div class="pageContent">
           <%= render 'share/topbar' %>
+          <% flash.each  do |message_type, messages| %>
+            <div>
+              <ul>
+                <% if messages.class == String %>
+                    <li class="admin-<%= message_type %>"><%= messages %></li>
+                <% else %>
+                  <% messages.map{ |k,v| [k,v[0]].join(' ')}.each do |message| %>
+                      <li class="admin-<%= message_type %>"><%= message %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <div class="container">
             <div class="page orders index">
               <div class="pageWrapper">

@@ -1,22 +1,48 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception, prepend: true
+
   # config pundit
   include Pundit
-  after_action :verify_authorized, except: :index # raise an exception if authorize has not yet been called
-  after_action :verify_policy_scoped, only: :index # raise an exception if policy_scope has not yet been called
+  after_action :verify_authorized, except: :index, unless: :devise_controller? # pundit
+  after_action :verify_policy_scoped, only: :index, unless: :devise_controller? # pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 
-  protect_from_forgery with: :exception, prepend: true
+  # devise
   before_action :authenticate_user!
+  # before_action :authenticate!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    added_attrs = [:name, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_in, keys: [:email, :name, :password]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs.push(:current_password)
+  end
+
+  # def current_user
+  #   session[:current_user_id] && User.find_by(id: session[:current_user_id])
+  # end
+
+  def set_locale
+    I18n.locale = params[:locale]
+  end
+
+  def self.default_url_options(options={})
+    options.merge({ :locale => I18n.locale })
+  end
+
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
   private
+
+  # def authenticate!
+  #   redirect_to user_session_path if current_user.nil?
+  # end
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore

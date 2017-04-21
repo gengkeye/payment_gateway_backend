@@ -1,2 +1,86 @@
-<h1>Admin::Gateways#index</h1>
-<p>Find me in app/views/admin/gateways/index.html.erb</p>
+<div class='contentHeader marginSmall'>
+	<h1 class='pageTitle'>Gateways</h1>
+	<div class='actions right'>
+		<a class="button withLoader" href="<%= new_admin_gateway_path %>"><span>
+			create gateway
+		</span>
+		<div class='loaderContainer'>
+			<div class='loader'></div>
+		</div>
+	</a></div>
+</div>
+<div class='actions tile tiny'>
+	<div class='filters'>
+		<div class='pageWrapper'>
+			<div class='pure-g'>
+				<div class='pure-u-1-3'>
+					<div class='columnContainer chosenSizeLarge'>
+						<label>Network</label>
+						<div class='chosenStandardWhite chosenSmallFont'>
+							<%= select_tag 'test_mode', options_for_select([['Mainnet', false], ['Testnet', true]].unshift(['Show all...', ''])) %>
+						</div>
+						</div>
+					</div>
+					<div class='pure-u-1-3'>
+						<div class='columnContainer chosenSizeLarge'>
+							<label>Status</label>
+							<div class='chosenStandardWhite chosenSmallFont'>
+									<%= select_tag 'active', options_for_select([['Active', true], ['Inactive', false]].unshift(['Show all...', ''])) %>
+								</div>
+							</div>
+						</div>
+						<div class='pure-u-1-3'>
+							<div class='columnContainer chosenSizeLarge'>
+								<label>Default Currency</label>
+								<div class='chosenStandardWhite chosenSmallFont'>
+									<%= select_tag 'default_currency', options_for_select(Gateway::SUPPORT_CURRENCY.unshift('Show all...')) %>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='list tile data clearfix'>
+				<table class='standardWhite'>
+					<colgroup>
+					<col span='1' style='width: 31%;'>
+					<col span='1' style='width: 10%;'>
+					<col span='1' style='width: 10%;'>
+					<col span='1' style='width: 31%;'>
+					<col span='1' style='width: 18%;'>
+				</colgroup>
+				<thead>
+					<th>Name</th>
+					<th>Status</th>
+					<th>Network</th>
+					<th>BIP32 Pubkey</th>
+					<th>Default Currency</th>
+				</thead>
+				<tbody>
+					<% if @gateways.blank? %>
+						<tr class="noRecords">
+							<td colspan="5">
+								<span>
+									No matching record found
+								</span>
+							</td>
+						</tr>
+					<% else %>
+						<% @gateways.each do |gateway| %>
+							<tr>
+								<td><%= gateway.name %></td>
+								<td><%= gateway.status %></td>
+								<td><%= gateway.test_mode ? "Testnet" : "Mainnet" %></td>
+								<td><%= gateway.test_mode ? gateway.test_pubkey : gateway.pubkey %></td>
+								<td><%= gateway.default_currency %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<%= paginate @gateways %>
+		<%= render 'share/export_bar', export_obj: 'gateways' %>
+	</div>
+</div>

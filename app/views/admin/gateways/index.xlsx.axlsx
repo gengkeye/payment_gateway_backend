@@ -1,0 +1,32 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  title_cell = s.add_style  :sz => 16, :alignment => { horizontal: :center, vertical: :center }, b: true
+  center_cell = s.add_style height: 25,  :sz => 16, :alignment => { horizontal: :center, vertical: :center }
+  basic_cell = s.add_style sz: 14, height: 25, :alignment => { horizontal: :center, vertical: :center }, b: true
+  bottom_bgateway = s.add_style bgateway: { :style => :thin, :color => "00", :edges => [:bottom] }
+  all_bgateway = s.add_style sz:12, height: 25, bgateway: { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right], }, :alignment => { horizontal: :center, vertical: :center }
+  wrap_text = s.add_style   :b => true,
+  :sz => 16,
+  :bgateway => { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right] },
+  :alignment => { :horizontal => :center,
+    :vertical => :center,
+    :wrap_text => true}
+
+  wb.add_worksheet(name: 'Gateways list') do |sheet|
+    sheet.add_row %w(Name Status Network BIP32Pubkey Default_Currency), height: 40
+    sheet["A1:E1"].each { |c| c.style = title_cell }
+    n = 1
+    @gateways.each do |gateway|
+      n += 1
+      sheet.add_row [
+         gateway.name,
+         gateway.status,
+         gateway.test_mode ? "Testnet" : "Mainnet",
+         gateway.test_mode ? gateway.test_pubkey : gateway.pubkey,
+         gateway.default_currency,
+      ],types: :string
+      sheet["A#{n}:E#{n}"].each { |c| c.style = center_cell }
+    end
+    sheet.column_widths 30, 30, 40, 40
+  end
+end

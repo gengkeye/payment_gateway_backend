@@ -30,56 +30,54 @@
 	<div class="list tile data clearfix">
 		<table class="standardWhite">
 			<colgroup>
-			<col span="1" style="width: 12%;">
-			<col span="1" style="width: 12%;">
-			<col span="1" style="width: 28%;">
-			<col span="1" style="width: 12%;">
-			<col span="1" style="width: 12%;">
-			<col span="1" style="width: 12%;">
-			<col span="1" style="width: 12%;">
-		</colgroup>
-		<thead>
-			<tr>
-				<th>Amount<small>(BTC)</small></th>
-				<th>Paid Amount<small>(BTC)</small></th>
-				<th>Address</th>
-				<th>Gateway</th>
-				<th>Value<small>(at the time of purchase)</small></th>
-				<th>Created at</th>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% if @orders.blank? %>
-				<tr class="noRecords">
-					<td colspan="7">
-						<span>
-							No matching record found
-						</span>
-					</td>
+				<col span="1" style="width: 12%;">
+				<col span="1" style="width: 12%;">
+				<col span="1" style="width: 28%;">
+				<col span="1" style="width: 12%;">
+				<col span="1" style="width: 12%;">
+				<col span="1" style="width: 12%;">
+				<col span="1" style="width: 12%;">
+		    </colgroup>
+			<thead>
+				<tr>
+					<th>Amount<small>(BTC)</small></th>
+					<th>Paid Amount<small>(BTC)</small></th>
+					<th>Address</th>
+					<th>Gateway</th>
+					<th>Value<small>(at the time of purchase)</small></th>
+					<th>Created at</th>
+					<th>Status</th>
 				</tr>
-			<% else %>
-				<% @orders.each do |order| %>
-					<tr>
-						<td><%= order.amount %></td>
-						<td><%= order.amount_paid %></td>
-						<td><%= order.address %></td>
-						<td><%= order.gateway_id %></td>
-						<td><%= order.amount_with_currency %></td>
-						<td><%= order.created_at %></td>
-						<td><%= order.status %></td>
+			</thead>
+			<tbody>
+				<% if @orders.blank? %>
+					<tr class="noRecords">
+						<td colspan="7">
+							<span>
+								No matching record found
+							</span>
+						</td>
 					</tr>
+				<% else %>
+					<% @orders.each do |order| %>
+						<tr>
+							<td><%= order.amount %></td>
+							<td><%= order.amount_paid %></td>
+							<td><%= order.address %></td>
+							<td><%= order.gateway_id %></td>
+							<td><%= order.amount_with_currency %></td>
+							<td><%= order.created_at %></td>
+							<td><%= order.status %></td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
     <%= paginate @orders %>
-	<div class="export">Export to: <a href="<%= admin_orders_path(params: params, format: :xlsx)%>">XLSX</a> | <a href="<%= admin_orders_path(params: params, format: :csv)%>">CSV</a> | <a href="<%= admin_orders_path(params: params, format: :json)%>">JSON</a> | <a href="<%= admin_orders_path(params: params, format: :xml)%>">XML</a> 
+    <%= render 'share/export_bar', export_obj: 'orders' %>
 </div>
 <script type="text/javascript">
 	$(function(){
-		// $("#export_to_xlsx").click(function(){
-			
-		// })
 	})
 </script>

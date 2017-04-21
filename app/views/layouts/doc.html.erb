@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/jquery.modal-3846f62536bd292d75ce7d5f16f66951e033bae6f51b002039843994cbec5bae.css" />
+  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/pure-grids-responsive-old-ie-min-c567d92b689302c52fde0f00532a8627f166a7e4389be6c7e2d6d681bb5665bf.css" />
+  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/pure-grids-responsive-min-5a78a0828a2643c176530677d88bd5cbd9fd38f6d41acea2a5e867fa1be431a8.css" />
+  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/frontend_notifier_custom-c504c7b51670af6203c82888c42baa42e77c51c6ab47ee011ce85caec6e33692.css" />
+  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/chosen-38177ed759e5204820636e9e33c03ee3d351a89b6ff8d7085d36d77fb21b3588.css" />
+  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/shared-a9e6611c19e2c20adb32583c847d1c51a21f173eb0dfe39ab452781fa37b5e74.css" />
+  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/application-71a45bba56cbc1f6b7fc0a6d74292e4577b83a7c0b71a72e9a14c4bedb77dfcc.css" />
+  <title>Mycelium Gear Admin</title>
+<!--[if lte IE 8]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href='//fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,400italic,500,700&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+<script src="https://dwsv3vn9of50v.cloudfront.net/assets/jquery-83c1e46d5ebd49a4c7b54a8b94bf30fe87cd3f3f65738cf9551c119561667676.js"></script>
+<%= csrf_meta_tags %>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="AD9Ci45qGZCSQNFm/i60B61Rm9mLCf09zdoTL7uAa9tNK+o7P3tcxrMl0RYSxntQNdKoWSjxpfM8Es9gwueDnA==" />
+
+<meta content='width=1400' name='viewport'>
+<script src="https://dwsv3vn9of50v.cloudfront.net/assets/jquery.matchHeight-934eb7914adcde54138ffe788a6324b8c410e33b5512691fa2b5ff152e31a056.js"></script>
+<script src="https://dwsv3vn9of50v.cloudfront.net/assets/chosen.jquery-114531082853a917e4c619c8fbf41d11850a9f89f4c46ba7f97ea2d5389a6f10.js"></script>
+<script src="https://dwsv3vn9of50v.cloudfront.net/assets/application-f247efea850ab06adc9f9693ea41b97625bf8f5c29b14b467d2c0268e46ce18d.js"></script>
+<script src="https://dwsv3vn9of50v.cloudfront.net/assets/joint-escrow/vendor-07f009021baad33795ca8d716e00dbfe2a1766b8d4170ed14574fbb10d2937d2.js"></script>
+</head>
+<body class='authenticated' data-no-turbo-links>
+  <img class="ajaxLoader" src="https://dwsv3vn9of50v.cloudfront.net/assets/ajax-loader-91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2.gif" alt="Ajax loader 91907a224e0325a5b96aaafedef1c51c3182581481b3adf999d9f3d1e6ff14c2" />
+  <div class='leftSidebar'>
+    <div class='background'></div>
+    <div class='container'>
+      <div class='logo'><a href="/"><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Mycelium gear logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></a></div>
+      <menu></menu>
+      <div class='container lang'></div>
+    </div>
+  </div>
+  <div class='pageContainer'>
+    <div class='pageContent'>
+      <%= render 'topbar' %>
+      <div class='container'>
+        <div class='iwd pure-g'>
+          <div class='pure-u-1-1'>
+            <h1>Documentation</h1>
+            <%= render 'doc_content_sidebar' %>
+            <%= yeild %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

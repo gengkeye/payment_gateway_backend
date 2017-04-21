@@ -5,21 +5,12 @@
 			<nav class='secondary inline'>
 				<ul>
 					<li>
-						<% if current_user.present? %>
-							<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= destroy_user_session_path %>" data-method="DELETE"><span>Log out</span>
-								<div class='icon-login'></div>
-								<div class='loaderContainer'>
-									<div class='loader'></div>
-								</div>
-							</a>
-						<% else %>
-							<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= new_user_session_path %>"><span>Log in</span>
-								<div class='icon-login'></div>
-								<div class='loaderContainer'>
-									<div class='loader'></div>
-								</div>
-							</a>
-						<% end %>
+						<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= new_user_session_path %>"><span>Log in</span>
+							<div class='icon-login'></div>
+							<div class='loaderContainer'>
+								<div class='loader'></div>
+							</div>
+						</a>
 					</li>
 				</ul>
 			</nav>
@@ -128,15 +119,4 @@
 		</ul>
 	</nav>
 </footer>
-
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	ga('create', 'UA-27436274-25', 'auto');
-	ga('send', 'pageview');
-
-</script>
 
