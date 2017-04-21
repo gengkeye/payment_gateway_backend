@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
   # devise
   before_action :authenticate_user!
-  # before_action :authenticate!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -21,10 +20,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs.push(:current_password)
   end
-
-  # def current_user
-  #   session[:current_user_id] && User.find_by(id: session[:current_user_id])
-  # end
 
   def set_locale
     I18n.locale = params[:locale]
@@ -39,10 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  # def authenticate!
-  #   redirect_to user_session_path if current_user.nil?
-  # end
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
