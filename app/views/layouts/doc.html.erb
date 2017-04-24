@@ -45,7 +45,10 @@
           <div class='pure-u-1-1'>
             <h1>Documentation</h1>
             <%= render 'share/doc_content_sidebar' %>
-            <%= yield %>
+            <div class='contentHolder'>
+              <div class='content'>
+                <%= yield %>
+              </div></div>
           </div>
         </div>
       </div>

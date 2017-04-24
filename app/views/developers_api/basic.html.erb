@@ -1,0 +1,43 @@
+<div class='pure-u-1-1'>
+<p>The API is based on <a href="http://jsonapi.org/" target="_blank">JSONAPI</a> (version 1.0) implementation. </p>
+
+<p>Versioninig is done through HTTP header <strong>Accept-Version</strong>. It&#39;s possible to not set version, then last will be used. </p>
+<div class="highlight"><pre><span class="vg">Accept</span><span class="o">-</span><span class="nl">Version:</span><span class="w"> </span><span class="vg">v1</span>
+</pre></div>
+<p>In order to use Developer API you should first enable it and get a Secret key.
+To do so, proceed to account section, check &quot;Enable Developers API&quot; and click &quot;Save changes&quot; button.</p>
+
+<h2>Authentication</h2>
+
+<p>Each request to the API is signed usging the method described <a href="/docs/api/signed_request">here</a>.</p>
+
+<p>You can generate your <strong>Secret key</strong> on your account page.
+At the bottom of the page check &quot;Regenerate API Secret&quot; checkbox, enter your current password and click &quot;Save changes&quot; button - API Secret key will be generated for you.
+Please, don&#39;t forget to write it down somewhere. If you lost API Secret key, you will need to regenerate it. After this old key will no longer work.</p>
+
+<h2>Errors</h2>
+
+<p>All errors are returned under the <em>errors</em> property in the returned object, the value of that property is as an array of errors.
+If there are errors in the request you&#39;ve sent, it will return the following:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;There was a problem in JSON you submitted&quot;</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+<p>If there are validation errors, a response may look like this:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;can&#39;t be blank&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;pubkey&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;doesn&#39;t look like a BIP32 pubkey&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>

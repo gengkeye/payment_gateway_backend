@@ -1,0 +1,11 @@
+<div class='pure-u-1-1'>
+<p>If user cancels his purchase, it&#39;s better to cancel the Mycelium Gear order as well.</p>
+
+<p>Order can be canceled by sending a signed request:</p>
+<div class="highlight"><pre>POST /gateways/:api_gateway_id/orders/(:order_id or :payment_id)/cancel
+</pre></div>
+<p>or you can send the same request by using straight-server-kit:</p>
+<div class="highlight"><pre><span class="n">client</span> <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">gateway_id</span><span class="p">:</span> <span class="n">api_gateway_id</span><span class="p">,</span> <span class="ss">secret</span><span class="p">:</span> <span class="n">gateway_secret</span><span class="p">)</span>
+<span class="n">order</span>  <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">order_id</span><span class="p">)</span>
+</pre></div>
+</div>

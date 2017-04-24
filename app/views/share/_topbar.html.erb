@@ -4,13 +4,15 @@
       Support:
         <a href="mailto:skyluster.support@nn.com" title="">skyluster.support@nn.com</a>
     </li>
-    <li>
-      <b class="topMenuLink">
-        <a href="/users/sign_out" data-method="DELETE"><span class="label">
-          SIGN OUT
-        </span>
-        <span class="icon-logout"></span>
-      </a></b>
-    </li>
+    <% if user_signed_in? %>
+      <li>
+        <b class="topMenuLink">
+          <a href="/users/sign_out" data-method="DELETE"><span class="label">
+            SIGN OUT
+          </span>
+          <span class="icon-logout"></span>
+        </a></b>
+      </li>
+    <% end %>
   </ul>
 </div>
