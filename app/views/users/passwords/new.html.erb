@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
+<div class='page'>
+	<div class='formBlock'>
+		<div class='formContent'>
+			<div class='formHeading'>
+				<h2>Forgot your password?</h2>
+			</div>
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'simple_form standardLight' })  do |f| %>
+			  <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+			  <div class="form-inputs">
+				<div class="input email required user_email">
+				    <%= f.label class: 'email required control-label' do %>
+				    	<abbr title="required">*</abbr>Email
+				    <% end %>
+				    <%= f.email_field :email, autofocus: true, class: 'string email required' %>
+				</div>
+			  </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+			  <div class="form-actions actions spacedTop">
+			    <%= f.submit "Send me reset password instructions", class: 'btn button buttonYellow middle mobileFullWidth' %>
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -18,10 +18,7 @@ Rails.application.routes.draw do
    end
   end
 
-  # namespace :docs do
-  #   get :introduction
-  # end
-
+  get 'docs' => 'docs#introduction'  
   resources :docs, only: [] do
     collection do 
       get :introduction
