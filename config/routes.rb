@@ -2,9 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
   devise_for :users
-  # devise_for :users, controllers: {
-  #   sessions: 'users/sessions'
-  # }
 
   get 'orders' => 'admin/orders#index', as: :user_root
   get 'gateways' => 'admin/gateways#index'

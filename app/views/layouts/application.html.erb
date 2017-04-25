@@ -19,15 +19,15 @@
     <%= javascript_include_tag 'flash_info', 'data-turbolinks-track' => false %>
   </head>
 <body class='unauthenticated'>
+  <% flash.each  do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>">
+      <%= message %>
+      <span class='icon-close' id='close_notification_ico'></span>
+    </div>
+  <% end %>
   <img class="ajaxLoader" src="https://dwsv3vn9of50v.cloudfront.net/assets/ajax-loader-dark-389c885ad1d1f874c6285cd29cd12877a175927d2dd001734ac2c3c8917c8c35.gif" alt="Ajax loader dark 389c885ad1d1f874c6285cd29cd12877a175927d2dd001734ac2c3c8917c8c35" />
   <div id='spaceBgContainer'>
   </div>
-  <% flash.each  do |message_type, message| %>
-  	<div class="alert alert-<%= message_type %>">
-  		<%= message %>
-  		<span class='icon-close' id='close_notification_ico'></span>
-  	</div>
-  <% end %>
 	<%= yield %>
 </body>
 </html>

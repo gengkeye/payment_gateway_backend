@@ -2,8 +2,8 @@ class User < ApplicationRecord
   attr_accessor :login, :regenerate_secret
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :registerable, :confirmable, :timeoutable, :async,
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, :authentication_keys => [:login]
   has_many :gateways
   validates :email, :name, :presence => true, :uniqueness => { :case_sensitive => false }
   validates_format_of :name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true

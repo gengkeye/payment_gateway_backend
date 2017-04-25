@@ -16,7 +16,19 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 
 gem 'mysql2'
+
 gem 'devise'
+# send email in background
+gem 'devise-async'
+
+# sidekiq
+gem 'sidekiq'
+
+# redis
+gem 'redis', '~> 3.3.1'
+
+# Map Redis types directly to Ruby objects. Works with any class or ORM.
+gem 'redis-objects', '~> 1.2.1'
 
 # paginate 
 gem 'kaminari'
