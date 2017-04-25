@@ -13,6 +13,7 @@
  *= require_self
  *= require 'flash_info'
  */
+
 abbr[title] {
 	color: red;
 	display: inline-block !important;

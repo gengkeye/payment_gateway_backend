@@ -8,16 +8,25 @@
   <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/shared-a9e6611c19e2c20adb32583c847d1c51a21f173eb0dfe39ab452781fa37b5e74.css" />
   <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/unauthenticated-f8befff3951c881ab83df789274b8fe0a3b17fc67cf0f8bb42e12b883a94fed1.css" />
   <title><%= @title %> | Skyluster Admin</title>
+  <link href='//fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,400italic,500,700&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
   <%= csrf_meta_tags %>
-<link href='//fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,400italic,500,700&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 </head>
 <body class='unauthenticated'>
+  <% flash.each  do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>">
+      <%= message %>
+      <span class='icon-close' id='close_notification_ico'></span>
+    </div>
+  <% end %>
   <div id='spaceBgContainer'>
   </div>
   <div class='page unauthenticated flexAlign verticalCenter horizontalCenter'>
     <div class='pageContainer'>
       <header>
-        <a href="http://gear.mycelium.com/"><div class='logo'><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Mycelium gear logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></div>
+        <a href="<% root_path %>"><div class='logo'><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Mycelium gear logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></div>
         </a>
       </header>
 	    <%= yield %>
