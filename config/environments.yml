@@ -1,0 +1,9 @@
+development:
+  gmail_username: 'dejiegeng@gmail.com'
+  gmail_password: 'Redhat2008'
+test:
+  gmail_username: 'dejiegeng@gmail.com'
+  gmail_password: 'Redhat2008'
+production:
+  gmail_username: 'dejiegeng@gmail.com'
+  gmail_password: 'Redhat2008'

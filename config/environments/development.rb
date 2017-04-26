@@ -31,7 +31,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3001}
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.asset_host = 'http://localhost:3000'
 
@@ -40,11 +40,10 @@ Rails.application.configure do
   config.action_mailer.logger = nil
 
   config.action_mailer.smtp_settings = {
-        address:              '10.10.20.64',
+        address:              'smtp.gmail.com',
         port:                 587,
-        domain:               'nn.com',
-        user_name:            'skyluster_backend',
-        password:             'Abc123456',
+        user_name:            ENV['gmail_username'],
+        password:             ENV['gmail_password'],
         authentication:       'plain',
         enable_starttls_auto: true}
 

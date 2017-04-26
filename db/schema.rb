@@ -124,8 +124,17 @@ ActiveRecord::Schema.define(version: 20170420062535) do
     t.integer  "role",                                            default: 1
     t.boolean  "toggle_dev_api",                                  default: false
     t.string   "updates_email_subscription_level"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",                                 default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
   add_foreign_key "transactions", "orders", name: "transactions_ibfk_1", on_update: :cascade, on_delete: :cascade

@@ -41,4 +41,8 @@ class User < ApplicationRecord
     user = User.find_by('name = ? or email = ?', login,  login)
     user&.valid_password?(password) ? user : nil
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
