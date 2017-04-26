@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   root 'home#index'
-  devise_for :users, controllers: { confirmations: 'confirmations' }
+  devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations' }
 
   get 'orders' => 'admin/orders#index', as: :user_root
   get 'gateways' => 'admin/gateways#index'

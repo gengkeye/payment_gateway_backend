@@ -1,93 +1,70 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/pure-grids-responsive-old-ie-min-c567d92b689302c52fde0f00532a8627f166a7e4389be6c7e2d6d681bb5665bf.css" />
-  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/pure-grids-responsive-min-5a78a0828a2643c176530677d88bd5cbd9fd38f6d41acea2a5e867fa1be431a8.css" />
-  <link rel="stylesheet" media="screen" href="https://dwsv3vn9of50v.cloudfront.net/assets/frontend_notifier_custom-c504c7b51670af6203c82888c42baa42e77c51c6ab47ee011ce85caec6e33692.css" />
-  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/vendor/chosen-38177ed759e5204820636e9e33c03ee3d351a89b6ff8d7085d36d77fb21b3588.css" />
-  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/shared-a9e6611c19e2c20adb32583c847d1c51a21f173eb0dfe39ab452781fa37b5e74.css" />
-  <link rel="stylesheet" media="all" href="https://dwsv3vn9of50v.cloudfront.net/assets/unauthenticated-f8befff3951c881ab83df789274b8fe0a3b17fc67cf0f8bb42e12b883a94fed1.css" />
-  <title>Sign up | Skyluster Admin</title>
-  <link href='//fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,400italic,500,700&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-  <meta name="csrf-param" content="authenticity_token" />
-  <meta name="csrf-token" content="76jJPH2FceRn7XIhWNrv8W81N6m0pLlBbVD58cAi8QjwtvbJ0dyGugoYRXNyIqDcofpLhFsDXWQ0eaU3xJS6Ww==" />
-  <meta content="Skyluster: a new generation Bitcoin payment processor. Doesn't hold your private keys, has no access to your money. Provides easy to set up payment widget as well sophisticated developer API." name='description'>
-  <meta content='Bitcoin,payment,payments,widget,API,payment API,accept payments,accept Bitcoin,accept bitcoin' name='keywords'>
-  <meta content='width=device-width, initial-scale=1' name='viewport'>
-
-</head>
-<body class='unauthenticated'>
-
-  <div id='spaceBgContainer'>
-  </div>
-
-  <div class='page unauthenticated flexAlign verticalCenter horizontalCenter'>
-    <div class='pageContainer'>
-      <header>
-        <a href="http://gear.mycelium.com/"><div class='logo'><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Mycelium gear logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></div>
-        </a>
-      </header>
-      <div class='page registration new'>
-        <div class='formBlock'>
-          <div class='formContent'>
-            <div class='formHeading'>
-              <h2>Sign up</h2>
-            </div>
-          <!-- <form class="simple_form standardLight" novalidate="novalidate" id="new_user" action="/users" accept-charset="UTF-8" method="post"> -->
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-            <div class='form-inputs'>
-              <div class="input email required user_name">
-                <%= f.label :name, class: 'string optional control-label' do %>
-                  <abbr title="required">*</abbr> Name</label>
-                <% end %>
-                <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
-              </div>
-
-              <div class="input email required user_email">
-                <%= f.label :email, class: "email required control-label"  do %>
-                  <abbr title="required">*</abbr>Email</label>
-                <% end %>
-                <%= f.email_field :email, class: 'string email required' %>
-              </div>
-
-              <div class="input password required user_password">
-                <%= f.label :password, class: "password required control-label" do %>
-                  <abbr title="required">*</abbr>Password</label>
-                <% end %>
-                <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br />
-                <%= f.password_field :password, autocomplete: "off", class: "password required" %>
-              </div>
-
-              <div class="input password required user_password_confirmation">
-                <%= f.label :password_confirmation, class: 'password required control-label' do %>
-                  <abbr title="required">*</abbr>Password Confirmation</label>
-                <% end %>
-                <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
-              </div>
-              <div class='checkBoxContainer'>
-                <div class="input checkbox required user_tos_agreement">
-                <div class="formControl checkbox">
-                <input name="user[tos_agreement]" type="hidden" value="0" />
-                <input required="required" as="checkbox" inline_label="I have read and agree to the &lt;a target=&quot;_blank&quot; href=&quot;http://gear.mycelium.com/tos&quot;&gt;Terms Of Service&lt;/a&gt;" maxlength="false" placeholder="false" pattern="false" min_max="false" label="false" hint="false" type="checkbox" value="1" name="user[tos_agreement]" id="user_tos_agreement" />
-                <label class="hint" for="user_tos_agreement"><span>I have read and agree to the <a target="_blank" href="<%= tos_path %>">Terms Of Service</a></span></label></div></div>
-              </div>
-            </div>
-            <div class="form-actions actions spacedTop">
-              <%= f.submit "Sign up", class: 'btn button buttonYellow large'%>
-            </div>
-          <% end %>
-        </div>
+<div class='page registration new'>
+  <div class='formBlock'>
+    <div class='formContent'>
+      <div class='formHeading'>
+        <h2>Sign up</h2>
       </div>
-      <ul class='deviseMenu primary'>
-        <li><a href="<%= new_user_session_path %>">Log in</a></li>
-      </ul>
-      <ul class='deviseMenu secondary'>
-      </ul>
-    </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div class='form-inputs'>
+          <div class="input email required user_name">
+            <%= f.label :name, class: 'string optional control-label' do %>
+              <abbr title="required">*</abbr> Name</label>
+            <% end %>
+            <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
+          </div>
+
+          <div class="input email required user_email">
+            <%= f.label :email, class: "email required control-label"  do %>
+              <abbr title="required">*</abbr>Email</label>
+            <% end %>
+            <%= f.email_field :email, class: 'string email required' %>
+          </div>
+
+          <div class="input password required user_password">
+            <%= f.label :password, class: "password required control-label" do %>
+              <abbr title="required">*</abbr>Password</label>
+            <% end %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", class: "password required" %>
+          </div>
+
+          <div class="input password required user_password_confirmation">
+            <%= f.label :password_confirmation, class: 'password required control-label' do %>
+              <abbr title="required">*</abbr>Password Confirmation</label>
+            <% end %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
+          </div>
+          <div class='checkBoxContainer'>
+            <div class="input checkbox required user_tos_agreement">
+              <div class="formControl checkbox">
+                <%= f.check_box :tos_agreement %>
+                <label class="hint" for="user_tos_agreement"><span>I have read and agree to the <a target="_blank" href="<%= tos_path %>">Terms Of Service</a></span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions actions spacedTop">
+          <%= button_tag "Sign up", id: 'submit_button', type: 'button',  class: 'btn button buttonYellow large buttonDisabled'%>
+        </div>
+      <% end %>
   </div>
-</body>
-</html>
+</div>
+</div>
+<ul class='deviseMenu primary'>
+  <li><a href="<%= new_user_session_path %>">Log in</a></li>
+</ul>
+<script type="text/javascript">
+  $(function(){
+    $('#submit_button').click(function(){
+      if(!$(this).hasClass('buttonDisabled')){
+        $('#new_user').submit();
+      }
+    })
+    $('#user_tos_agreement').click(function(){
+      $('#submit_button').toggleClass('buttonDisabled');
+    })
+  })
+</script>>

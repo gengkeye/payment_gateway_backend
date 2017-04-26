@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20170420062535) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "tos_agreement",                                   default: false
     t.integer  "failed_attempts",                                 default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"

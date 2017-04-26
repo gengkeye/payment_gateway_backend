@@ -25,3 +25,9 @@ li.admin-notice{
 li.admin-alert{
 	color: red;
 }
+#error_explanation li {
+	color: red;
+}
+.buttonDisabled{
+	opacity: 0.7;
+}
