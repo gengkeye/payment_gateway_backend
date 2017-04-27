@@ -1,24 +1,17 @@
-<div class='page registration new'>
-  <div class='formBlock'>
-    <div class='formContent'>
-        <div class='formHeading'>
-		 <h2>Resend confirmation instructions</h2>
-        </div>
-
-		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'simple_form standardLight' }) do |f| %>
-		  <%= devise_error_messages! %>
-		  <div class="form-inputs">
-			  <div class="input email required user_email">
-			    <%= f.label :email, class: 'email required control-label' %>
-			    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'string email required' %>
-			  </div>
-		  </div>
-
-		  <div class="form-actions actions spacedTop">
-		    <%= f.submit "Resend confirmation instructions", class: 'btn button buttonYellow middle mobileFullWidth' %>
-		  </div>
-		<% end %>
-	</div>
-  </div>
+<div class='formHeading'>
+ <h2>Resend confirmation instructions</h2>
 </div>
 
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'simple_form standardLight' }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-inputs">
+	  <div class="input email required user_email">
+	    <%= f.label :email, class: 'email required control-label' %>
+	    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'string email required' %>
+	  </div>
+  </div>
+
+  <div class="form-actions actions spacedTop">
+    <%= f.submit "Resend confirmation instructions", class: 'btn button buttonYellow middle mobileFullWidth' %>
+  </div>
+<% end %>

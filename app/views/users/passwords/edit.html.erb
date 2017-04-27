@@ -1,32 +1,26 @@
-<div class='page registration new'>
-  <div class='formBlock'>
-    <div class='formContent'>
-        <div class='formHeading'>
-          <h2>Change your password</h2>
-        </div>
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
-          <%= f.hidden_field :reset_password_token %>
-          <div class="form-inputs">
-            <div class="input password required user_password">
-              <%= f.label :password, 'New password', class: "password required control-label" %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "off", class: "password required" %>
-            </div>
+<div class='formHeading'>
+  <h2>Change your password</h2>
+</div>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="form-inputs">
+    <div class="input password required user_password">
+      <%= f.label :password, 'New password', class: "password required control-label" %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "password required" %>
+    </div>
 
-            <div class="input password required user_password_confirmation">
-              <%= f.label :password_confirmation, 'Confirm new password', class: 'password required control-label'%>
-              <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
-            </div>
-          </div>
-
-          <div class="form-actions actions spacedTop">
-            <%= f.submit "Change my password", class: 'btn button buttonYellow large' %>
-          </div>
-        <% end %>
+    <div class="input password required user_password_confirmation">
+      <%= f.label :password_confirmation, 'Confirm new password', class: 'password required control-label'%>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
     </div>
   </div>
-</div>
+
+  <div class="form-actions actions spacedTop">
+    <%= f.submit "Change my password", class: 'btn button buttonYellow large' %>
+  </div>
+<% end %>
 

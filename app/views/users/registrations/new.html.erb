@@ -1,58 +1,52 @@
-<div class='page registration new'>
-  <div class='formBlock'>
-    <div class='formContent'>
-      <div class='formHeading'>
-        <h2>Sign up</h2>
-      </div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-        <div class='form-inputs'>
-          <div class="input email required user_name">
-            <%= f.label :name, class: 'string optional control-label' do %>
-              <abbr title="required">*</abbr> Name</label>
-            <% end %>
-            <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
-          </div>
-
-          <div class="input email required user_email">
-            <%= f.label :email, class: "email required control-label"  do %>
-              <abbr title="required">*</abbr>Email</label>
-            <% end %>
-            <%= f.email_field :email, class: 'string email required' %>
-          </div>
-
-          <div class="input password required user_password">
-            <%= f.label :password, class: "password required control-label" do %>
-              <abbr title="required">*</abbr>Password</label>
-            <% end %>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "off", class: "password required" %>
-          </div>
-
-          <div class="input password required user_password_confirmation">
-            <%= f.label :password_confirmation, class: 'password required control-label' do %>
-              <abbr title="required">*</abbr>Password Confirmation</label>
-            <% end %>
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
-          </div>
-          <div class='checkBoxContainer'>
-            <div class="input checkbox required user_tos_agreement">
-              <div class="formControl checkbox">
-                <%= f.check_box :tos_agreement %>
-                <label class="hint" for="user_tos_agreement"><span>I have read and agree to the <a target="_blank" href="<%= tos_path %>">Terms Of Service</a></span></label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-actions actions spacedTop">
-          <%= button_tag "Sign up", id: 'submit_button', type: 'button',  class: 'btn button buttonYellow large buttonDisabled'%>
-        </div>
+<div class='formHeading'>
+  <h2>Sign up</h2>
+</div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div class='form-inputs'>
+    <div class="input email required user_name">
+      <%= f.label :name, class: 'string optional control-label' do %>
+        <abbr title="required">*</abbr> Name</label>
       <% end %>
+      <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
+    </div>
+
+    <div class="input email required user_email">
+      <%= f.label :email, class: "email required control-label"  do %>
+        <abbr title="required">*</abbr>Email</label>
+      <% end %>
+      <%= f.email_field :email, class: 'string email required' %>
+    </div>
+
+    <div class="input password required user_password">
+      <%= f.label :password, class: "password required control-label" do %>
+        <abbr title="required">*</abbr>Password</label>
+      <% end %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "password required" %>
+    </div>
+
+    <div class="input password required user_password_confirmation">
+      <%= f.label :password_confirmation, class: 'password required control-label' do %>
+        <abbr title="required">*</abbr>Password Confirmation</label>
+      <% end %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
+    </div>
+    <div class='checkBoxContainer'>
+      <div class="input checkbox required user_tos_agreement">
+        <div class="formControl checkbox">
+          <%= f.check_box :tos_agreement %>
+          <label class="hint" for="user_tos_agreement"><span>I have read and agree to the <a target="_blank" href="<%= tos_path %>">Terms Of Service</a></span></label>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-</div>
+  <div class="form-actions actions spacedTop">
+    <%= button_tag "Sign up", id: 'submit_button', type: 'button',  class: 'btn button buttonYellow large buttonDisabled'%>
+  </div>
+<% end %>
 <script type="text/javascript">
   $(function(){
     $('#submit_button').click(function(){
