@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   # config pundit
   include Pundit
-  after_action :verify_authorized, except: :index, unless: :devise_controller? # || :docs_controller?# pundit
-  after_action :verify_policy_scoped, only: :index, unless: :devise_controller? # pundit
+  after_action :verify_authorized, except: :index, unless: -> { devise_controller? || docs_controller? || introduction_controller? }
+  after_action :verify_policy_scoped, only: :index, unless: -> { devise_controller? || docs_controller? || introduction_controller? }
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 
@@ -40,5 +40,13 @@ class ApplicationController < ActionController::Base
 
     flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
     redirect_to(request.referrer || root_path)
+  end
+
+  def introduction_controller?
+    is_a?(::IntroductionsController)
+  end
+
+  def docs_controller?
+    is_a?(::DocsController)
   end
 end

@@ -1,6 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'joint_escrow' => 'introductions#joint_escrow'
+
+  get 'payments_processing' => 'introductions#payments_processing'
+
+  get 'payroll' => 'introductions#payroll'
+
   mount Sidekiq::Web => '/sidekiq'
   root 'home#index'
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations' }

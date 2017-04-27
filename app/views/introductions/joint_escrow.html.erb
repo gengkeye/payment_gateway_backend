@@ -1,0 +1,55 @@
+<%= content_for :header do %>
+	<div class='heroContent noPadding loaderReveal loaderRevealDelay400 loaderRevealSpeed500'>
+		<p>The Joint Escrow feature allows users to create smart contracts where they can lock their funds together until the contract is finalized so that only those users are able to release the funds from escrow. Mycelium Gear has no control over the release of funds.</p>
+		<div class='heroImage'><img src="https://dwsv3vn9of50v.cloudfront.net/assets/joint_escrow/hero-531be5f2afc39500a1b1a1acefe6f4f6db27764d3ddf3ef13a6fddd70fc2256b.svg" alt="Hero 531be5f2afc39500a1b1a1acefe6f4f6db27764d3ddf3ef13a6fddd70fc2256b" /></div>
+	</div>
+<% end %>
+<div class='mainContent loaderReveal loaderRevealDelay800 loaderRevealSpeed500'>
+	<section class='small textLarge'>
+		<h1 class='contentHeading'>Why do you need Joint Escrow?</h1>
+		<p>Suppose you would like to do business with someone across the world: you live in Canada and the person you’re hiring to design a website lives in Uzbekistan. You obviously don’t trust each other, but the potential value to both parties is substantial and you would like to try and work together.</p>
+		<p>The problem here is that the two countries have vastly different legal systems. In the case of a possible conflict, it would be very hard for you (both financially and legally) to protect your interests. What if you paid an advance but the work was not completed? And the other person too may not trust you and may be wondering whether he’ll get paid in full after he completes the task.</p>
+		<p>The solution we propose is an escrow, but a much more advanced version of it. In traditional escrow you lock funds with a third party, which ultimately makes the decision in case of a conflict. In our solution, only the two parties control the escrow and it is up to them to resolve the conflict and unlock the funds.</p>
+		<p>Removing the third party ensures a greater degree of trust and a commitment of both parties to a successful resolution of the contract.</p>
+	</section>
+	<section class='small'>
+		<h1 class='contentHeading'>How does it work?</h1>
+		<ol class='points'>
+			<li>
+				<div class='pointTitle'>How much is to be deposited to escrow from each party</div>
+				<div class='pointAnswer'>
+					<p>It could be, for instance, 10BTC from each side, or, if potential risks are different for each side, then it could be adjusted to become 10BTC from you and 25BTC from your counterparty.</p>
+				</div>
+			</li>
+			<li>
+				<div class='pointTitle'>How much is to be released from escrow and to whom</div>
+				<div class='pointAnswer'>
+					<p>Normally, in the simplest case, you’d want the same amounts to be released back. This is the case when the actual payments are done independently of escrow, through a bank wire, for example. Sometimes you’d want to include the actual payment into the escrow though, and in this case you may want to specify, for example, that 5 out of 10 BTC deposited by you should go to the counterparty when the contract is finalized.</p>
+				</div>
+			</li>
+			<li>
+				<div class='pointTitle'>Contract terms in plain english</div>
+				<div class='pointAnswer'>
+					<p>This is where you describe the terms you previously discussed with your counterparty. While it’s not affecting the contract itself, these terms are embedded into the Bitcoin transaction, so that later you can check back with it and discuss it with your counterparty in the case of a dispute.</p>
+					<p>After the contract is prepared, both parties sign it with their payment passwords (which they generate on the same page) and then they deposit bitcoins to the addresses specified on the contract page.</p>
+					<p>As soon as each party finds the contract terms to be satisfied, they once again use their payment password to sign the release transaction after which the funds will go to the addresses specified in the contract.</p>
+					<p>It is also possible to renegotiate and change the terms before the funds are released from escrow. It can be done on the contract page. Both parties would have to agree to the new terms - only when they both sign the release transaction the funds are released.</p>
+				</div>
+			</li>
+		</ol>
+	</section>
+	<section class='small textLarge'>
+		<h1 class='contentHeading'>Is it safe?</h1>
+		<p>Yes. Mycelium Gear doesn’t hold the funds, it doesn’t store payment passwords or any other critical information. You can even create a contract without signing up with Gear, however for your convenience we recommend you to do so - you will then be able to manage your contracts effectively, track their status and engage easily with other Gear users.</p>
+	</section>
+	<section class='small textLarge'>
+		<h1 class='contentHeading'>Can I integrate this functionality <br>into my website?</h1>
+		<p>Yes. In a very short time Gear will present an API, much like our payment processing API, that will allow any site to provide Joint Escrow functionality to their users. You won’t need to learn any crypto or Bitcoin, since everything will be done through a simple Joint Escrow API.</p>
+	</section>
+	<section class='small textLarge'>
+		<h1 class='contentHeading'>Can I integrate this functionality <br>into my android app?</h1>
+		<p>Much like an API for websites, we will also provide a more sophisticated API for mobile developers. Using our opensource library, you will be able to easily create joint escrow contracts inside your android app and then use Gear API to broadcast them. Once again, you won’t need to know any crypto or Bitcoin to do that.</p>
+	</section>
+</div>
+
+
