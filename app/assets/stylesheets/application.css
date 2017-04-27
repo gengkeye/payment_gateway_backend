@@ -31,3 +31,7 @@ li.admin-alert{
 .buttonDisabled{
 	opacity: 0.7;
 }
+.devise-shared-links{
+	display: block;
+	text-align: center;
+}
