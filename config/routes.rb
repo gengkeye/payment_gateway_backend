@@ -51,7 +51,7 @@ Rails.application.routes.draw do
               get :list
               resources :cashila, only: [] do
                 collection do
-                  get :list
+                  get :login
                   get :withdraw
                   resources :legalentity, only: [] do
                     collection do

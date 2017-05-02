@@ -5,6 +5,5 @@ class TosController < ApplicationController
   def index
   	skip_authorization
   	skip_policy_scope
-  	@title = 'Tos'
   end
 end

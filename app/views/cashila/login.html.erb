@@ -1,139 +1,122 @@
 <div class='pure-u-1-1'>
-  <h1>Documentation</h1>
-  <div class='sidebar'>
-    <form class=".pure-form.pure-form-stacked" action="/docs/version" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="XF3IKqYzs1bVs+SxtBVl0KNsLBWiB1nZavdwmRvmZl9saS6Lpq5tURMbKx0PERq9i7bY2deRZUqinUDXHxX0iQ==" />
-      <select name='version' onchange='this.form.submit()'>
-        <option value=''>Latest</option>
-      </select>
+  <h2>Login (API token and secret)</h2>
 
-    </form>
+  <p>Create Cashila Address Provider by providing credentials to already existing Cashila account.
+   Exactly one set of parameters must be provided: either email/password or token/secret.</p>
 
-    <div id="docsMenu" class="docsAccordionMenu">
-      <ul><li ><a href="/docs/introduction">Introduction</a></li><li ><a href="/docs/overview_of_payment_processing">Overview of Payment Processing</a></li><li ><a href="/docs/creating_a_new_gateway">Creating a New Gateway</a></li><li ><span class='folder'>API<i class='fa faAngleDown'></i></span><ul><li ><a href="/docs/api/signed_request">Signed Request</a></li><li ><a href="/docs/api/creating_orders">Creating Orders</a></li><li ><a href="/docs/api/receiving_order_status_change_callback">Receiving Order Status Change Callback</a></li><li ><a href="/docs/api/checking_order_status_manually">Checking Order Status Manually</a></li><li ><a href="/docs/api/order_websocket">Order Websocket</a></li><li ><a href="/docs/api/order_cancellation">Order Cancellation</a></li><li ><a href="/docs/api/receiving_last_keychain_id_for_gateway">Receiving Last Keychain ID for Gateway</a></li></ul></li><li class=active><span class='folder'>Developer API<i class='fa faAngleDown'></i></span><ul><li ><a href="/docs/developers_api/basic">Basic</a></li><li ><a href="/docs/developers_api/gateways">Gateways</a></li><li class=active><span class='folder'>Address Providers<i class='fa faAngleDown'></i></span><ul><li ><a href="/docs/developers_api/addressproviders/list">list</a></li><li class=active><span class='folder'>Cashila<i class='fa faAngleDown'></i></span><ul><li class=active><a href="/docs/developers_api/addressproviders/cashila/login">login</a></li><li ><a href="/docs/developers_api/addressproviders/cashila/withdraw">withdraw</a></li><li ><span class='folder'>Legal Entity<i class='fa faAngleDown'></i></span><ul><li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/create">create</a></li><li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/get">get</a></li><li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/update">update</a></li></ul></li><li ><span class='folder'>Individual Entity<i class='fa faAngleDown'></i></span><ul><li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/create">create</a></li><li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/get">get</a></li><li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/update">update</a></li></ul></li></ul></li></ul></li></ul></li></ul>
-    </div>
+   <h4>URL STRUCTURE</h4>
 
-  </div>
-  <div class='contentHolder'>
-    <div class='content'>
-      <div class='diffForm'>
-        <form class=".pure-form.pure-form-aligned" action="/docs/diff" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
-          <input name='file' type='hidden' value='developers_api/addressproviders/cashila/login'>
-          <label>Diff with version:</label>
-          <span class='diffSelectWrapper'>
-            <select name='tag' onchange='this.form.submit()'>
-              <option value=''>Not selected</option>
-            </select>
+   <p>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</p>
 
-          </span>
-        </form>
+   <h4>PARAMETERS (* Required field)</h4>
 
-      </div>
-      <div class='pure-u-1-1'>
-        <h2>Login (API token and secret)</h2>
-
-        <p>Create Cashila Address Provider by providing credentials to already existing Cashila account.
-         Exactly one set of parameters must be provided: either email/password or token/secret.</p>
-
-         <h4>URL STRUCTURE</h4>
-
-         <p>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</p>
-
-         <h4>PARAMETERS (* Required field)</h4>
-
-         <table>
+  <table>
+    <tr>
+      <td>email <i>(String)</i></td>
+      <td>Email for Cashila account</td>
+      <tr>
+        <td>password <i>(String)</i></td>
+        <td>Password for Cashila account</td>
+        <tr>
+          <td>token <i>(String)</i></td>
+          <td>Cashila account API token</td>
           <tr>
-            <td>email <i>(String)</i></td>
-            <td>Email for Cashila account</td>
-            <tr>
-              <td>password <i>(String)</i></td>
-              <td>Password for Cashila account</td>
-              <tr>
-                <td>token <i>(String)</i></td>
-                <td>Cashila account API token</td>
-                <tr>
-                  <td>secret <i>(String)</i></td>
-                  <td>Cashila account API secret</td>
-                </table>
+            <td>secret <i>(String)</i></td>
+            <td>Cashila account API secret</td>
+          </tr>
+        </tr>
+      </tr>
+    </tr>
+  </table>
 
-                <h3>Example Request</h3>
-
-                <table>
-                  <tr>
-                    <td>REQUEST</td>
-                    <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
-                    <tr>
-                      <td>PARAMETERS</td>
-                      <td><pre><code>{
-                        &quot;token&quot;: &quot;e414d696-296f-4e10-97b3-3bbaecbe150e&quot;,
-                        &quot;secret&quot;: &quot;cTxm2TGBULSxssEXdLc2TM9FK7pqTzVg9LWDCy/BXVy/YmEkg7XrxsrcaWUpSo/6Q+76ZZTLq0IcGmMDFEeRvw==&quot;
-                      }</code></pre></td>
-                      <tr>
-                        <td>RETURNS</td>
-                        <td><pre><code>{
-                          "type": "address_providers_cashila",
-                          "id": 13,
-                          "bank_account": {
-                        },
-                        "status": "pending",
-                        "balance": 3.21,
-                        "rejected_reason": null,
-                        "user_details": {
-                      },
-                      "documents": [
-                      {
+  <h3>Example Request</h3>
+  <table>
+    <tr>
+      <td>REQUEST</td>
+      <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
+      <tr>
+        <td>PARAMETERS</td>
+        <td><pre>
+          <code>
+            {
+              &quot;token&quot;: &quot;e414d696-296f-4e10-97b3-3bbaecbe150e&quot;,
+              &quot;secret&quot;: &quot;cTxm2TGBULSxssEXdLc2TM9FK7pqTzVg9LWDCy/BXVy/YmEkg7XrxsrcaWUpSo/6Q+76ZZTLq0IcGmMDFEeRvw==&quot;
+            }
+          </code></pre></td>
+        <tr>
+          <td>RETURNS</td>
+          <td>
+            <pre>
+              <code>
+                {
+                  "type": "address_providers_cashila",
+                  "id": 13,
+                  "bank_account": {},
+                  "status": "pending",
+                  "balance": 3.21,
+                  "rejected_reason": null,
+                  "user_details": {},
+                  "documents": [
+                    {
                       "name": "gov_id_front",
                       "status": "not present"
                     },
                     {
-                    "name": "gov_id_back",
-                    "status": "not present"
-                  },
-                  {
-                  "name": "residence",
-                  "status": "not present"
-                }
-                ]
-              }</code></pre></td>
-            </table>
-
-            <table>
-              <tr>
-                <td>REQUEST</td>
-                <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
-                <tr>
-                  <td>PARAMETERS</td>
-                  <td><pre><code>{
-                    &quot;email&quot;: &quot;alerticus+cashila@gmail.com&quot;,
-                    &quot;password&quot;: &quot;q1w2e3r4&quot;
-                  }</code></pre></td>
-                  <tr>
-                    <td>RETURNS</td>
-                    <td><pre><code>{
-                      "type": "address_providers_cashila",
-                      "id": 11,
-                      "bank_account": {
+                      "name": "gov_id_back",
+                      "status": "not present"
                     },
-                    "status": "pending",
-                    "balance": 3.21,
-                    "rejected_reason": null,
-                    "user_details": {
-                    "email": "alerticus+cashila@gmail.com"
-                  },
-                  "documents": [
-                  {
-                  "name": "gov_id_front",
-                  "status": "not present"
-                },
-                {
+                    {
+                      "name": "residence",
+                      "status": "not present"
+                    }
+                  ]
+                }
+              </code>
+            </pre>
+          </td>
+        </tr>
+      </tr>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>REQUEST</td>
+      <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
+      <tr>
+        <td>PARAMETERS</td>
+        <td><pre><code>{
+          &quot;email&quot;: &quot;alerticus+cashila@gmail.com&quot;,
+          &quot;password&quot;: &quot;q1w2e3r4&quot;
+        }</code></pre></td>
+        <tr>
+          <td>RETURNS</td>
+          <td><pre><code>
+          {
+            "type": "address_providers_cashila",
+            "id": 11,
+            "bank_account": {},
+            "status": "pending",
+            "balance": 3.21,
+            "rejected_reason": null,
+            "user_details": {
+              "email": "alerticus+cashila@gmail.com"
+            },
+           "documents": [
+              {
+                "name": "gov_id_front",
+                "status": "not present"
+              },
+              {
                 "name": "gov_id_back",
                 "status": "not present"
               },
               {
-              "name": "residence",
-              "status": "not present"
-            }
+                "name": "residence",
+                "status": "not present"
+              }
             ]
-          }</code></pre></td>
-        </table>
-
-      </div>
+          }
+        </code></pre></td>
+  </table>
+</div>
