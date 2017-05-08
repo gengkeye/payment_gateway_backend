@@ -26,7 +26,7 @@ set :puma_config_file, 'puma.rb'
 # sidekiq
 set :sidekiq_config, 'config/sidekiq.yml'
 set :pty, false
-set :sidekiq_monit_use_sudo, false
+# set :sidekiq_monit_use_sudo, false
 
 ## Defaults:
 # set :scm,           :git
