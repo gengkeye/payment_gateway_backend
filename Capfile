@@ -43,5 +43,9 @@ install_plugin Capistrano::Puma::Jungle # if you need the jungle tasks
 install_plugin Capistrano::Puma::Monit, load_hooks: false  # if you need the monit tasks
 install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
 
+# sidekiq
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
+
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }

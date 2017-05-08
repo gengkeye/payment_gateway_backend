@@ -23,6 +23,10 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 set :puma_role, :app
 set :puma_config_file, 'puma.rb'
 
+# sidekiq
+set :sidekiq_config, 'config/sidekiq.yml'
+set :pty, false
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -31,7 +35,7 @@ set :puma_config_file, 'puma.rb'
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w{config/database.yml config/environments.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/environments.yml config/secrets.yml config/sidekiq.yml config/redis.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets }
 
 set :nginx_sites_available_path, "/etc/nginx/sites-available"
