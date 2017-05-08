@@ -37,7 +37,7 @@ set :rails_env, 'production'
 set :deploy_to, "/home/oldseven/app/#{ fetch(:application) }"
 
 set :sidekiq_monit_conf_dir, '/home/oldseven/sidekiq/monit.d'
-set :sidekiq_monit_use_sudo, false
+set :sidekiq_monit_use_sudo, true
 
 # Custom SSH Options
 # ==================
