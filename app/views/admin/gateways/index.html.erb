@@ -1,10 +1,10 @@
 <% provide(:title, "Gateways")%>
 
 <div class='contentHeader marginSmall'>
-	<h1 class='pageTitle'>Gateways</h1>
+	<h1 class='pageTitle'><%= t('gateways') %></h1>
 	<div class='actions right'>
 		<a class="button withLoader" href="<%= new_admin_gateway_path %>"><span>
-			create gateway
+			<%= t('gateway.create_gateway') %>
 		</span>
 		<div class='loaderContainer'>
 			<div class='loader'></div>
@@ -17,28 +17,28 @@
 			<div class='pure-g'>
 				<div class='pure-u-1-3'>
 					<div class='columnContainer chosenSizeLarge'>
-						<label>Network</label>
+						<label><%= t('gateway.network') %></label>
 						<div class='chosenStandardWhite chosenSmallFont'>
-							<%= select_tag 'test_mode', options_for_select([['Mainnet', false], ['Testnet', true]].unshift(['Show all...', ''])) %>
+							<%= select_tag 'test_mode', options_for_select([[t('gateway.mainnet'), false], [t('gateway.testnet'), true]].unshift([t('show_all'), ''])) %>
 						</div>
 						</div>
 					</div>
 					<div class='pure-u-1-3'>
 						<div class='columnContainer chosenSizeLarge'>
-							<label>Status</label>
+							<label><%= t('status') %></label>
 							<div class='chosenStandardWhite chosenSmallFont'>
-									<%= select_tag 'active', options_for_select([['Active', true], ['Inactive', false]].unshift(['Show all...', ''])) %>
+									<%= select_tag 'active', options_for_select([[t('gateway.active'), true], [t('gateway.inactive'), false]].unshift([t('show_all'), ''])) %>
 								</div>
 							</div>
 						</div>
 						<div class='pure-u-1-3'>
 							<div class='columnContainer chosenSizeLarge'>
-								<label>Default Currency</label>
+								<label><%= Gateway.human_attribute_name(:default_currency) %></label>
 								<div class='chosenStandardWhite chosenSmallFont'>
-									<%= select_tag 'default_currency', options_for_select(Gateway::SUPPORT_CURRENCY.unshift('Show all...')) %>
+									<%= select_tag 'default_currency', options_for_select(Gateway.default_currencies.map{|k, v| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), v]}) %>
 								</div>
 							</div>
-							</div>
+							</div> 
 						</div>
 					</div>
 				</div>
@@ -53,11 +53,11 @@
 					<col span='1' style='width: 18%;'>
 				</colgroup>
 				<thead>
-					<th>Name</th>
-					<th>Status</th>
-					<th>Network</th>
-					<th>BIP32 Pubkey</th>
-					<th>Default Currency</th>
+					<th><%= Gateway.human_attribute_name(:name) %></th>
+					<th><%= Gateway.human_attribute_name(:status) %></th>
+					<th><%= Gateway.human_attribute_name(:test_mode) %></th>
+					<th><%= t('gateway.bip32_pubkey') %></th>
+					<th><%= Gateway.human_attribute_name(:default_currency) %></th>
 				</thead>
 				<tbody>
 					<% if @gateways.blank? %>

@@ -22,11 +22,11 @@
 		<div class='pure-u-1-1 pure-u-lg-16-24 pure-u-xl-3-5'>
 			<div class='content loaderReveal loaderRevealDelay700 loaderRevealSpeed600'>
 				<div class='contentHero'>
-					<h1>21st century <br/><em>business solutions</em></h1>
-					<p>Skyluster provides ultimate business solutions for small and large businesses who want to take advantage of Bitcoin and the blockchain:</p>
-					<ul class='menuFramedLinks'>
+					<h1><%= I18n.t('home_page.century_title') %><br/><em><%= I18n.t('home_page.business_solution') %></em></h1>
+					<!-- <p><%= I18n.t('home_page.solutions_explain') %></p> -->
+<!-- 					<ul class='menuFramedLinks'>
 						<li>
-							<a href="/payments_processing">Bitcoin <br/>payments processing</a>
+							<a href="/payments_processing"><%= I18n.t('bitcoin') %><br/><%= I18n.t('home_page.payment_process') %></a>
 						</li>
 						<li>
 							<a href="/joint_escrow">Joint Escrow <br/>smart contracts</a>
@@ -34,10 +34,10 @@
 						<li>
 							<a href="/payroll">Automated <br/>Bitcoin Payroll</a>
 						</li>
-					</ul>
+					</ul> -->
 					<div class='callToAction'>
-						<p>Start accepting Bitcoin payments in less than 5 minutes</p>
-						<a class="buttonRounded buttonPrimary buttonLarge" href="<%= new_user_registration_path %>"><span>Sign up for Skyluster</span>
+						<p><%= I18n.t('home_page.start_accepting') %></p>
+						<a class="buttonRounded buttonPrimary buttonLarge" href="<%= new_user_registration_path %>"><span><%= I18n.t('home_page.sign_up_menu') %></span>
 							<div class='loaderContainer'>
 								<div class='loader'></div>
 							</div>
@@ -46,57 +46,31 @@
 				</div>
 			</div>
 		</div>
-		<div class='pure-u-1-1 pure-u-lg-8-24 pure-u-xl-2-5 pure-hidden-lg pure-hidden-xl pure-hidden-xxl'>
-			<div class='contentSideHero loaderReveal loaderRevealDelay900 loaderRevealSpeed600'>
-				<div class='point'>
-					<h2>
-						<div class='icon-store'></div>
-						<span>Are you a small online store <br/>or a big retailer?</span>
-					</h2>
-					<p>Start accepting Bitcoin payments for free with our easy to install widget or a sophisticated API. Gear doesn’t hold your money, they go straight into your wallet.</p>
-				</div>
-				<div class='point'>
-					<h2>
-						<div class='icon-people'></div>
-						<span>Do you work with people <br/>from all over the world?</span>
-					</h2>
-					<p>Use our Joint Escrow feature to guarantee safety of your deals with anyone in the world, regardless of the jurisdiction.</p>
-				</div>
-				<div class='point'>
-					<h2>
-						<div class='icon-wallet2'></div>
-						<span>Do you pay your employees in Bitcoin?</span>
-					</h2>
-					<p>Automate the process and spend no more than 30 seconds per month sending payments, no matter the size of the organization.</p>
-				</div>
-			</div>
-		</div>
 	</div>
 </section>
-
 <div class='contentSideHero cover loaderReveal loaderRevealDelay900 loaderRevealSpeed600 pure-hidden-xs pure-hidden-sm pure-hidden-md'>
 	<div class='pointsContainer'>
 		<div class='point'>
 			<h2>
 				<div class='icon-store'></div>
-				<span>Are you a small online store <br/>or a big retailer?</span>
+				<span><%= I18n.t('home_page.right_question1.title') %></span>
 			</h2>
-			<p>Start accepting Bitcoin payments for free with our easy to install widget or a sophisticated API. Gear doesn’t hold your money, they go straight into your wallet.</p>
+			<p><%= I18n.t('home_page.right_question1.content') %></p>
 		</div>
 		<div class='point'>
 			<h2>
 				<div class='icon-people'></div>
-				<span>Do you work with people <br/>from all over the world?</span>
+				<span><%= I18n.t('home_page.right_question2.title_1') %><br /><%= I18n.t('home_page.right_question2.title_2') %></span>
 			</h2>
-			<p>Use our Joint Escrow feature to guarantee safety of your deals with anyone in the world, regardless of the jurisdiction.</p>
+			<p><%= I18n.t('home_page.right_question2.content') %></p>
 		</div>
-		<div class='point'>
+<!-- 		<div class='point'>
 			<h2>
 				<div class='icon-wallet2'></div>
-				<span>Do you pay your employees in Bitcoin?</span>
+				<span><%#= I18n.t('home_page.right_question3.title') %></span>
 			</h2>
-			<p>Automate the process and spend no more than 30 seconds per month sending payments, no matter the size of the organization.</p>
-		</div>
+			<p><%#= I18n.t('home_page.right_question3.content') %></p>
+		</div> -->
 	</div>
 </div>
 

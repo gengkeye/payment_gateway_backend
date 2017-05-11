@@ -1,7 +1,7 @@
 <% provide(:title, "Orders")%>
 
 <div class="contentHeader marginSmall">
-	<h1 class="pageTitle">Orders</h1>
+	<h1 class="pageTitle"><%= t('orders')%></h1>
 </div>
 <div class="actions tile tiny">
 	<div class="filters">
@@ -9,18 +9,9 @@
 			<div class="pure-g">
 				<div class="pure-u-1-2">
 					<div class="columnContainer chosenSizeLarge">
-						<label>Status</label>
+						<label><%= Order.human_attribute_name(:status) %></label>
 						<div class="chosenStandardWhite chosenSmallFont">
-							<select name="filter_by_status[]" id="filter_by_status" data-placeholder="Show all..." multiple="multiple" style="display: none;">
-							    <option value="0">new</option>
-								<option value="1">unconfirmed</option>
-								<option value="2">paid</option>
-								<option value="3">underpaid</option>
-								<option value="4">overpaid</option>
-								<option value="5">expired</option>
-								<option value="6">canceled</option>
-								<option value="-3">partially paid</option>
-							</select>
+							<%= select_tag "filter_by_status", options_for_select(Order.statuses.map{|k,v| [I18n.t("activerecord.attributes.order.enum.status.#{k}"), v]}), multiple: "multiple", 'data-placeholder' => t('show_all') %>
 							<div class="chosen-container chosen-container-multi" style="width: 161px;" title="" id="filter_by_status_chosen">
 						</div>
 						</div>
@@ -42,13 +33,13 @@
 		    </colgroup>
 			<thead>
 				<tr>
-					<th>Amount<small>(BTC)</small></th>
-					<th>Paid Amount<small>(BTC)</small></th>
-					<th>Address</th>
-					<th>Gateway</th>
-					<th>Value<small>(at the time of purchase)</small></th>
-					<th>Created at</th>
-					<th>Status</th>
+					<th><%= Order.human_attribute_name(:amount) %><small>(BTC)</small></th>
+					<th><%= Order.human_attribute_name(:amount_paid) %><small>(BTC)</small></th>
+					<th style="text-align: center;"><%= Order.human_attribute_name(:address) %></th>
+					<th><%= Order.human_attribute_name(:gateway_id) %></th>
+					<th><%= Order.human_attribute_name(:amount_with_currency) %><small>(<%= t('amount_with_currency_small')%>)</small></th>
+					<th><%= Order.human_attribute_name(:created_at) %></th>
+					<th><%= Order.human_attribute_name(:status) %></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -79,7 +70,3 @@
     <%= paginate @orders %>
     <%= render 'share/export_bar', export_obj: 'orders' %>
 </div>
-<script type="text/javascript">
-	$(function(){
-	})
-</script>

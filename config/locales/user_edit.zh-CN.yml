@@ -1,0 +1,24 @@
+zh-CN:
+  user_edit:
+    title: '编辑个人资料'
+    send_me_updates: '发送何种类型的消息提醒给您'
+    password: 
+      title: ' 如果你要更改密码，请输入新密码并确认。'
+      new: '新密码'
+      new_again: '再次输入新密码'
+      explain:
+        new: "如果不想更改密码，保持为空。"
+        new_again: "确认密码，保证输入正确。"
+    save_change:
+      title: '输入当前密码，以保存改动。'
+      error: "不能为空"
+    enable_api:
+      title: '启用开发者API'
+      checkbox_explain: '如果你想启用开发者API，请勾选它。为了安全认证，系统会分配给你一个私钥。'
+      show_api:
+        link: '显示我的API私钥'
+        title: '你的API私钥是：'
+    regenerate_api_secret:
+      title: '重新生成API私钥'
+      checkbox_explain: '如果你想得到一个新的私钥，请勾选它。旧的私钥将会失效。'
+    save_change: '保存改动'

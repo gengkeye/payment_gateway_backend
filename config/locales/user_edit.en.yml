@@ -1,0 +1,24 @@
+en:
+  user_edit:
+    title: 'Edit your account'
+    send_me_updates: 'Send me updates'
+    password: 
+      title: 'If you want to change the password, enter the new one and confirm it again in the second field'
+      new: 'New password'
+      new_again: 'New password again'
+      explain:
+        new: "leave it blank if you don't want to change it"
+        new_again: "to confirm it and make sure you didn't make any mistakes"
+    save_change:
+      title: 'To save changes, you must enter the current password'
+      error: "can't be blank"
+    enable_api:
+      title: 'Enable developers API'
+      checkbox_explain: 'Check this if you would like to enable Developers API. For secure authorization you will be given a Secret Key.'
+      show_api:
+        link: 'Show my api secret'
+        title: 'Your api_secret:'
+    regenerate_api_secret:
+      title: 'Regenerate API secret'
+      checkbox_explain: 'Check this if you would like to get a new Secret Key. Old one will no longer be accepted.'
+    save_change: 'SAVE CHANGES'

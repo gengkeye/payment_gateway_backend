@@ -1,0 +1,19 @@
+en:
+  home_page:
+    century_title: '21st century'
+    business_solution: 'business solutions'
+    solutions_explain: 'Skyluster provides ultimate business solutions for small and large businesses who want to take advantage of Bitcoin and the blockchain:'
+    start_accepting: 'Start accepting Bitcoin payments in less than 5 minutes.'
+    sign_up_menu: 'Sign up for Skyluster'
+    payment_process: 'payments processing'
+    right_question1:
+      title: 'Are you a small online store or a big retailer?'
+      content: 'Start accepting Bitcoin payments for free with our easy to install widget or a sophisticated API. Gear doesn’t hold your money, they go straight into your wallet.'
+    right_question2:
+      title_1: 'Do you work with people'
+      title_2: 'from all over the world?'
+      content: 'Use our Joint Escrow feature to guarantee safety of your deals with anyone in the world, regardless of the jurisdiction.'
+    right_question3:
+      title: 'Do you pay your employees in Bitcoin?'
+      content: 'Automate the process and spend no more than 30 seconds per month sending payments, no matter the size of the organization.'
+

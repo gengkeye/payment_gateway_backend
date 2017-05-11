@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      user: '用户'
+    attributes:
+      user:
+        email: '邮箱'
+        name: '姓名'
+        password: '密码'
+        password_confirmation: '确认密码'
+        login: '账户名'
+        enum:
+          updates_email_subscription_level:
+            never: '从不提醒'
+            regular: '普通的'
+            important: '重要的'
+            critical: '非常重要的'

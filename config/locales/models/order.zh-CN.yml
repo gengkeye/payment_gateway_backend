@@ -1,8 +1,22 @@
-en:
-  status:
-    unconfirmed: 'unconfirmed'
-    paid: 'paid'
-    underpaid: 'underpaid' # not enough money received
-    overpaid: 'overpaid' # too much has been received
-    expired: 'expired' 
-    canceled: 'canceled'
+zh-CN:
+  activerecord:
+    models:
+      order: '订单'
+    attributes:
+      order:
+        status: '状态'
+        amount: '数量'
+        address: '地址'
+        gateway_id: '网关'
+        amount_paid: '支付数量'
+        created_at: '支付时间'
+        amount_with_currency: '支付金额'
+        enum:
+          status:
+            unconfirmed: '未确认'
+            paid: '已付款'
+            underpaid: '未全额支付' # not enough money received
+            overpaid: '超额支付' # too much has been received
+            expired: '过期' 
+            canceled: '取消'
+            partially_paid: '部分支付'

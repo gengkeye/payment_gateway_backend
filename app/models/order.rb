@@ -8,7 +8,8 @@ class Order < ApplicationRecord
 		underpaid: 3, # not enough money received
 		overpaid: 4, # too much has been received
 		expired: 5, 
-		canceled: 6
+		canceled: 6,
+		partially_paid: -3
 	}
 
 	def self.to_csv

@@ -4,3 +4,31 @@ zh-CN:
    post_policy:
      update?: 'You cannot edit this post!'
      create?: 'You cannot create posts!'
+  bitcoin: '比特币'
+  log_in: '登录'
+  sign_up: '注册'
+  sign_out: '登出'
+  min_characters: '至少6个字符'
+  orders: '订单'
+  gateways: '网关'
+  account: '个人资料'
+  documentation: '文档'
+  support: '技术支持:'
+  show_all: '请选择...'
+  amount_with_currency_small: '当时价值'
+  export_to: '导出：'
+  gateway:
+    network: '网络'
+    create_gateway: '创建网关'
+    bip32_pubkey: 'BIP32 公钥'
+    mainnet: '主干网'
+    testnet: '测试网'
+    active: '激活'
+    inactive: '未激活'
+  status: '状态'
+
+
+
+
+
+

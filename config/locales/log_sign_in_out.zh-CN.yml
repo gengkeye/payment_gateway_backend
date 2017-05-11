@@ -1,0 +1,17 @@
+zh-CN:
+  sign_up_page:
+    agree_title: '我已阅读并同意此'
+    terms_of_service: '协议'
+  share_linK_page:
+    log_in: '登录'
+    forget_password: "忘记密码？"
+    not_receive_confirmation: "没有收到确认邮件？"
+    not_receive_unlock: "没有收到解锁邮件？"
+  log_in_page:
+    remember_me: '记住我'
+  resend_confirmation:
+    title: '重新发送确认邮件'
+    button: '发送'
+  resend_unluck:
+    title: '重新发送解锁邮件'
+    button: '发送'

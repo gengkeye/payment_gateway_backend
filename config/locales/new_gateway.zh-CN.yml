@@ -1,0 +1,50 @@
+zh-CN:
+  new_gateway:
+    subheading:
+      part1: '如果你想要把所有支付订单都转为法定货币，你应该首先'
+      part2: '配置'
+      part3: '兑换信息'
+    pick_wallet_title: "选择你在使用的钱包类型"
+    testnet_settings:
+      title: '测试网络设置'
+      sub_title: 'BIP32公钥'
+    currency_conversion_options:
+      title: '货币转换选项'
+      convert_payment: '把每笔支付转为'
+    explain:
+      name: '这个名字将会显示在支付页面上，告诉用户他或她是在向谁付款'
+      allow_link: "如果你想在标题中使用超链接，请勾选它。 你可以使用以http或https开头的链接，也可以只是一个<a>标签。其他的标签将被移除。"
+      confirmations_required: '网关能接受的比特币交易需要被比特网络所确认的区块数。如果你认为你的客户不是骗子的话，我们推荐设置为0。'
+      callback_url: '当订单状态发生改变时（例如从未支付变为支付），我们将发送一个http请求到下面的这个链接上，这个请求将会包含额外的订单数据（详情请参考文档）。这个输入框可保持为空，这样我们就不会发送回调请求。'
+      orders_expiration_period: '客户多少秒之内不支付，订单就会过期。当前工业标准是设置为900（15分钟）。被接受的最大值是172800（48小时）。'
+      after_payment_redirect_to: '输入一个URL，当你的客户支付完成后会跳向这个链接。'
+      back_url: "输入一个URL，当你的客户点击支付页面的取消订单按钮后会跳向这个链接。"
+      custom_css_url: '自定义支付界面的CSS文件地址。'
+      auto_redirect: '如果你勾选此复选框，那么你的客户在完成支付后会自动跳转到上面那个指定的地址。'
+      active: '不勾选的话意味着新产生的订单将不生效，且用户不能支付此订单。可在网站维护时使用此功能。'
+      donation_mode: '接收用户设置的任意数量的比特。'
+      default_currency: "如果你接收的币种不是比特币而是其他货币，我们将按照比特汇率提供商提供的汇率参数来计算。除非特别指定，否则我们只接收比特币。请记住，如果你没有选择比特币，也没有选择支持你的货币的比特币汇率提供商，我们将使用Forex提供的交叉汇率来换算成美元。"
+      convert_payment:
+        part1: '你还可以天加更多的导出选项通过'
+        part2: '配置新的兑换途径，'
+        part3: '然后刷新此页面。'
+      exchange_rate_adapter: "如果其中一个汇率提供商服务中断，将会自动使用下一个服务商的汇率。记住，这个仅仅在你的网关的默认货币不是比特币的时候才生效。"
+      bit32: "我们将使用这个以xpub开头的Key为每个订单生成新的地址。出于安全考虑，一旦填写你将无法修改它。"
+      watch_video: 
+        part1: '看一段小视频来学习如何导出BIP32 pubkey，从'
+        part2: 'Electrum钱包'
+        part3: 'Mycelium钱包'
+      pick_wallet: '如果你选择错误，你的钱包可能无法检测到交易信息。请确保你知道你在用哪个钱包。'
+      test_pubkey: "和pubkey一样，但仅用于测试网络。没有它，你将不能启用测试模式。"
+      test_mode: '当激活了测试模式，所有交易将走测试网络。仅用于测试环境。'
+      receive_payments_notifications: '有新的订单时，发送消息提醒到我的邮箱。'
+      website_url: "你网站或商店的地址。这将会显示在支付界面作为'返回商店'按钮的链接。"
+    additional_info:
+      title:
+        part1: '商户其他信息'
+        part2: '所有字段均是选填'
+      description: '描述'
+      country: '国家'
+      city: '城市'
+      region: '地区'
+      website_url: "在线商店URL地址"

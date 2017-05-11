@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except: :index, unless: -> { devise_controller? || docs_controller? || introduction_controller? }
   after_action :verify_policy_scoped, only: :index, unless: -> { devise_controller? || docs_controller? || introduction_controller? }
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :set_locale
 
 
   # devise

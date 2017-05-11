@@ -1,5 +1,5 @@
 <div class='formHeading'>
-	<h2>Resend unlock instructions</h2>
+	<h2><%= t('resend_unluck.title')%></h2>
 </div>
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
@@ -11,9 +11,6 @@
   </div>
 
   <div class="form-actions actions spacedTop">
-    <%= f.submit "Resend unlock instructions", class: 'btn button buttonYellow middle mobileFullWidth' %>
+    <%= f.submit t('resend_unluck.button'), class: 'btn button buttonYellow middle mobileFullWidth' %>
   </div>
 <% end %>
-
-
-

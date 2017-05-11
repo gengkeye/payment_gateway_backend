@@ -1,14 +1,14 @@
 <div class="topBar">
   <ul class="links">
     <li>
-      Support:
+      <%= t('support') %>
         <a href="mailto:skyluster.support@nn.com" title="">skyluster.support@nn.com</a>
     </li>
     <% if user_signed_in? %>
       <li>
         <b class="topMenuLink">
           <a href="/users/sign_out" data-method="DELETE"><span class="label">
-            SIGN OUT
+            <%= t('sign_out') %>
           </span>
           <span class="icon-logout"></span>
         </a></b>

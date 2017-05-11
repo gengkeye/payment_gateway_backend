@@ -1,0 +1,38 @@
+zh-CN:
+  activerecord:
+    models:
+      gateway: '网关'
+    attributes:
+      gateway:
+        default_currency: '默认货币'
+        name: '名称'
+        status: '状态'
+        test_mode: '测试模式'
+        receive_payments_notifications: '接收消息提醒'
+        exchange_rate_adapter_names: '汇率提供商名称'
+        allow_links: '允许链接'
+        confirmations_required: '确认区块数'
+        callback_url: '回调链接'
+        orders_expiration_period: '订单有效期'
+        after_payment_redirect_to: '支付后重定向'
+        back_url: '返回链接'
+        custom_css_url: '自定义样式地址'
+        auto_redirect: '自动重定向'
+        active: '是否启用'
+        donation_mode: '捐献模式'
+        default_currency: '默认币种'
+        test_mode: '测试模式'
+        
+        enum:
+          default_currency:
+            CNY: '人民币'
+            PHP: '比索'
+            USD: '美元'
+          country:
+            China: '中国'
+            America: '美国'
+            Philippine: '菲律宾'
+          exchange_rate_adapter_names:
+            Huobi: '火币网'
+            Btcchina: '比特币中国'
+            Okcoin: 'Okcoin'

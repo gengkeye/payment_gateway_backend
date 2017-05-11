@@ -35,3 +35,6 @@ li.admin-alert{
 	display: block;
 	text-align: center;
 }
+th {
+	text-align: center !important;
+}

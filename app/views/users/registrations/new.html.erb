@@ -1,36 +1,36 @@
 <div class='formHeading'>
-  <h2>Sign up</h2>
+  <h2><%= t('sign_up') %></h2>
 </div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div class='form-inputs'>
     <div class="input email required user_name">
-      <%= f.label :name, class: 'string optional control-label' do %>
-        <abbr title="required">*</abbr> Name</label>
+      <%= f.label class: 'string optional control-label' do %>
+        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.name') %></label>
       <% end %>
       <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
     </div>
 
     <div class="input email required user_email">
-      <%= f.label :email, class: "email required control-label"  do %>
-        <abbr title="required">*</abbr>Email</label>
+      <%= f.label class: "email required control-label"  do %>
+        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.email') %></label>
       <% end %>
       <%= f.email_field :email, class: 'string email required' %>
     </div>
 
     <div class="input password required user_password">
-      <%= f.label :password, class: "password required control-label" do %>
-        <abbr title="required">*</abbr>Password</label>
+      <%= f.label class: "password required control-label" do %>
+        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.password') %></label>
       <% end %>
       <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= t('min_characters') %>)</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off", class: "password required" %>
     </div>
 
     <div class="input password required user_password_confirmation">
-      <%= f.label :password_confirmation, class: 'password required control-label' do %>
-        <abbr title="required">*</abbr>Password Confirmation</label>
+      <%= f.label class: 'password required control-label' do %>
+        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.password_confirmation') %></label>
       <% end %>
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
     </div>
@@ -38,13 +38,13 @@
       <div class="input checkbox required user_tos_agreement">
         <div class="formControl checkbox">
           <%= f.check_box :tos_agreement %>
-          <label class="hint" for="user_tos_agreement"><span>I have read and agree to the <a target="_blank" href="<%= tos_path %>">Terms Of Service</a></span></label>
+          <label class="hint" for="user_tos_agreement"><span><%= I18n.t('sign_up_page.agree_title') %><a target="_blank" href="<%= tos_path %>"><%= I18n.t('sign_up_page.terms_of_service') %></a></span></label>
         </div>
       </div>
     </div>
   </div>
   <div class="form-actions actions spacedTop">
-    <%= button_tag "Sign up", id: 'submit_button', type: 'button',  class: 'btn button buttonYellow large buttonDisabled'%>
+    <%= button_tag t('sign_up'), id: 'submit_button', type: 'button',  class: 'btn button buttonYellow large buttonDisabled'%>
   </div>
 <% end %>
 <script type="text/javascript">
@@ -58,4 +58,4 @@
       $('#submit_button').toggleClass('buttonDisabled');
     })
   })
-</script>>
+</script>

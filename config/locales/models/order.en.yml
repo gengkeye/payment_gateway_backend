@@ -1,8 +1,0 @@
-en:
-  status:
-    unconfirmed: 'unconfirmed'
-    paid: 'paid'
-    underpaid: 'underpaid' # not enough money received
-    overpaid: 'overpaid' # too much has been received
-    expired: 'expired' 
-    canceled: 'canceled'

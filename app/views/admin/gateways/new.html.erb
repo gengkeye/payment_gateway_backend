@@ -2,139 +2,141 @@
 
 <div class='page gateways new'>
 	<div class='contentHeader'>
-		<h1>Create new gateway</h1>
-		<p class='subheading'>
-			If you wish to convert all payments into fiat money, you need to <a href='/fiat_payouts/new/choose'>configure an exchange</a> first.
-		</p>
+		<h1><%= t('gateway.create_gateway') %></h1>
+<!-- 		<p class='subheading'>
+			 <%#= t('new_gateway.subheading.part1') %><a href='/fiat_payouts/new/choose'><%#= t('new_gateway.subheading.part2') %></a> <%#= t('new_gateway.subheading.part3') %>.
+		</p> -->
 	</div>
 
     <%= form_for [:admin, @gateway], class: 'simple_form' do |f| %>
 		<div class='formWrapper'>
 			<div class="input string required gateway_name field_with_hint">
 				<label class="string required control-label" for="gateway_name">
-					<abbr title="required">*</abbr> Name
+					<abbr title="required">*</abbr> <%= Gateway.human_attribute_name(:name) %>
 				</label>
 				<input class="string required" type="text" name="gateway[name]" id="gateway_name" />
-				<span class="hint">This will to appear on the payment page for each customer to see</span>
+				<span class="hint"><%= t('new_gateway.explain.name') %></span>
 			</div>
 
 			<div class="input checkbox_with_hint optional gateway_allow_links">
-				<label>Allow links in titles</label><div class="formControl checkbox">
+				<label><%= Gateway.human_attribute_name(:allow_links) %></label><div class="formControl checkbox">
 				<%= f.check_box :allow_links %>
 				<label class="hint" for="gateway_allow_links">
-					<span>Check this if you would like to use links in titles. You can use pure link started with http or https or just "a" tag. All other tags will be sanitized.</span>
+					<span><%= t('new_gateway.explain.allow_link') %></span>
 				</label>
 			</div>
 
 			<div class="input select required gateway_confirmations_required field_with_hint">
 				<label class="select required control-label" for="gateway_confirmations_required">
-					<abbr title="required">*</abbr> Confirmations required
+					<abbr title="required">*</abbr> <%= Gateway.human_attribute_name(:confirmations_required) %>
 				</label>
 
 			    <%= f.select :confirmations_required, options_for_select(%w(0 1 2 3 4 5 6)), class: "select required"%>
-				<span class="hint">Bitcoin confirmations for a transaction to be considered accepted by the gateway. Unless you have reasons to believe some of your customers are going to be frauds, we recommend setting it to 0.</span>
+				<span class="hint"><%= t('new_gateway.explain.confirmations_required') %></span>
 			</div>
 
 			<div class="input string optional gateway_callback_url field_with_hint">
-				<label class="string optional control-label" for="gateway_callback_url">Callback url</label>
+				<label class="string optional control-label" for="gateway_callback_url"><%= Gateway.human_attribute_name(:callback_url) %></label>
 				<input class="string optional" type="text" name="gateway[callback_url]" id="gateway_callback_url" />
-				<span class="hint">When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.</span>
+				<span class="hint"><%= t('new_gateway.explain.callback_url') %></span>
 			</div>
 
 			<div class="input integer required gateway_orders_expiration_period field_with_hint">
 				<label class="integer required control-label" for="gateway_orders_expiration_period">
-					<abbr title="required">*</abbr> Orders expiration period
+					<abbr title="required">*</abbr><%= Gateway.human_attribute_name(:orders_expiration_period) %>
 				</label>
 				<input class="numeric integer required" type="text" value="900" name="gateway[orders_expiration_period]" id="gateway_orders_expiration_period" />
-				<span class="hint">Number of seconds before the order expires due to customer not paying. Usually, default 15 minutes (900 seconds) - a current industry standard. Max allowed value is 172800 seconds or 48 hours.</span>
+				<span class="hint"><%= t('new_gateway.explain.orders_expiration_period') %></span>
 			</div>
 				
 			<div class="input string optional gateway_after_payment_redirect_to field_with_hint">
-				<label class="string optional control-label" for="gateway_after_payment_redirect_to">After payment redirect to
+				<label class="string optional control-label" for="gateway_after_payment_redirect_to">
+					<%= Gateway.human_attribute_name(:after_payment_redirect_to) %>
 				</label>
 				<input class="string optional" type="text" name="gateway[after_payment_redirect_to]" id="gateway_after_payment_redirect_to" />
-				<span class="hint">Enter the URL that will be used to redirect your customers upon successful payment completion.</span>
+				<span class="hint"><%= t('new_gateway.explain.after_payment_redirect_to') %></span>
 			</div>
 
 			<div class="input string optional gateway_back_url field_with_hint">
-				<label class="string optional control-label" for="gateway_back_url">Back url</label>
+				<label class="string optional control-label" for="gateway_back_url"><%= Gateway.human_attribute_name(:back_url) %></label>
 				<input class="string optional" type="text" name="gateway[back_url]" id="gateway_back_url" />
-				<span class="hint">The URL to take your customers if they click "Cancel" in the Order Payment screen.</span>
+				<span class="hint"><%= t('new_gateway.explain.back_url') %></span>
 			</div>
 
-			<div class="input string optional gateway_custom_css_url field_with_hint">
-				<label class="string optional control-label" for="gateway_custom_css_url">Custom css url</label>
+<!-- 			<div class="input string optional gateway_custom_css_url field_with_hint">
+				<label class="string optional control-label" for="gateway_custom_css_url"><%#= Gateway.human_attribute_name(:custom_css_url) %></label>
 				<input class="string optional" type="text" name="gateway[custom_css_url]" id="gateway_custom_css_url" />
-				<span class="hint">The URL to your CSS file with a payment UI customizations.</span>
-			</div>
+				<span class="hint"><%#= t('new_gateway.explain.custom_css_url') %></span>
+			</div> -->
 
 			<div class="input checkbox_with_hint optional gateway_auto_redirect">
-				<label>Auto redirect</label>
+				<label><%= Gateway.human_attribute_name(:auto_redirect) %></label>
 				<div class="formControl checkbox">
 					<%= f.check_box :auto_redirect %>
 					<label class="hint" for="gateway_auto_redirect">
-						<span>When you select this checkbox, all users who have successful payment will be automatically redirected to the specified above URL.</span>
+						<span><%= t('new_gateway.explain.auto_redirect') %></span>
 					</label>
 				</div>
 			</div>
 	
 			<div class="input checkbox_with_hint optional gateway_active">
-				<label>Active</label>
+				<label><%= Gateway.human_attribute_name(:active) %></label>
 				<div class="formControl checkbox">
 					<%= f.check_box :active %>
 					<label class="hint" for="gateway_active">
-						<span>Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.</span>
+						<span><%= t('new_gateway.explain.active') %></span>
 					</label>
 				</div>
 			</div>
 
 			<div class="input checkbox_with_hint optional gateway_donation_mode">
-				<label>Donation mode</label>
+				<label><%= Gateway.human_attribute_name(:donation_mode) %></label>
 				<div class="formControl checkbox">
 					<%= f.check_box :donation_mode %>
-					<label class="hint" for="gateway_donation_mode"><span>Accept any payment with the amount set by a user</span></label>
+					<label class="hint" for="gateway_donation_mode"><span><%= t('new_gateway.explain.donation_mode') %></span></label>
 				</div>
 			</div>
 		</div>
 
 		<div class='formBlock'>
 			<div class='formWrapper'>
-				<h3>Currency conversion options</h3>
+				<h3><%= t('new_gateway.currency_conversion_options.title') %></h3>
 				<div class="input select required gateway_default_currency field_with_hint">
-					<label class="select required control-label" for="gateway_default_currency"><abbr title="required">*</abbr> Default currency for prices</label>
-					<%= f.select :default_currency, options_for_select(Gateway::SUPPORT_CURRENCY), class: 'select required'%>
-					<span class="hint">If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that if you don't choose BTC and none of the selected Bitcoin exchange rate providers supports selected currency, cross-rate to USD will be fetched from Forex and applied.</span>
+					<label class="select required control-label" for="gateway_default_currency"><abbr title="required">*</abbr>
+						<%= Gateway.human_attribute_name(:default_currency) %>
+					</label>
+					<%= f.select :default_currency, options_for_select(Gateway.default_currencies.map{|k, v| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), v]}), class: 'select required'%>
+					<span class="hint"><%= t('new_gateway.explain.default_currency') %></span>
 				</div>
 
 				<div class="input select optional gateway_convert_currency_to field_with_hint chosenSizeMedium">
-					<label class="select optional control-label" for="gateway_convert_currency_to">Convert each payment to</label>
-					<select class="select optional" name="gateway[convert_currency_to]" id="gateway_convert_currency_to"><option value=""></option>
-						<option selected="selected" value="BTC">BTC</option>
-					</select>
-					<span class="hint">You can add more convertation options by configuring <a target="_blank" href="/fiat_payouts/new/choose">new exchange</a> and refreshing this page.</span>
+					<label class="select optional control-label" for="gateway_convert_currency_to">
+						<%= t('new_gateway.currency_conversion_options.convert_payment') %>
+					</label>
+					<%= f.select :convert_currency_to, options_for_select(Gateway.convert_currency_tos), class: 'select required' %>
 				</div>
 
 				<div class='input'>
 					<label>
-						Exchange rate provider #1:
+					  <%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #1:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_1, options_for_select(Gateway::EXCHANGE_RATE_ADAPTER) %>
+					<%= f.select :exchange_rate_adapter_name_1, options_for_select(@providers) %>
 				</div>
 
 			    <div class='input'>
 					<label>
-						Exchange rate provider #2:
+						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #2:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_2, options_for_select(Gateway::EXCHANGE_RATE_ADAPTER) %>
+					<%= f.select :exchange_rate_adapter_name_2, options_for_select(@providers) %>
 				</div>
 
 				<div class='input'>
 					<label>
-						Exchange rate provider #3:
+						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #3:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_3, options_for_select(Gateway::EXCHANGE_RATE_ADAPTER) %>
+					<%= f.select :exchange_rate_adapter_name_3, options_for_select(@providers) %>
 					</div>
-					<span class='hint'>If one exchange rate provider fails due to being unreachable, the other one will be used automatically. Remember, this only applies if the gateway's default currency is different from BTC.
+					<span class='hint'><%= t('new_gateway.explain.exchange_rate_adapter') %>
 					</span>
 					<div class="input hidden gateway_exchange_rate_adapter_names"><input class="hidden" type="hidden" value="Bitstamp Btce Kraken" name="gateway[exchange_rate_adapter_names]" id="gateway_exchange_rate_adapter_names" /></div>
 				</div>
@@ -142,47 +144,47 @@
 
 			<div class='formBlock btc-only-fields'>
 				<div class='formWrapper'>
-					<h3>BIP32 pubkey</h3>
+					<h3><%= t('gateway.bip32_pubkey') %></h3>
 					<div class="input string optional gateway_pubkey field_with_hint">
 						<label class="string optional control-label" for="gateway_pubkey">
-							<abbr title="required">*</abbr>BIP32 pubkey
+							<abbr title="required">*</abbr><%= t('gateway.bip32_pubkey') %>
 					    </label>
 						<input class="string optional" placeholder="xpubxxx" type="text" name="gateway[pubkey]" id="gateway_pubkey" />
-						<span class="hint">We're going to generate addresses for each order using this key. The key starts with "xpub". For security reasons, YOU WILL NOT BE ABLE TO CHANGE IT.</span>
+						<span class="hint"><%= t('new_gateway.explain.bip32') %></span>
 					</div>
 					<p class='moreFieldInfo'>
 						<img class="inlineIcon" src="https://dwsv3vn9of50v.cloudfront.net/assets/watch_icon-deb4f3e6da40cd36f217cac4dd3da46077616ff264f0c648749c931edc9ae141.png" alt="Watch icon deb4f3e6da40cd36f217cac4dd3da46077616ff264f0c648749c931edc9ae141" />
 						<span>
-							Watch a short video and learn how to export BIP32 pubkey from <a href="/gateways/new"><a target="_blank" href="https://www.youtube.com/watch?v=2E0cwY_M2D4">your Electrum</a></a> or <a target="_blank" href="https://www.youtube.com/watch?v=-CN_I8vfEL4">Mycelium wallet</a>.
+							 <%= t('new_gateway.explain.watch_video.part1') %><a href="/gateways/new"><a target="_blank" href="https://www.youtube.com/watch?v=2E0cwY_M2D4"><%= t('new_gateway.explain.watch_video.part2') %></a></a> or <a target="_blank" href="https://www.youtube.com/watch?v=-CN_I8vfEL4"><%= t('new_gateway.explain.watch_video.part3') %></a>
 						</span>
 						<br>
 					</p>
 					<div class="input select optional gateway_address_derivation_scheme field_with_hint">
-						<label class="select optional control-label" for="gateway_address_derivation_scheme">Pick the wallet that you&#39;re using</label>
+						<label class="select optional control-label" for="gateway_address_derivation_scheme"><%= t('new_gateway.pick_wallet_title')%></label>
 						<select class="select optional" name="gateway[address_derivation_scheme]" id="gateway_address_derivation_scheme">
 							<option value=""></option>
 							<option selected="selected" value="m/0/n">m/0/n - Mycelium wallet Android, Electrum, myTREZOR</option>
 							<option value="n">n — Mycelium wallet iOS</option>
 						</select>
-						<span class="hint">If you choose the wrong one, your wallet may not be able to detect the transactions. Make sure you know which wallet you are using.</span>
+						<span class="hint"><%= t('new_gateway.explain.pick_wallet') %></span>
 					</div>
 				</div>
 			</div>
 
 			<div class='formBlock btc-only-fields'>
 				<div class='formWrapper'>
-					<h3>TESTNET settings</h3>
+					<h3><%= t('new_gateway.testnet_settings.title') %></h3>
 					<div class="input string optional gateway_test_pubkey field_with_hint">
-						<label class="string optional control-label" for="gateway_test_pubkey">BIP32 test pubkey</label>
+						<label class="string optional control-label" for="gateway_test_pubkey"><%= t('new_gateway.testnet_settings.sub_title') %></label>
 						<input class="string optional" placeholder="tpubxxx" type="text" name="gateway[test_pubkey]" id="gateway_test_pubkey" />
-						<span class="hint">Same as pubkey, but for TESTNET. You can't enable test mode without it.</span>
+						<span class="hint"><%= t('new_gateway.explain.test_pubkey') %></span>
 					</div>
 					<div class="input checkbox_with_hint optional gateway_test_mode">
-						<label>Test mode</label>
+						<label><%= Gateway.human_attribute_name(:test_mode) %></label>
 						<div class="formControl checkbox">
 							<%= f.check_box :test_mode %>
 							<label class="hint" for="gateway_test_mode">
-								<span>When test mode activated all transactions going throught TESTNET, for testing purpose only</span>
+								<span><%= t('new_gateway.explain.test_mode') %></span>
 							</label>
 						</div>
 					</div>
@@ -192,11 +194,11 @@
 			<div class='formBlock clear noVerticalPadding'>
 				<div class='formWrapper'>
 					<div class="input checkbox_with_hint optional gateway_receive_payments_notifications">
-					<label>Notifications</label>
+					<label><%= Gateway.human_attribute_name(:receive_payments_notifications) %></label>
 					<div class="formControl checkbox">
 						<%= f.check_box :receive_payments_notifications %>
 						<label class="hint" for="gateway_receive_payments_notifications">
-							<span>Send notifications about new payments to my email</span>
+							<span><%= t('new_gateway.explain.receive_payments_notifications') %></span>
 						</label>
 					</div>
 				</div>
@@ -205,34 +207,34 @@
 			<div class='formBlock accordion'>
 				<div class='formBlockHeader accordionToggle'>
 					<h3>
-						Additional info about the merchant
-						<span class='description'>(all fields are optional)</span>
+						<%= t('new_gateway.additional_info.title.part1') %>
+						<span class='description'>(<%= t('new_gateway.additional_info.title.part2') %>)</span>
 					</h3>
 					<div class='accordionToggleButton'></div>
 				</div>
 				<div class='formWrapper'>
 					<div class='accordionContent'>
 						<div class="input text optional gateway_description">
-							<label class="text optional control-label" for="gateway_description">Description</label>
+							<label class="text optional control-label" for="gateway_description"><%= t('new_gateway.additional_info.description') %></label>
 							<textarea class="text optional" name="gateway[description]" id="gateway_description"></textarea>
 						</div>
 						<div class="input string optional gateway_merchant_url field_with_hint">
-						<label class="string optional control-label" for="gateway_merchant_url">URL of the website / online store</label>
+						<label class="string optional control-label" for="gateway_merchant_url"><%= t('new_gateway.additional_info.website_url') %></label>
 						<input class="string optional" type="text" name="gateway[merchant_url]" id="gateway_merchant_url" />
-						<span class="hint">The address of your website/store. Will be displayed in widget and payment UI as a "back to store" link. </span>
+						<span class="hint"><%= t('new_gateway.explain.website_url') %></span>
 					</div>
 					<div class='chosenSizeLarge'>
 						<div class="input country optional gateway_country">
-							<label class="country optional control-label" for="gateway_country">Country</label>
-							<%= f.select :country, options_for_select(Gateway::SUPPORT_COUNTRY)%>
+							<label class="country optional control-label" for="gateway_country"><%= t('new_gateway.additional_info.country') %></label>
+							<%= f.select :country, options_for_select(Gateway.countries.map{|k, v| [t("activerecord.attributes.gateway.enum.country.#{k}"), v]})%>
 						</div>
 					</div>
 					<div class="input string optional gateway_region">
-						<label class="string optional control-label" for="gateway_region">Region</label>
+						<label class="string optional control-label" for="gateway_region"><%= t('new_gateway.additional_info.region') %></label>
 						<input class="string optional" type="text" name="gateway[region]" id="gateway_region" />
 					</div>
 					<div class="input string optional gateway_city">
-						<label class="string optional control-label" for="gateway_city">City</label>
+						<label class="string optional control-label" for="gateway_city"><%= t('new_gateway.additional_info.city') %></label>
 						<input class="string optional" type="text" name="gateway[city]" id="gateway_city" />
 					</div>
 				</div>
@@ -240,14 +242,13 @@
 			</div>
 			</div>
 			</div>
-
-				<div class='actions spacedTop'>
-					<button type="submit" class="btn button">
-						<span>Create Gateway</span>
-						<div class="loaderContainer">
-							<div class="loader"></div>
-						</div>
-					</button>
-				</div>
+			<div class='actions spacedTop'>
+				<button type="submit" class="btn button">
+					<span><%= t('gateway.create_gateway') %></span>
+					<div class="loaderContainer">
+						<div class="loader"></div>
+					</div>
+				</button>
+			</div>
 	<% end %>
 </div>

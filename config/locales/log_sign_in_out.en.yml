@@ -1,0 +1,17 @@
+en:
+  sign_up_page:
+    agree_title: 'I have read and agree to the '
+    terms_of_service: 'Terms Of Service'
+  share_linK_page:
+    log_in: 'Log in'
+    forget_password: 'Forgot your password?'
+    not_receive_confirmation: "Didn't receive confirmation instructions?"
+    not_receive_unlock: "Didn't receive unlock instructions?"
+  log_in_page:
+    remember_me: 'Remember me'
+  resend_confirmation:
+    title: 'Resend confirmation instructions'
+    button: 'Send'
+  resend_unluck:
+    title: 'Resend unlock instructions'
+    button: 'Send'

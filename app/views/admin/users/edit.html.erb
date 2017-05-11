@@ -1,7 +1,7 @@
 <% provide(:title, "Edit Account")%>
 
 <div class='contentHeader'>
-	<h1>Edit your account</h1>
+	<h1><%= t('user_edit.title') %></h1>
 </div>
 
 <%= form_for [:admin, @user] do |f|%>
@@ -10,39 +10,39 @@
 				<div class='pure-g'>
 					<div class='pure-u-1-2'>
 						<div class="input string optional user_name">
-							<label class="string optional control-label" for="user_name">Name</label>
+							<label class="string optional control-label" for="user_name"><abbr title="required">*</abbr><%= User.human_attribute_name(:name) %></label>
 							<%= f.text_field :name, class: 'string optional', autofocus: true %>
 						</div>
 						<div class="input email required user_email">
-							<label class="email required control-label" for="user_email"><abbr title="required">*</abbr> Email</label>
+							<label class="email required control-label" for="user_email"><abbr title="required">*</abbr><%= User.human_attribute_name(:email) %></label>
 							<%= f.text_field :email, class: 'string optional'%>
 						</div>
 						<div class="input select optional user_updates_email_subscription_level">
-							<label class="select optional control-label" for="user_updates_email_subscription_level">Send me updates</label>
-							<%= f.select :updates_email_subscription_level, options_for_select(User.updates_email_subscription_levels.keys),class: 'select optional'%>
+							<label class="select optional control-label" for="user_updates_email_subscription_level"><%= t('user_edit.send_me_updates') %></label>
+							<%= f.select :updates_email_subscription_level, options_for_select(User.updates_email_subscription_levels.map{|k,v| [t("activerecord.attributes.user.enum.updates_email_subscription_level.#{k}"), v]}), class: 'select optional'%>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class='formBlock'>
 				<div class='formWrapper medium'>
-					<h3>If you want to change the password, enter the new one and confirm it again in the second field</h3>
+					<h3><%= t('user_edit.password.title') %></h3>
 					<div class='pure-g'>
 						<div class='pure-u-1-2'>
 							<div class='columnContainer inputSpacingSmall'>
 								<div class="input password optional user_password field_with_hint">
-									<label class="password optional control-label" for="user_password">New password</label>
+									<label class="password optional control-label" for="user_password"><%= t('user_edit.password.new') %></label>
 									<input class="password optional" type="password" name="user[password]" id="user_password" />
-									<span class="hint">leave it blank if you don&#39;t want to change it</span>
+									<span class="hint"><%= t('user_edit.password.explain.new') %></span>
 								</div>
 							</div>
 						</div>
 						<div class='pure-u-1-2'>
 							<div class='columnContainer inputSpacingSmall'>
 								<div class="input password optional user_password_confirmation field_with_hint">
-									<label class="password optional control-label" for="user_password_confirmation">New password again</label>
+									<label class="password optional control-label" for="user_password_confirmation"><%= t('user_edit.password.new_again') %></label>
 									<input class="password optional" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
-									<span class="hint">to confirm it and make sure you didn&#39;t make any mistakes</span>
+									<span class="hint"><%= t('user_edit.password.explain.new_again') %></span>
 								</div>
 							</div>
 						</div>
@@ -81,9 +81,11 @@
 						<div class='pure-u-1-2'>
 							<div class='columnContainer'>
 								<div class="input password required user_current_password field_with_errors">
-									<label class="password required control-label" for="user_current_password"><abbr title="required">*</abbr> To save changes, you must enter the current password</label>
+									<label class="password required control-label" for="user_current_password"><abbr title="required">*</abbr>
+										<%= t('user_edit.save_change.title') %>
+									</label>
 									<input class="password required" type="password" name="user[current_password]" id="user_current_password" />
-									<span class="error" style="display: none">can&#39;t be blank</span>
+									<span class="error" style="display: none"><%= t('user_edit.save_change.error') %></span>
 							    </div>
 							</div>
 						</div>
@@ -94,20 +96,20 @@
 						<div class='pure-u-1-2'>
 							<div class='columnContainer'>
 								<div class="input checkbox_with_hint optional user_toggle_dev_api">
-									<label>Enable developers API</label>
+									<label><%= t('user_edit.enable_api.title') %></label>
 									<div class="formControl checkbox">
 										<%= f.check_box :toggle_dev_api %>
 										<label class="hint" for="user_toggle_dev_api">
-											<span>Check this if you would like to enable Developers API. For secure authorization you will be given a Secret Key.</span>
+											<span><%= t('user_edit.enable_api.checkbox_explain') %></span>
 										</label>
 									</div>
 									<div class='reveal reservedTokensList'>
 										<div class='reveal-toggle'>
-											<div class='reveal-link'>Show my api secret</div>
+											<div class='reveal-link'><%= t('user_edit.enable_api.show_api.link') %></div>
 										</div>
 										<div class='reveal-content'>
 											<p>
-												Your api_secret:
+												<%= t('user_edit.enable_api.show_api.title') %>
 												<span><%= @user.api_secret %></span>
 											</p>
 										</div>
@@ -122,11 +124,11 @@
 						<div class='pure-u-1-2'>
 							<div class='columnContainer'>
 								<div class="input checkbox_with_hint optional user_regenerate_secret">
-									<label>Regenerate API secret</label>
+									<label><%= t('user_edit.regenerate_api_secret.title') %></label>
 									<div class="formControl checkbox">
 										<%= f.check_box :regenerate_secret %>
 										<label class="hint" for="user_regenerate_secret">
-											<span>Check this if you would like to get a new Secret Key. Old one will no longer be accepted.</span>
+											<span><%= t('user_edit.regenerate_api_secret.checkbox_explain') %></span>
 										</label>
 									</div>
 								</div>
@@ -136,7 +138,7 @@
 				</div>
 			</div>
 			<div class='form-actions actions spacedTop'>
-				<%= f.submit 'Save changes', class: 'btn button'%>
+				<%= f.submit t('user_edit.save_change'), class: 'btn button'%>
 			</div>
 <% end %>
 

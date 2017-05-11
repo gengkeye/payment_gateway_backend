@@ -30,6 +30,7 @@ class GatewaysController < ApplicationController
 
   def new
     @gateway =  Gateway.new
+    @providers = Gateway::EXCHANGE_RATE_ADAPTER.map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}
     authorize @gateway
   end
 
