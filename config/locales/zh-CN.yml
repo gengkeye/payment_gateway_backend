@@ -12,7 +12,6 @@ zh-CN:
   orders: '订单'
   gateways: '网关'
   account: '个人资料'
-  documentation: '文档'
   support: '技术支持:'
   show_all: '请选择...'
   amount_with_currency_small: '当时价值'

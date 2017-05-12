@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params[:locale]
+    cookies[:locale] ||= params[:locale]
+    I18n.locale = cookies[:locale]
   end
 
   def self.default_url_options(options={})

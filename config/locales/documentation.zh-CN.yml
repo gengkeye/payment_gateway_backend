@@ -1,0 +1,65 @@
+zh-CN:
+  documentation:
+    title: '开发者文档'
+    introduction:
+      title: "简介"
+      paragraph1: "本文档主要的面向是希望将比特币支付处理集成到其在线商店或网站中的开发人员。如果您不是开发人员，但仍希望在您的网站上接受Bitcoin，则可以使用我们的分步指南创建一个简单的付款小插件。"
+      paragraph2: "根据行业标准处理付款，如果您曾经处理过任何支付网关（不一定是Bitcoin），您应该快速了解一切如何正常工作以及该做什么对于那些从未从事付款处理的人员，我们将会解释每一个细节，并展示代码示例。"
+      paragraph3: "Skyluster使用开源软件构建直向和直向服务器。您可以需要检查直向服务器的文档，以便更好地了解底层机制，但不是必需的。在直向服务器文档中提到的许多事情也在当前文档中提到。"
+    overview_payment_process:
+      title: '支付网关概述'
+      paragraph1: ""
+      paragraph2: ""
+      paragraph3: ""
+    create_gateway:
+      title: "创建一个网关"
+    api:
+      title: "API"
+      signed_request:
+        title: "请求加密"
+      create_orders:
+        title: "创建订单"
+      receive_order_callback:
+        title: "接收订单状态变更回调"
+      check_order_status:
+        title: "手动查询订单状态"
+      order_websocket:
+        title: "订单websocket"
+      order_cancel:
+        title: "取消订单"
+      receive_last_keychain:
+        title: "为网关接收last_keychain_id"
+    developer_api:
+      title: "开发者API"
+      basic:
+        title: "原理"
+      gateway:
+        title: "网关"
+      address_providers:
+        title: "地址提供者"
+        list:
+          title: "列表"
+        cashila:
+          title: "Cashila"
+          login: 
+            title: "登录"
+          withdraw:
+            title: "提现"
+          legal_entity: 
+            title: "法人"
+            create: 
+              title: "创建"
+            get: 
+              title: "获取"
+            update:
+              title: "更新"
+          individual_entity:
+            title: "个体"
+            create:
+              title: "创建"
+            get:
+              title: "获取"
+            update:
+              title: "更新"       
+
+

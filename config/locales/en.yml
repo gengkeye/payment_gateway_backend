@@ -33,7 +33,6 @@ en:
   orders: 'ORDERS'
   gateways: 'GATEWAYS'
   account: 'ACCOUNT'
-  documentation: 'DOCUMENTATION'
   support: 'Support'
   show_all: 'Show all...'
   amount_with_currency_small: 'value at the time of purchase'
