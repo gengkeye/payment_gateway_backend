@@ -1,8 +1,14 @@
 <div class="topBar">
   <ul class="links">
+    <li class="localeContainer" >
+      <%= form_tag request.url, id:'locale_setting', method: :get do %>
+         <%= hidden_field_tag :uid, params[:uid] %>
+         <%= select_tag 'locale', options_for_select([['English', 'en' ], ['中文', 'zh-CN']], params[:locale]), class: 'select_locale_input' %>
+      <% end %>
+    </li>
     <li>
       <%= t('support') %>
-        <a href="mailto:skyluster.support@nn.com" title="">skyluster.support@nn.com</a>
+      <a href="mailto:skyluster.support@nn.com" title="">skyluster.support@nn.com</a>
     </li>
     <% if user_signed_in? %>
       <li>
@@ -16,3 +22,8 @@
     <% end %>
   </ul>
 </div>
+<script>
+  $('select[name=locale]').change(function(){
+    $('#locale_setting').submit();
+  });
+</script>

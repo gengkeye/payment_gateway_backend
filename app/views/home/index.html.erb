@@ -5,7 +5,13 @@
 		<div class='navContainer'>
 			<a class="logo" href="/"><img src="https://dwsv3vn9of50v.cloudfront.net/assets/mycelium_gear_logo_white-2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55.svg" alt="Skyluster logo white 2f97d94d480a2eeeaaf4df6dd5e45d19cd673c6b08821ad3f93592a25073cc55" /></a>
 			<nav class='secondary inline'>
-				<ul>
+				<ul class="homeNav">
+					<li>
+					  <%= form_tag request.url || root_path, id:'locale_setting', method: :get do %>
+					     <%= hidden_field_tag :uid, params[:uid] %>
+					     <%= select_tag 'locale', options_for_select([['English', 'en' ], ['中文', 'zh-CN']], params[:locale]), class: 'homeLocaleSelect' %>
+					  <% end %>
+					</li>
 					<li>
 						<a class="buttonRounded buttonXSmall buttonTransparentLight" href="<%= new_user_session_path %>"><span>Log in</span>
 							<div class='icon-login'></div>
@@ -75,3 +81,8 @@
 </div>
 
 
+<script>
+  $('select[name=locale]').change(function(){
+    $('#locale_setting').submit();
+  });
+</script>
