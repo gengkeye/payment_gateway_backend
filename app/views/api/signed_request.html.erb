@@ -1,92 +1,96 @@
 <div class='pure-u-1-1'>
-	<p>Most requests to API require a signature which protects gateway from unauthorized access. The signature is a X-Signature HTTP header with a string of about 88 chars:</p>
-	<div class="highlight"><pre><span class="vg">Base64StrictEncode</span><span class="p">(</span>
-		<span class="w">  </span><span class="vg">HMAC</span><span class="o">-</span><span class="vg">SHA512</span><span class="p">(</span>
-		<span class="w">    </span><span class="vg">REQUEST_METHOD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_URI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">SHA512</span><span class="p">(</span><span class="vg">X</span><span class="o">-</span><span class="vg">Nonce</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_BODY</span><span class="p">),</span>
-		<span class="w">    </span><span class="vg">GATEWAY_SECRET</span>
-		<span class="w">  </span><span class="p">)</span>
-		<span class="p">)</span>
-	</pre></div>
-	<p>Where:</p>
+<p><%= t("documentation.api.signed_request.paragraph1") %></p>
+<!-- code1 begin -->
+<div class="highlight"><pre>
+<span class="vg">Base64StrictEncode</span><span class="p">(</span>
+<span class="w">  </span><span class="vg">HMAC</span><span class="o">-</span><span class="vg">SHA512</span><span class="p">(</span>
+<span class="w">    </span><span class="vg">REQUEST_METHOD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_URI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">SHA512</span><span class="p">(</span><span class="vg">X</span><span class="o">-</span><span class="vg">Nonce</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_BODY</span><span class="p">),</span>
+<span class="w">    </span><span class="vg">GATEWAY_SECRET</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+<!-- code1 end -->
 
-	<ul>
-		<li>REQUEST_METHOD: “GET”, “POST”, etc.</li>
-		<li>REQUEST_URI: “/full/path/with?arguments&amp;and#fragment”, without hostname</li>
-		<li>REQUEST_BODY: final request body string with JSON or blank string</li>
-		<li>X-Nonce: HTTP header with an integer which must be incremented with each request (protects from replay attack), for example (Time.now.to_f * 1000).to_i</li>
-		<li>SHA512: binary SHA-2, 512 bits</li>
-		<li>HMAC-SHA512: binary HMAC with SHA512</li>
-		<li>GATEWAY_SECRET: key for HMAC</li>
-		<li>Base64StrictEncode: Base64 encoding according to RFC 4648</li>
-	</ul>
+<p><%= t("documentation.api.signed_request.paragraph2") %></p>
+<ul>
+	<%(1..8).each do |i|%>
+	 <li><%= t("documentation.api.signed_request.ul.li#{i}") %></li>
+	<% end %>
+</ul>
 
-	<p>For Ruby users signing is already implemented in straight-server-kit gem.</p>
+<p><%= t("documentation.api.signed_request.paragraph3") %></p>
+<p><%= t("documentation.api.signed_request.paragraph4") %></p>
+<p><%= t("documentation.api.signed_request.paragraph5") %></p>
+<!-- code2 begin -->
+<div class="highlight"><pre><span class="vg">HMAC</span><span class="o">-</span><span class="vg">SHA512</span><span class="p">(</span>
+<span class="w">  </span><span class="vg">REQUEST_METHOD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_URI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">SHA512</span><span class="p">(</span><span class="vg">X</span><span class="o">-</span><span class="vg">Nonce</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_BODY</span><span class="p">),</span>
+<span class="w">  </span><span class="vg">GATEWAY_SECRET</span>
+<span class="p">)</span>
+</pre></div>
+<!-- code2 end -->
 
-	<p>There is a tiny chance that request will fail with &quot;X-Nonce is invalid&quot; error because of simultaneous signed request with a greater nonce. This may be mitigated by repeating request with the updated nonce and signature.</p>
+<p><%= t("documentation.api.signed_request.paragraph6") %></p>
+<ul>
+	<%(9..10).each do |i|%>
+	 <li><%= t("documentation.api.signed_request.ul.li#{i}") %></li>
+	<% end %>
+</ul>
+<p><%= t("documentation.api.signed_request.paragraph7") %></p>
+<!-- code3 begin -->
+<div class="highlight"><pre>
+<span class="nb">require</span> <span class="s1">&#39;base64&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
+<span class="n">sha512</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
 
-	<p>Some languages like JavaScript have poor support for binary string, so hexdigest signature is also valid</p>
-	<div class="highlight"><pre><span class="vg">HMAC</span><span class="o">-</span><span class="vg">SHA512</span><span class="p">(</span>
-		<span class="w">  </span><span class="vg">REQUEST_METHOD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_URI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">SHA512</span><span class="p">(</span><span class="vg">X</span><span class="o">-</span><span class="vg">Nonce</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">REQUEST_BODY</span><span class="p">),</span>
-		<span class="w">  </span><span class="vg">GATEWAY_SECRET</span>
-		<span class="p">)</span>
-	</pre></div>
-	<p>Where:</p>
+<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
+<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442214027577</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+<span class="n">nonce_body_hash</span><span class="o">.</span><span class="n">bytes</span> <span class="o">==</span> <span class="o"></span>
+<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
+<span class="n">raw_signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+<span class="n">raw_signature</span><span class="o">.</span><span class="n">bytes</span> <span class="o">==</span> <span class="o"></span>
+<span class="n">signature</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">strict_encode64</span><span class="p">(</span><span class="n">raw_signature</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;psWTp6CEZixQw/0BLz3VDMyBsQvzVpxVpkW09lDQFWRoIOyms9QIy3FUKxGwuJMZddTssaX9koPwZei6Lj0jFA==&quot;</span>
+<span class="c1"># $ curl -H &quot;X-Nonce: 1442214027577&quot; -H &quot;X-Signature: psWTp6CEZixQw/0BLz3VDMyBsQvzVpxVpkW09lDQFWRoIOyms9QIy3FUKxGwuJMZddTssaX9koPwZei6Lj0jFA==&quot; -X POST &#39;https://admin.skyluster.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&#39;</span>
+<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2562,&quot;payment_id&quot;:&quot;27066a1344323db82bb8f20e0fc209e58178a79edb61ca522c22946728f16c66&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
+</pre></div>
+<!-- code3 end -->
 
-	<ul>
-		<li>SHA512: hex-encoded SHA-2, 512 bits</li>
-		<li>HMAC-SHA512: hex-encoded HMAC with SHA512</li>
-	</ul>
+<p><%= t("documentation.api.signed_request.paragraph8") %></p>
+<div class="highlight"><pre>
+<span class="nb">require</span>
+<span class="s1">&#39;openssl&#39;</span><span class="n">sha512</span><span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
+<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442214785601</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+<span class="n">nonce_body_hash</span> <span class="o">==</span> <span class="s2">&quot;ae1a1076b17a25db88a98c9cc7a563d76ea495326731ae4280a7ba23d49d0f72b3279db3526e6aa478d1d3534d2e493fd85f707270bb616d789aa49041498f8e&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;c08fdd361cf9a39e9fb0f908d4ff1c9799c46eb0721b4ed69de3353b087ae4e6fa321dbe047d004e7e8444a44b455eb511c56a60441c6ebe3a610bd855bbb865&quot;</span>
 
-	<p>Example 1:</p>
-	<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;base64&#39;</span>
-		<span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
-		<span class="n">sha512</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
+<span class="c1"># $ curl -H &quot;X-Nonce: 1442214785601&quot; -H &quot;X-Signature: c08fdd361cf9a39e9fb0f908d4ff1c9799c46eb0721b4ed69de3353b087ae4e6fa321dbe047d004e7e8444a44b455eb511c56a60441c6ebe3a610bd855bbb865&quot; -X POST &#39;https://admin.skyluster.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&#39;</span>
+<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2563,&quot;payment_id&quot;:&quot;f352e5542646f98e7035f4d6636efefece08a96db5427ede3cc82e3076e5d4b7&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
+</pre></div>
 
-		<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
-		<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442214027577</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
-		<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-		<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-		<span class="n">nonce_body_hash</span><span class="o">.</span><span class="n">bytes</span> <span class="o">==</span> <span class="o">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">246</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">218</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">241</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">203</span><span class="o">]</span>
-		<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
-		<span class="n">raw_signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
-		<span class="n">raw_signature</span><span class="o">.</span><span class="n">bytes</span> <span class="o">==</span> <span class="o">[</span><span class="mi">166</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">246</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">179</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">176</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">186</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="o">]</span>
-		<span class="n">signature</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">strict_encode64</span><span class="p">(</span><span class="n">raw_signature</span><span class="p">)</span>
-		<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;psWTp6CEZixQw/0BLz3VDMyBsQvzVpxVpkW09lDQFWRoIOyms9QIy3FUKxGwuJMZddTssaX9koPwZei6Lj0jFA==&quot;</span>
+<p><%= t("documentation.api.signed_request.paragraph9") %></p>
+<!-- cod4 begin -->
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
+<span class="n">sha512</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
+<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442215362723</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;{&quot;amount&quot;:1,&quot;keychain_id&quot;:1}&#39;</span>
+<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+<span class="n">nonce_body_hash</span> <span class="o">==</span> <span class="s2">&quot;5e587ea40fc9f5a04746aac4f2c90c78fe49cd24d2d208d12732101e0a5c12f00583655925228c25fe68a1197b5b3e478b75a4351bb38d95c18353f3d6bfe569&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;4d1e6b02f30aa6ca0c0fafeedea3e785ad9929a7bb8645c2621413abfebf68323791ae6bb76e8374b48db09c4bfdba4c083c5916de2f0f582ac68a32cefe63f1&quot;</span>
 
-		<span class="c1"># $ curl -H &quot;X-Nonce: 1442214027577&quot; -H &quot;X-Signature: psWTp6CEZixQw/0BLz3VDMyBsQvzVpxVpkW09lDQFWRoIOyms9QIy3FUKxGwuJMZddTssaX9koPwZei6Lj0jFA==&quot; -X POST &#39;https://gateway.gear.mycelium.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&#39;</span>
-		<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2562,&quot;payment_id&quot;:&quot;27066a1344323db82bb8f20e0fc209e58178a79edb61ca522c22946728f16c66&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
-	</pre></div>
-	<p>Example 2:</p>
-	<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
-		<span class="n">sha512</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
+<span class="c1"># $ curl -H &quot;Content-Type: application/json&quot; -H &quot;X-Nonce: 1442215362723&quot; -H &quot;X-Signature: 4d1e6b02f30aa6ca0c0fafeedea3e785ad9929a7bb8645c2621413abfebf68323791ae6bb76e8374b48db09c4bfdba4c083c5916de2f0f582ac68a32cefe63f1&quot; -X POST -d &#39;{&quot;amount&quot;:1,&quot;keychain_id&quot;:1}&#39; &#39;https://admin.skyluster.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders&#39;</span>
+<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2564,&quot;payment_id&quot;:&quot;35bf5bd6aafcadf336be042582203e94211844c973ef67e83f681a9e2b907dd0&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
+</pre></div>
+<!-- cod4 end -->
 
-		<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
-		<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442214785601</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
-		<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-		<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-		<span class="n">nonce_body_hash</span> <span class="o">==</span> <span class="s2">&quot;ae1a1076b17a25db88a98c9cc7a563d76ea495326731ae4280a7ba23d49d0f72b3279db3526e6aa478d1d3534d2e493fd85f707270bb616d789aa49041498f8e&quot;</span>
-		<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
-		<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
-		<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;c08fdd361cf9a39e9fb0f908d4ff1c9799c46eb0721b4ed69de3353b087ae4e6fa321dbe047d004e7e8444a44b455eb511c56a60441c6ebe3a610bd855bbb865&quot;</span>
-
-		<span class="c1"># $ curl -H &quot;X-Nonce: 1442214785601&quot; -H &quot;X-Signature: c08fdd361cf9a39e9fb0f908d4ff1c9799c46eb0721b4ed69de3353b087ae4e6fa321dbe047d004e7e8444a44b455eb511c56a60441c6ebe3a610bd855bbb865&quot; -X POST &#39;https://gateway.gear.mycelium.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders?amount=1&amp;keychain_id=1&#39;</span>
-		<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2563,&quot;payment_id&quot;:&quot;f352e5542646f98e7035f4d6636efefece08a96db5427ede3cc82e3076e5d4b7&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
-	</pre></div>
-	<p>Example 3:</p>
-	<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
-		<span class="n">sha512</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA512</span><span class="o">.</span><span class="n">new</span>
-
-		<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;5ioHLiVwxqkS6Hfdev8pNQfhA9xy7dK957RBVYycMhfet23BTuGUPbYxA9TP6x9P&#39;</span>
-		<span class="n">nonce</span> <span class="o">=</span> <span class="mi">1442215362723</span> <span class="c1"># (Time.now.to_f * 1000).to_i</span>
-		<span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;{&quot;amount&quot;:1,&quot;keychain_id&quot;:1}&#39;</span>
-		<span class="n">nonce_body_hash</span> <span class="o">=</span> <span class="n">sha512</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">nonce</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="n">body</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-		<span class="n">nonce_body_hash</span> <span class="o">==</span> <span class="s2">&quot;5e587ea40fc9f5a04746aac4f2c90c78fe49cd24d2d208d12732101e0a5c12f00583655925228c25fe68a1197b5b3e478b75a4351bb38d95c18353f3d6bfe569&quot;</span>
-		<span class="n">request</span> <span class="o">=</span> <span class="s2">&quot;POST/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders&quot;</span> <span class="o">+</span> <span class="n">nonce_body_hash</span>
-		<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">sha512</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
-		<span class="n">signature</span> <span class="o">==</span> <span class="s2">&quot;4d1e6b02f30aa6ca0c0fafeedea3e785ad9929a7bb8645c2621413abfebf68323791ae6bb76e8374b48db09c4bfdba4c083c5916de2f0f582ac68a32cefe63f1&quot;</span>
-
-		<span class="c1"># $ curl -H &quot;Content-Type: application/json&quot; -H &quot;X-Nonce: 1442215362723&quot; -H &quot;X-Signature: 4d1e6b02f30aa6ca0c0fafeedea3e785ad9929a7bb8645c2621413abfebf68323791ae6bb76e8374b48db09c4bfdba4c083c5916de2f0f582ac68a32cefe63f1&quot; -X POST -d &#39;{&quot;amount&quot;:1,&quot;keychain_id&quot;:1}&#39; &#39;https://gateway.gear.mycelium.com/gateways/6930af63a087cad5cd920e12e4729fe4f777681cb5b92cbd9a021376c0f91930/orders&#39;</span>
-		<span class="c1"># {&quot;status&quot;:0,&quot;amount&quot;:438481,&quot;address&quot;:&quot;mwtoSKLYQiAXtm2h7JV4aZtrixNjzESbYB&quot;,&quot;tid&quot;:null,&quot;id&quot;:2564,&quot;payment_id&quot;:&quot;35bf5bd6aafcadf336be042582203e94211844c973ef67e83f681a9e2b907dd0&quot;,&quot;amount_in_btc&quot;:&quot;0.00438481&quot;,&quot;amount_paid_in_btc&quot;:&quot;0.0&quot;,&quot;keychain_id&quot;:1,&quot;last_keychain_id&quot;:1}</span>
-	</pre></div>
 </div>
 </div>

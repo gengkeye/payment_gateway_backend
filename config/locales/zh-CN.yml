@@ -25,6 +25,11 @@ zh-CN:
     active: '激活'
     inactive: '未激活'
   status: '状态'
+  create:  "创建"
+  get: "获取"
+  update: "更新"
+  new: "新建"
+  delete: "删除"
 
 
 

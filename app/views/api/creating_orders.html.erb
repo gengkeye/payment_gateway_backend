@@ -1,75 +1,62 @@
 <div class='pure-u-1-1'>
-	<p>Creating an order is the first step towards accepting a payment. Generally, you want to create an order AFTER your customer clicks &quot;Complete purchase&quot; or a similar button in your online store. After you create an order using our RESTFUL API, you can redirect the user to the Mycelium Gear payment page associated with this order.</p>
-
-	<h2>The request and the signature</h2>
-
-	<p>To create an order, you should issue a signed POST request to https://gateway.gear.mycelium.com/gateways/:gateway_id/orders with at least one param — amount — it determines the amount to be paid for this order. The amount should be in the currency you have previously set for the gateway. If the gateway currency is BTC, then the amount is normally in satoshis. So, the request may look like this:</p>
+	<p><%= t("documentation.api.create_orders.paragraph1") %></p>
+	<h2><%= t("documentation.api.create_orders.paragraph_title1") %></h2>
+	<p><%= t("documentation.api.create_orders.paragraph2") %></p>
 	<div class="highlight"><pre>POST /gateways/:api_gateway_id/orders?amount=1
 	</pre></div>
-	<p>You can get the api_gateway_id value from your gateway&#39;s info in the admin panel.</p>
+	<p><%= t("documentation.api.create_orders.paragraph3") %></p>
 
-	<p>Keychain id is used to generate an address for the next order. It can be any integer &gt; 0, but it&#39;s better if it is a consecutive integer, so keep track of your order ids in your application. With the keychain id, the request will look like this:</p>
 	<div class="highlight"><pre>POST /gateways/:api_gateway_id/orders?amount=1&amp;keychain_id=1
 	</pre></div>
-	<h2>Sending additional data</h2>
+	<h2><%= t("documentation.api.create_orders.paragraph_title2") %></h2>
+	<p><%= t("documentation.api.create_orders.paragraph4") %></p>
+	<p><%= t("documentation.api.create_orders.paragraph5") %></p>
 
-	<p>You may want to send some additional data with the transaction that will later be returned to you, unchanged, in the callback. This is useful if you wish to identify which record in your DB is associated with which order by using something other than order_id.</p>
-
-	<p>For example, suppose you have a Purchase model in your Rails app. You then might want to create a purchase and send its id in the <code>callback_data</code> param:</p>
 	<div class="highlight"><pre>POST /gateways/:api_gateway_id/orders?amount=1&amp;keychain_id=1&amp;callback_data=purchase_id_123
 	</pre></div>
-	<p>Later on, when a callback request is issued, this <code>callback_data</code> param will be returned back with it and you&#39;ll be able to find that purchase in your DB.</p>
+	<p><%= t("documentation.api.create_orders.paragraph6") %></p>
+	<h2><%= t("documentation.api.create_orders.paragraph_title3") %></h2>
+	<p><%= t("documentation.api.create_orders.paragraph7") %></p>
+<div class="highlight"><pre><span class="p">{</span>
+	<span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+	<span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;12REjGNsZfdWj5kWTuMZ2p6WPeyWFWwUT8&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;transaction_ids&quot;</span><span class="p">:</span> <span class="p">[],</span>
+	<span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1298</span><span class="p">,</span>
+	<span class="nt">&quot;payment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;amount_in_btc&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000001&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;amount_paid_in_btc&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000001&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;keychain_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="nt">&quot;last_keychain_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+	<span class="p">
+}</span>
+</pre></div>
+	<p><%= t("documentation.api.create_orders.paragraph8") %></p>
+	<p><code>https://admin.skyluster.com/pay/5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</code></p>
+	<h2><%= t("documentation.api.create_orders.paragraph_title4") %></h2>
+	<p><%= t("documentation.api.create_orders.paragraph9") %></p>
+	<p><%= t("documentation.api.create_orders.paragraph10") %></p>
+	<p><%= t("documentation.api.create_orders.paragraph11") %></p>
+	<p><%= t("documentation.api.create_orders.paragraph12") %></p>
+	<p><%= t("documentation.api.create_orders.paragraph13") %></p>
+	<h2><%= t("documentation.api.create_orders.paragraph_title5") %></h2>
+	<p><%= t("documentation.api.create_orders.paragraph14") %></p>
+<div class="highlight"><pre>
+<span class="nb">require</span> <span class="s1">&#39;straight-server-kit&#39;</span>
+<span class="k">def</span> <span class="nf">complete_purchase</span>
+<span class="c1"># Save purchase in own DB</span>
+<span class="n">purchase</span>  <span class="o">=</span> <span class="no">Purchase</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
 
-	<h2>The response</h2>
+<span class="c1"># Perform signed request to Mycelium Gear API</span>
+<span class="n">client</span>    <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">gateway_id</span><span class="p">:</span> <span class="n">api_gateway_id</span><span class="p">,</span> <span class="ss">secret</span><span class="p">:</span> <span class="n">gateway_secret</span><span class="p">)</span>
+<span class="n">new_order</span> <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">amount</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="ss">callback_data</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">order</span>     <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new_order</span><span class="p">)</span>
 
-	<p>In response to the request above, you will receive the following json from Mycelium Gear:</p>
-	<div class="highlight"><pre><span class="p">{</span>
-		<span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-		<span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-		<span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;12REjGNsZfdWj5kWTuMZ2p6WPeyWFWwUT8&quot;</span><span class="p">,</span>
-		<span class="nt">&quot;transaction_ids&quot;</span><span class="p">:</span> <span class="p">[],</span>
-		<span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1298</span><span class="p">,</span>
-		<span class="nt">&quot;payment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163&quot;</span><span class="p">,</span>
-		<span class="nt">&quot;amount_in_btc&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000001&quot;</span><span class="p">,</span>
-		<span class="nt">&quot;amount_paid_in_btc&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000001&quot;</span><span class="p">,</span>
-		<span class="nt">&quot;keychain_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-		<span class="nt">&quot;last_keychain_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
-		<span class="p">}</span>
-	</pre></div>
-	<p>With this information, you can either manually display the payment address to the customer on your website (so he doesn&#39;t even have to leave your site), or you can redirect him to the Mycelium Gear payment page using the payment_id. The payment page url for redirection will then be:</p>
+<span class="c1"># Save order reference</span>
+<span class="n">purchase</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">order_id</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 
-	<p><code>https://gateway.gear.mycelium.com/pay/5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</code></p>
-
-	<h2>Address reuse and keychain_id</h2>
-
-	<p><em>keychain_id</em> is used to derive the next address from your BIP32 pubkey. If you try to create orders with the same <em>keychain_id</em> they will also have the same address, which is, as you can imagine, not a very good idea. However it is allowed and there&#39;s a good reason for that.</p>
-
-	<p>Wallets that support BIP32 pubkeys will only do a forward address lookup for a limited number of addreses. For example, if you have 20 expired, unpaid orders and someone sends you money to the address of the 21-st order, your wallet may not see that. Thus, it is important to ensure that there are no more than 20 expired orders in a row.</p>
-
-	<p>If you have 20 orders in a row and try to create another one, Gear will see that and will automatically reuse the keychain_id (and consequently, the address too) of the 20-th order. It will also set the 21-st order&#39;s reused field to the value of 1. You will see it marked as reused in the admin panel too.</p>
-
-	<p>CAUTION: It is very important to make sure that you don&#39;t accidentally provide keychain_id that is too far away from the last used one. For example, if the gateway&#39;s <code>last_keychain_id</code> is <code>10</code>, do not use <code>35</code> for the next order, use <code>11</code>. <code>last_keychain_id</code> is always returned with other info when you create or check order status. Make sure you always track <code>last_keychain_id</code> in your application - it is normally returned to you in the json with the other order info when you create or check orders.</p>
-
-	<h2>Code example</h2>
-
-	<p>Suppose you have a Rails controller with an action called complete_purchase which handles customer requests when they hit the &quot;Complete purchase&quot; button on your site. This is what code for it may look like:</p>
-	<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;straight-server-kit&#39;</span>
-
-		<span class="k">def</span> <span class="nf">complete_purchase</span>
-
-		<span class="c1"># Save purchase in own DB</span>
-		<span class="n">purchase</span>  <span class="o">=</span> <span class="no">Purchase</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
-
-		<span class="c1"># Perform signed request to Mycelium Gear API</span>
-		<span class="n">client</span>    <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">gateway_id</span><span class="p">:</span> <span class="n">api_gateway_id</span><span class="p">,</span> <span class="ss">secret</span><span class="p">:</span> <span class="n">gateway_secret</span><span class="p">)</span>
-		<span class="n">new_order</span> <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">amount</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="ss">callback_data</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-		<span class="n">order</span>     <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new_order</span><span class="p">)</span>
-
-		<span class="c1"># Save order reference</span>
-		<span class="n">purchase</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">order_id</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-
-		<span class="c1"># Redirect customer to the payment page</span>
-		<span class="n">redirect_to</span> <span class="n">client</span><span class="o">.</span><span class="n">pay_url</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-		<span class="k">end</span>
-	</pre></div>
+<span class="c1"># Redirect customer to the payment page</span>
+<span class="n">redirect_to</span> <span class="n">client</span><span class="o">.</span><span class="n">pay_url</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
 </div>

@@ -46,6 +46,12 @@ en:
     active: 'Active'
     inactive: 'Inactive'
   status: 'Status'
+  create:  "Create"
+  get: "Get"
+  update: "Update"
+  new: "New"
+  delete: "Delete"
+  
 
 
   

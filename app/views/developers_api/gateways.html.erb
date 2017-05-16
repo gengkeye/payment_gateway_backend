@@ -1,61 +1,62 @@
 <div class='pure-u-1-1'>
-<p>With Gear&#39;s developer API, it is possible to create, update or get a list (or one) of gateways. </p>
+  <p><%= t("documentation.developer_api.gateway.paragraph1") %></p>
 
-<h2>Create gateway</h2>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title1") %></h2>
 
-<p>To create a gateway, you need to make a <strong>POST</strong> request to <code>/api/gateways</code> with the following body:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph2") %></p>
+  <p><%= t("documentation.developer_api.gateway.paragraph3") %></p>
 
-<p>Required fields:</p>
 
-<ul>
-<li><em>name</em>.<br>
-Name of your gateway</li>
-<li><em>pubkey</em>.<br>
-Public key (xpub) exported from the wallet to which you will receive Bitcoins</li>
-<li><em>confirmations_required</em>.<br>
-Number of required confirmations to consider transaction successful</li>
-<li><em>orders_expiration_period</em>.<br>
-How long the order will be waiting for a payment (in milliseconds). Should be between 0 and 1800</li>
-<li><em>default_currency</em>.<br>
-Default currency to display order amounts in</li>
-</ul>
+  <ul>
+    <li><em>name</em>.<br>
+    </li>
+    <li><em>pubkey</em>.<br>
+    </li>
+    <li><em>confirmations_required</em>.<br>
+    </li>
+    <li><em>orders_expiration_period</em>.<br>
+    </li>
+    <li><em>default_currency</em>.<br>
+    </li>
+  </ul>
 
-<p>Optional fields:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph4") %></p>
 
-<ul>
-<li><em>active</em>.<br>
-If a gateway is active (can generate new orders). Default: <em>true</em></li>
-<li><em>address_derivation_scheme</em>.<br>
-How we derive each new address from the provided xpub (see BIP32 documentation)</li>
-<li><em>callback_url</em>.<br>
-A callback url is where our server will report all order status changes by performing a callback request</li>
-<li><em>after_payment_redirect_to</em>.<br>
-Is a URL to which users are redirected after they made a payment</li>
-<li><em>auto_redirect</em>.<br>
-Automatically redirect user after payment. Boolean. Default: <em>false</em></li>
-<li><em>test_pubkey</em>.<br>
-Testnet public key. Used if <em>test_mode</em> is enabled</li>
-<li><em>test_mode</em>.<br>
-Activate or deactivate testnet mode. Default: <em>false</em></li>
-<li><em>convert_currency_to</em>.<br>
-Convert given amount in to specific currency. Possible: &quot;BTC&quot;, &quot;USD&quot;, &quot;EUR&quot;. Default: <em>&quot;BTC&quot;</em></li>
-<li><em>exchange_rate_adapter_names</em>.<br>
-Where we get exchange rates. Array. Default: <em>[&quot;Bitstamp&quot;, &quot;Btce&quot;, &quot;Kraken&quot;]</em></li>
-<li><em>receive_payments_notifications</em>.<br>
-Send notifications about new payments to client email. Boolean. Default: <em>false</em></li>
-<li><em>locale</em>.<br>
-Locale for all messages. Only english aviable on the current moment.</li>
-<li><em>allow_links</em>.</li>
-<li><em>back_url</em>.
-Is a URL to which users are taken if they click Cancel in the payment screen.</li>
-<li><em>description</em>.</li>
-<li><em>merchant_url</em>.</li>
-<li><em>city</em>.</li>
-<li><em>region</em>.</li>
-<li><em>country</em>.</li>
-</ul>
+  <ul>
+    <li><em>active</em>.<br>
+    </li>
+    <li><em>address_derivation_scheme</em>.<br>
+    </li>
+    <li><em>callback_url</em>.<br>
+    </li>
+    <li><em>after_payment_redirect_to</em>.<br>
+    </li>
+    <li><em>auto_redirect</em>.<br>
+    </li>
+    <li><em>test_pubkey</em>.<br>
+    </li>
+    <li><em>test_mode</em>.<br>
+    </li>
+    <li><em>convert_currency_to</em>.<br>
+    </li>
+    <li><em>exchange_rate_adapter_names</em>.<br>
+    </li>
+    <li><em>receive_payments_notifications</em>.<br>
+    </li>
+    <li><em>locale</em>.<br>
+    </li>
+    <li><em>allow_links</em>.</li>
+    <li><em>back_url</em>.
+    </li>
+    <li><em>description</em>.</li>
+    <li><em>merchant_url</em>.</li>
+    <li><em>city</em>.</li>
+    <li><em>region</em>.</li>
+    <li><em>country</em>.</li>
+  </ul>
 
-<p>Example:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph5") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;gateways&quot;</span><span class="p">,</span>
@@ -69,7 +70,9 @@ Is a URL to which users are taken if they click Cancel in the payment screen.</l
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>A response to this request should be the following object:</p>
+
+  <p><%= t("documentation.developer_api.gateway.paragraph6") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;56&quot;</span><span class="p">,</span>
@@ -112,12 +115,14 @@ Is a URL to which users are taken if they click Cancel in the payment screen.</l
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Additionally it returns a <em>secret</em> key.
-Status code is: <strong>201</strong></p>
 
-<h2>Update gateway</h2>
+  <p><%= t("documentation.developer_api.gateway.paragraph7") %></p>
 
-<p>To update a gateway, you need to make a <strong>PATCH</strong> request to <code>/api/gateways</code> with the following body:</p>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title2") %></h2>
+
+
+  <p><%= t("documentation.developer_api.gateway.paragraph8") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;gateway&quot;</span><span class="p">,</span>
@@ -128,14 +133,15 @@ Status code is: <strong>201</strong></p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>where <em>id</em> is an ID of a gateway you want to change.
-You can list fields you wish to change under the <em>attributes</em> key. Others fields will not change.</p>
 
-<h2>Get full information about specific gateway</h2>
+  <p><%= t("documentation.developer_api.gateway.paragraph9") %></p>
 
-<p>To get information about a specific gateway, you need to make a <strong>GET</strong> request <code>/api/gateways/{gateway_id}</code>.</p>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title3") %></h2>
 
-<p>In result a response will be:</p>
+
+  <p><%= t("documentation.developer_api.gateway.paragraph10") %></p>
+  <p><%= t("documentation.developer_api.gateway.paragraph11") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;gateway&quot;</span><span class="p">,</span>
@@ -146,11 +152,12 @@ You can list fields you wish to change under the <em>attributes</em> key. Others
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<h2>Get gateways list</h2>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title4") %></h2>
 
-<p>To fetch a list of all gateways you need to make a <strong>GET</strong> request to <code>/api/gateways</code> with an empty body.</p>
 
-<p>A response to this request should be the following object:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph12") %></p>
+  <p><%= t("documentation.developer_api.gateway.paragraph13") %></p>
+
 <div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;gateway&quot;</span><span class="p">,</span>
@@ -169,18 +176,21 @@ You can list fields you wish to change under the <em>attributes</em> key. Others
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
-<p>By default the returned list is limited to 25 records. If you want more, you&#39;ll need to send a query parameter described in <em>Pagination</em> section.</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph14") %></p>
 
-<h3>Pagination</h3>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title5") %></h2>
 
-<p>The strategy is cursor-based. The following options may be passed as query parameters:</p>
+
+  <p><%= t("documentation.developer_api.gateway.paragraph15") %></p>
+
 
 <ul>
 <li><strong>page[number]</strong> - defines current page.</li>
 <li><strong>page[size]</strong> - defines the maximum number of items to be returned in a result. Default is 25.</li>
 </ul>
 
-<p>The resulting JSON will contain a <em>meta</em> property with the pagination info:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph16") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -193,18 +203,20 @@ You can list fields you wish to change under the <em>attributes</em> key. Others
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Example:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph17") %></p>
+
 <div class="highlight"><pre><span class="nl">https:</span><span class="o">//</span><span class="vg">example</span><span class="o">.</span><span class="vg">com</span><span class="o">/</span><span class="vg">api</span><span class="o">/</span><span class="vg">gateways</span><span class="o">?</span><span class="vg">page</span><span class="p">[</span><span class="vg">number</span><span class="p">]</span><span class="o">=</span><span class="il">1</span><span class="o">&amp;</span><span class="vg">page</span><span class="p">[</span><span class="vg">size</span><span class="p">]</span><span class="o">=</span><span class="il">5</span>
 </pre></div>
-<p>This will show first 5 gateways.</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph18") %></p>
 
-<h3>Regenerate gateway secret key</h3>
 
-<p>If old secret was compromised or lost it is possible to regenerate a new one.</p>
+  <h2><%= t("documentation.developer_api.gateway.paragraph_title6") %></h2>
 
-<p><strong>GET</strong> request to address: <code>api/gateways/{gateways_id}/regenerate_secret</code></p>
 
-<p>The resulting JSON will be like:</p>
+  <p><%= t("documentation.developer_api.gateway.paragraph19") %></p>
+  <p><%= t("documentation.developer_api.gateway.paragraph20") %></p>
+  <p><%= t("documentation.developer_api.gateway.paragraph21") %></p>
+
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;gateways&quot;</span><span class="p">,</span>

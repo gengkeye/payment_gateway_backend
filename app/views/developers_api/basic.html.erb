@@ -1,24 +1,20 @@
 <div class='pure-u-1-1'>
-<p>The API is based on <a href="http://jsonapi.org/" target="_blank">JSONAPI</a> (version 1.0) implementation. </p>
-
-<p>Versioninig is done through HTTP header <strong>Accept-Version</strong>. It&#39;s possible to not set version, then last will be used. </p>
+  <p><%= t("documentation.developer_api.basic.paragraph1") %></p>
+  <p><%= t("documentation.developer_api.basic.paragraph2") %></p>
 <div class="highlight"><pre><span class="vg">Accept</span><span class="o">-</span><span class="nl">Version:</span><span class="w"> </span><span class="vg">v1</span>
 </pre></div>
-<p>In order to use Developer API you should first enable it and get a Secret key.
-To do so, proceed to account section, check &quot;Enable Developers API&quot; and click &quot;Save changes&quot; button.</p>
+  <p><%= t("documentation.developer_api.basic.paragraph3") %></p>
 
-<h2>Authentication</h2>
 
-<p>Each request to the API is signed usging the method described <a href="/docs/api/signed_request">here</a>.</p>
+<h2><%= t("documentation.developer_api.basic.paragraph_title1") %></h2>
 
-<p>You can generate your <strong>Secret key</strong> on your account page.
-At the bottom of the page check &quot;Regenerate API Secret&quot; checkbox, enter your current password and click &quot;Save changes&quot; button - API Secret key will be generated for you.
-Please, don&#39;t forget to write it down somewhere. If you lost API Secret key, you will need to regenerate it. After this old key will no longer work.</p>
+<p><%= t("documentation.developer_api.basic.paragraph4") %><a href="/docs/api/signed_request"><%= t("documentation.developer_api.basic.paragraph4_a") %></a>.</p>
 
-<h2>Errors</h2>
+<p><%= t("documentation.developer_api.basic.paragraph5") %>/p>
 
-<p>All errors are returned under the <em>errors</em> property in the returned object, the value of that property is as an array of errors.
-If there are errors in the request you&#39;ve sent, it will return the following:</p>
+<h2><%= t("documentation.developer_api.basic.paragraph_title2") %></h2>
+
+<p><%= t("documentation.developer_api.basic.paragraph6") %></p>
 <div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>

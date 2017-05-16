@@ -1,14 +1,13 @@
 <div class='pure-u-1-1'>
-  <h2>Login (API token and secret)</h2>
+  <h2><%= t("documentation.developer_api.address_providers.cashila.login.title") %></h2>
 
-  <p>Create Cashila Address Provider by providing credentials to already existing Cashila account.
-   Exactly one set of parameters must be provided: either email/password or token/secret.</p>
+  <p><%= t("documentation.developer_api.address_providers.cashila.login.paragraph1") %></p>
 
-   <h4>URL STRUCTURE</h4>
+  <h4><%= t("documentation.developer_api.address_providers.url_structure") %></h4>
 
-   <p>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</p>
+  <p>POST https://admin.skyluster.com/api/address_providers/cashila/login</p>
 
-   <h4>PARAMETERS (* Required field)</h4>
+  <h4><%= t("documentation.developer_api.address_providers.parameters") %></h4>
 
   <table>
     <tr>
@@ -29,48 +28,48 @@
     </tr>
   </table>
 
-  <h3>Example Request</h3>
+  <h3><%= t("documentation.developer_api.address_providers.example_request") %></h3>
   <table>
     <tr>
       <td>REQUEST</td>
-      <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
+      <td>POST https://admin.skyluster.com/api/address_providers/cashila/login</td>
       <tr>
         <td>PARAMETERS</td>
         <td><pre>
           <code>
-            {
-              &quot;token&quot;: &quot;e414d696-296f-4e10-97b3-3bbaecbe150e&quot;,
-              &quot;secret&quot;: &quot;cTxm2TGBULSxssEXdLc2TM9FK7pqTzVg9LWDCy/BXVy/YmEkg7XrxsrcaWUpSo/6Q+76ZZTLq0IcGmMDFEeRvw==&quot;
-            }
+{
+  &quot;token&quot;: &quot;e414d696-296f-4e10-97b3-3bbaecbe150e&quot;,
+  &quot;secret&quot;: &quot;cTxm2TGBULSxssEXdLc2TM9FK7pqTzVg9LWDCy/BXVy/YmEkg7XrxsrcaWUpSo/6Q+76ZZTLq0IcGmMDFEeRvw==&quot;
+}
           </code></pre></td>
         <tr>
           <td>RETURNS</td>
           <td>
             <pre>
               <code>
-                {
-                  "type": "address_providers_cashila",
-                  "id": 13,
-                  "bank_account": {},
-                  "status": "pending",
-                  "balance": 3.21,
-                  "rejected_reason": null,
-                  "user_details": {},
-                  "documents": [
-                    {
-                      "name": "gov_id_front",
-                      "status": "not present"
-                    },
-                    {
-                      "name": "gov_id_back",
-                      "status": "not present"
-                    },
-                    {
-                      "name": "residence",
-                      "status": "not present"
-                    }
-                  ]
-                }
+{
+  "type": "address_providers_cashila",
+  "id": 13,
+  "bank_account": {},
+  "status": "pending",
+  "balance": 3.21,
+  "rejected_reason": null,
+  "user_details": {},
+  "documents": [
+    {
+      "name": "gov_id_front",
+      "status": "not present"
+    },
+    {
+      "name": "gov_id_back",
+      "status": "not present"
+    },
+    {
+      "name": "residence",
+      "status": "not present"
+    }
+  ]
+}
               </code>
             </pre>
           </td>
@@ -82,41 +81,41 @@
   <table>
     <tr>
       <td>REQUEST</td>
-      <td>POST https://gateway.gear.mycelium.com/api/address_providers/cashila/login</td>
+      <td>POST https://admin.skyluster.com/api/address_providers/cashila/login</td>
       <tr>
         <td>PARAMETERS</td>
-        <td><pre><code>{
-          &quot;email&quot;: &quot;alerticus+cashila@gmail.com&quot;,
-          &quot;password&quot;: &quot;q1w2e3r4&quot;
-        }</code></pre></td>
+<td><pre><code>{
+  &quot;email&quot;: &quot;alerticus+cashila@gmail.com&quot;,
+  &quot;password&quot;: &quot;q1w2e3r4&quot;
+}</code></pre></td>
         <tr>
           <td>RETURNS</td>
           <td><pre><code>
-          {
-            "type": "address_providers_cashila",
-            "id": 11,
-            "bank_account": {},
-            "status": "pending",
-            "balance": 3.21,
-            "rejected_reason": null,
-            "user_details": {
-              "email": "alerticus+cashila@gmail.com"
-            },
-           "documents": [
-              {
-                "name": "gov_id_front",
-                "status": "not present"
-              },
-              {
-                "name": "gov_id_back",
-                "status": "not present"
-              },
-              {
-                "name": "residence",
-                "status": "not present"
-              }
-            ]
-          }
+{
+  "type": "address_providers_cashila",
+  "id": 11,
+  "bank_account": {},
+  "status": "pending",
+  "balance": 3.21,
+  "rejected_reason": null,
+  "user_details": {
+    "email": "alerticus+cashila@gmail.com"
+  },
+ "documents": [
+    {
+      "name": "gov_id_front",
+      "status": "not present"
+    },
+    {
+      "name": "gov_id_back",
+      "status": "not present"
+    },
+    {
+      "name": "residence",
+      "status": "not present"
+    }
+  ]
+}
         </code></pre></td>
   </table>
 </div>
