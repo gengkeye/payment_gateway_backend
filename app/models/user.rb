@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :authentication_keys => [:login]
   has_many :gateways
   validates :email, :name, :presence => true, :uniqueness => { :case_sensitive => false }
-  validates_format_of :name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  # validates_format_of :name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   enum role: {
   	admin: 0,
