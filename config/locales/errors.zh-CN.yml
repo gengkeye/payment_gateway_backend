@@ -1,0 +1,27 @@
+zh-CN:
+  errors:
+    messages:
+      confirmation: "输入不一致"
+      accepted: "值不被接受"
+      blank: "不能为空"
+      present: "缺失"
+      not_saved: "保存失败"
+      too_short: "长度太短"
+      too_long: "长度太长"
+      wrong_length: "长度错误"
+      taken: "已存在"
+      invalid: "无效"
+      inclusion: "不在指定值列表中"
+      exclusion: "在非有效值列表中"
+      required: "缺少外键"
+      not_a_number: "不是一个数字"
+      greater_than: "必须大于"
+      greater_than_or_equal_to: "必须大于或等于"
+      equal_to: "等于"
+      less_than: "小于"
+      less_than_or_equal_to: "小于或等于"
+      other_than: "其他"
+      not_an_integer: "不是整数"
+      odd: "偶数"
+      even: "奇数"
+
