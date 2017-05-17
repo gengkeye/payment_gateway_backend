@@ -1,44 +1,44 @@
 <div class='sidebar'>
   <div id="docsMenu" class="docsAccordionMenu">
     <ul>
-      <li class=active><a href="/docs/introduction"><%= t('documentation.introduction.title') %></a></li>
+      <li ><a href="/docs/introduction?aid=introduction_title" id="introduction"><%= t('documentation.introduction.title') %></a></li>
       <li ><a href="/docs/overview_of_payment_processing"><%= t('documentation.overview_payment_process.title') %></a></li>
       <li ><a href="/docs/creating_a_new_gateway"><%= t('documentation.create_gateway.title') %></a></li>
       <li ><span class='folder'><%= t('documentation.api.title') %><i class='fa faAngleDown'></i></span>
         <ul>
-          <li><a href="/docs/api/signed_request"><%= t('documentation.api.signed_request.title') %></a></li>
-          <li ><a href="/docs/api/creating_orders"><%= t('documentation.api.create_orders.title') %></a></li>
-          <li ><a href="/docs/api/receiving_order_status_change_callback"><%= t('documentation.api.receive_order_callback.title') %></a></li>
-          <li ><a href="/docs/api/checking_order_status_manually"><%= t('documentation.api.check_order_status.title') %></a></li>
-          <li ><a href="/docs/api/order_websocket"><%= t('documentation.api.order_websocket.title') %></a></li>
-          <li ><a href="/docs/api/order_cancellation"><%= t('documentation.api.order_cancel.title') %></a></li>
-          <li ><a href="/docs/api/receiving_last_keychain_id_for_gateway"><%= t('documentation.api.receive_last_keychain.title') %></a></li>
+          <li><a href="/docs/api/signed_request?aid=signed_request" id="signed_request"><%= t('documentation.api.signed_request.title') %></a></li>
+          <li ><a href="/docs/api/creating_orders?aid=creating_orders" id="creating_orders"><%= t('documentation.api.create_orders.title') %></a></li>
+          <li ><a href="/docs/api/receiving_order_status_change_callback?aid=receiving_order_status_change_callback" id="receiving_order_status_change_callback"><%= t('documentation.api.receive_order_callback.title') %></a></li>
+          <li ><a href="/docs/api/checking_order_status_manually?aid=checking_order_status_manually" id="checking_order_status_manually"><%= t('documentation.api.check_order_status.title') %></a></li>
+          <li ><a href="/docs/api/order_websocket?aid=order_websocket" id="order_websocket"><%= t('documentation.api.order_websocket.title') %></a></li>
+          <li ><a href="/docs/api/order_cancellation?aid=order_cancellation" id="order_cancellation"><%= t('documentation.api.order_cancel.title') %></a></li>
+          <li ><a href="/docs/api/receiving_last_keychain_id_for_gateway?aid=receiving_last_keychain" id="receiving_last_keychain"><%= t('documentation.api.receive_last_keychain.title') %></a></li>
         </ul>
       </li>
       <li >
         <span class='folder'><%= t('documentation.developer_api.title') %><i class='fa faAngleDown'></i></span>
         <ul>
-          <li ><a href="/docs/developers_api/basic"><%= t('documentation.developer_api.basic.title') %></a></li>
-          <li ><a href="/docs/developers_api/gateways"><%= t('documentation.developer_api.gateway.title') %></a></li>
+          <li ><a href="/docs/developers_api/basic?aid=basic" id="basic"><%= t('documentation.developer_api.basic.title') %></a></li>
+          <li ><a href="/docs/developers_api/gateways?aid=gateways" id="gateways"><%= t('documentation.developer_api.gateway.title') %></a></li>
           <li ><span class='folder'><%= t('documentation.developer_api.address_providers.title') %><i class='fa faAngleDown'></i></span>
           <ul>
-            <li ><a href="/docs/developers_api/addressproviders/list"><%= t('documentation.developer_api.address_providers.list.title') %></a></li>
+            <li ><a href="/docs/developers_api/addressproviders/list?aid=list" id="list"><%= t('documentation.developer_api.address_providers.list.title') %></a></li>
             <li ><span class='folder'><%= t('documentation.developer_api.address_providers.cashila.title') %><i class='fa faAngleDown'></i></span>
               <ul>
-                <li ><a href="/docs/developers_api/addressproviders/cashila/login"><%= t('documentation.developer_api.address_providers.cashila.login.title') %></a></li>
-                <li ><a href="/docs/developers_api/addressproviders/cashila/withdraw"><%= t('documentation.developer_api.address_providers.cashila.withdraw.title') %></a></li>
+                <li ><a href="/docs/developers_api/addressproviders/cashila/login?aid=login" id="login"><%= t('documentation.developer_api.address_providers.cashila.login.title') %></a></li>
+                <li ><a href="/docs/developers_api/addressproviders/cashila/withdraw?aid=withdraw" id="withdraw"><%= t('documentation.developer_api.address_providers.cashila.withdraw.title') %></a></li>
                 <li ><span class='folder'><%= t('documentation.developer_api.address_providers.cashila.legal_entity.title') %><i class='fa faAngleDown'></i></span>
                   <ul>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/create_legalentity"><%= t('create') %></a></li>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/get"><%= t('get') %></a></li>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/update_legalentity"><%= t('update') %></a></li>
+                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/create_legalentity?aid=create_legalentity" id="create_legalentity"><%= t('create') %></a></li>
+                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/get?aid=get_legalentity" id="get_legalentity"><%= t('get') %></a></li>
+                    <li ><a href="/docs/developers_api/addressproviders/cashila/legalentity/update_legalentity?aid=update_legalentity" id="update_legalentity"><%= t('update') %></a></li>
                   </ul>
                 </li>
                 <li><span class='folder'><%= t('documentation.developer_api.address_providers.cashila.individual_entity.title') %><i class='fa faAngleDown'></i></span>
                   <ul>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/create_individualentity"><%= t('create') %></a></li>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/get"><%= t('get') %></a></li>
-                    <li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/update_individualentity"><%= t('update') %></a></li>
+                    <li><a href="/docs/developers_api/addressproviders/cashila/individualentity/create_individualentity?aid=create_individualentity" id="create_individualentity"><%= t('create') %></a></li>
+                    <li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/get?aid=get_individualentity" id="get_individualentity"><%= t('get') %></a></li>
+                    <li ><a href="/docs/developers_api/addressproviders/cashila/individualentity/update_individualentity?aid=update_individualentity" id="update_individualentity"><%= t('update') %></a></li>
                   </ul>
                 </li>
               </ul>
@@ -50,3 +50,9 @@
     </ul>
   </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    id = "<%= params[:aid] %>";
+    $("#" + id).parents().addClass('active');
+  })
+</script>

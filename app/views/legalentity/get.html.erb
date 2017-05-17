@@ -1,136 +1,137 @@
 <div class='pure-u-1-1'>
-  <h2><%= t("get") %></h2>
+<h2><%= t("get") %></h2>
 
-  <h4><%= t("documentation.developer_api.address_providers.url_structure") %></h4>
+<h4><%= t("documentation.developer_api.address_providers.url_structure") %></h4>
 
-  <p>GET https://gateway.gear.mycelium.com/api/address_providers/cashila/legal/:idl</p>
+<p>GET https://gateway.gear.mycelium.com/api/address_providers/cashila/legal/:idl</p>
 
-  <h4><%= t("documentation.developer_api.address_providers.parameters") %></h4>
+<h4><%= t("documentation.developer_api.address_providers.parameters") %></h4>
 
-  <table>
-    <tr>
-      <td>id <i>(Integer)</i></td>
-      <td>ID of Cashila Address Provider</td>
-    </table>
+<table>
+<tr>
+<td>id <i>(Integer)</i></td>
+<td>ID of Cashila Address Provider</td>
+</table>
 
-    <h4><%= t("documentation.developer_api.address_providers.returns") %></h4>
+<h4><%= t("documentation.developer_api.address_providers.returns") %></h4>
 
-    <table>
-      <tr>
-        <td>status <i>(String)</i></td>
-        <td>Verification status: &#39;pending&#39;, &#39;rejected&#39; or &#39;verified&#39;</td>
-        <tr>
-          <td>rejected_reason <i>(String)</i></td>
-          <td>Human-readable reason of rejection if status is &#39;Rejected&#39;</td>
-          <tr>
-            <td>balance <i>(Float)</i></td>
-            <td>Balance in EUR</td>
-            <tr>
-              <td>user_details <i>(Hash)</i></td>
-              <td>User details hash</td>
-              <tr>
-                <td>user_details/company_name <i>(String)</i></td>
-                <td>Company name</td>
-                <tr>
-                  <td>user_details/organizational_form <i>(String)</i></td>
-                  <td>Company organizational form</td>
-                  <tr>
-                    <td>user_details/registration_number <i>(String)</i></td>
-                    <td>Company registration number</td>
-                    <tr>
-                      <td>user_details/address <i>(String)</i></td>
-                      <td>Company street address</td>
-                      <tr>
-                        <td>user_details/postal_code <i>(String)</i></td>
-                        <td>Company postal code</td>
-                        <tr>
-                          <td>user_details/city <i>(String)</i></td>
-                          <td>Company city</td>
-                          <tr>
-                            <td>user_details/country_code <i>(String)</i></td>
-                            <td>Company two-letter country code</td>
-                            <tr>
-                              <td>bank_account <i>(Hash)</i></td>
-                              <td>Bank account information</td>
-                              <tr>
-                                <td>bank_account/name <i>(String)</i></td>
-                                <td>Bank account holder&#39;s name</td>
-                                <tr>
-                                  <td>bank_account/address <i>(String)</i></td>
-                                  <td>Bank account holder&#39;s street address</td>
-                                  <tr>
-                                    <td>bank_account/postal_code <i>(String)</i></td>
-                                    <td>Bank account holder&#39;s postal code</td>
-                                    <tr>
-                                      <td>bank_account/city <i>(String)</i></td>
-                                      <td>Bank account holder&#39;s city</td>
-                                      <tr>
-                                        <td>bank_account/country_code <i>(String)</i></td>
-                                        <td>Bank account holder&#39;s two-letter country code</td>
-                                        <tr>
-                                          <td>bank_account/bic <i>(String)</i></td>
-                                          <td>Bank account BIC</td>
-                                          <tr>
-                                            <td>bank_account/iban <i>(String)</i></td>
-                                            <td>Bank account IBAN</td>
-                                            <tr>
-                                              <td>documents <i>(Hash)</i></td>
-                                              <td>Documents</td>
-                                              <tr>
-                                                <td>name <i>(String)</i></td>
-                                                <td>Name of the document</td>
-                                                <tr>
-                                                  <td>status <i>(String)</i></td>
-                                                  <td>Verification status of the document: &#39;approved&#39;, &#39;pending&#39; or &#39;not present&#39;</td>
-                                                </table>
+<table>
+<tr>
+<td>status <i>(String)</i></td>
+<td>Verification status: &#39;pending&#39;, &#39;rejected&#39; or &#39;verified&#39;</td>
+<tr>
+<td>rejected_reason <i>(String)</i></td>
+<td>Human-readable reason of rejection if status is &#39;Rejected&#39;</td>
+<tr>
+<td>balance <i>(Float)</i></td>
+<td>Balance in EUR</td>
+<tr>
+<td>user_details <i>(Hash)</i></td>
+<td>User details hash</td>
+<tr>
+<td>user_details/company_name <i>(String)</i></td>
+<td>Company name</td>
+<tr>
+<td>user_details/organizational_form <i>(String)</i></td>
+<td>Company organizational form</td>
+<tr>
+<td>user_details/registration_number <i>(String)</i></td>
+<td>Company registration number</td>
+<tr>
+<td>user_details/address <i>(String)</i></td>
+<td>Company street address</td>
+<tr>
+<td>user_details/postal_code <i>(String)</i></td>
+<td>Company postal code</td>
+<tr>
+<td>user_details/city <i>(String)</i></td>
+<td>Company city</td>
+<tr>
+<td>user_details/country_code <i>(String)</i></td>
+<td>Company two-letter country code</td>
+<tr>
+<td>bank_account <i>(Hash)</i></td>
+<td>Bank account information</td>
+<tr>
+<td>bank_account/name <i>(String)</i></td>
+<td>Bank account holder&#39;s name</td>
+<tr>
+<td>bank_account/address <i>(String)</i></td>
+<td>Bank account holder&#39;s street address</td>
+<tr>
+<td>bank_account/postal_code <i>(String)</i></td>
+<td>Bank account holder&#39;s postal code</td>
+<tr>
+<td>bank_account/city <i>(String)</i></td>
+<td>Bank account holder&#39;s city</td>
+<tr>
+<td>bank_account/country_code <i>(String)</i></td>
+<td>Bank account holder&#39;s two-letter country code</td>
+<tr>
+<td>bank_account/bic <i>(String)</i></td>
+<td>Bank account BIC</td>
+<tr>
+<td>bank_account/iban <i>(String)</i></td>
+<td>Bank account IBAN</td>
+<tr>
+<td>documents <i>(Hash)</i></td>
+<td>Documents</td>
+<tr>
+<td>name <i>(String)</i></td>
+<td>Name of the document</td>
+<tr>
+<td>status <i>(String)</i></td>
+<td>Verification status of the document: &#39;approved&#39;, &#39;pending&#39; or &#39;not present&#39;</td>
+</table>
 
-                                                <h3><%= t("documentation.developer_api.address_providers.example_request") %></h3>
+<h3><%= t("documentation.developer_api.address_providers.example_request") %></h3>
 
-                                                <table>
-                                                  <tr>
-                                                    <td>REQUEST</td>
-                                                    <td>GET https://admin.skyluster.com/api/address_providers/cashila/legal/6</td>
-                                                    <tr>
-                                                      <td>RETURNS</td>
-                                                      <td><pre><code>{
-                                                        "type": "address_providers_cashila",
-                                                        "id": 6,
-                                                        "bank_account": {
-                                                        "id": "5ea979a7-1699-4df2-acc4-bc44bb3091b6",
-                                                        "name": "John Smith",
-                                                        "address": "Route de Vonèche 458",
-                                                        "postal_code": "6230",
-                                                        "city": "Viesville",
-                                                        "country_code": "BE",
-                                                        "country_name": "Belgium",
-                                                        "last_used": "2015-07-01T07:33:03+0000"
-                                                      },
-                                                      "status": "pending",
-                                                      "balance": 3.21,
-                                                      "rejected_reason": null,
-                                                      "user_details": {
-                                                      "first_name": "John",
-                                                      "last_name": "Smith",
-                                                      "address": "Route de Vonèche 458",
-                                                      "postal_code": "6230",
-                                                      "city": "Viesville",
-                                                      "country_code": "BE"
-                                                    },
-                                                    "documents": [
-                                                    {
-                                                    "name": "gov_id_front",
-                                                    "status": "not present"
-                                                  },
-                                                  {
-                                                  "name": "gov_id_back",
-                                                  "status": "not present"
-                                                },
-                                                {
-                                                "name": "residence",
-                                                "status": "not present"
-                                              }
-                                              ]
-                                            }</code></pre></td>
-                                          </table>
+<table>
+<tr>
+<td>REQUEST</td>
+<td>GET https://admin.skyluster.com/api/address_providers/cashila/legal/6</td>
+<tr>
+<td>RETURNS</td>
+<td><pre><code>
+{
+  "type": "address_providers_cashila",
+  "id": 6,
+  "bank_account": {
+    "id": "5ea979a7-1699-4df2-acc4-bc44bb3091b6",
+    "name": "John Smith",
+    "address": "Route de Vonèche 458",
+    "postal_code": "6230",
+    "city": "Viesville",
+    "country_code": "BE",
+    "country_name": "Belgium",
+    "last_used": "2015-07-01T07:33:03+0000"
+  },
+  "status": "pending",
+  "balance": 3.21,
+  "rejected_reason": null,
+  "user_details": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "address": "Route de Vonèche 458",
+    "postal_code": "6230",
+    "city": "Viesville",
+    "country_code": "BE"
+  },
+  "documents": [
+    {
+    "name": "gov_id_front",
+    "status": "not present"
+    },
+    {
+    "name": "gov_id_back",
+    "status": "not present"
+    },
+    {
+    "name": "residence",
+    "status": "not present"
+    }
+  ]
+}</code></pre></td>
+</table>
 
-                                        </div>
+</div>

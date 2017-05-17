@@ -1,0 +1,9 @@
+development:
+  gmail_username:
+  gmail_password:
+test:
+  gmail_username:
+  gmail_password:
+production:
+  gmail_username:
+  gmail_password:
