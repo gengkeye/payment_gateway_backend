@@ -44,19 +44,19 @@
 <div class="highlight"><pre>
 <span class="nb">require</span> <span class="s1">&#39;straight-server-kit&#39;</span>
 <span class="k">def</span> <span class="nf">complete_purchase</span>
-<span class="c1"># Save purchase in own DB</span>
-<span class="n">purchase</span>  <span class="o">=</span> <span class="no">Purchase</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+	<span class="c1"># Save purchase in own DB</span>
+	<span class="n">purchase</span>  <span class="o">=</span> <span class="no">Purchase</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
 
-<span class="c1"># Perform signed request to Mycelium Gear API</span>
-<span class="n">client</span>    <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">gateway_id</span><span class="p">:</span> <span class="n">api_gateway_id</span><span class="p">,</span> <span class="ss">secret</span><span class="p">:</span> <span class="n">gateway_secret</span><span class="p">)</span>
-<span class="n">new_order</span> <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">amount</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="ss">callback_data</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-<span class="n">order</span>     <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new_order</span><span class="p">)</span>
+	<span class="c1"># Perform signed request to Mycelium Gear API</span>
+	<span class="n">client</span>    <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">gateway_id</span><span class="p">:</span> <span class="n">api_gateway_id</span><span class="p">,</span> <span class="ss">secret</span><span class="p">:</span> <span class="n">gateway_secret</span><span class="p">)</span>
+	<span class="n">new_order</span> <span class="o">=</span> <span class="no">StraightServerKit</span><span class="o">::</span><span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">amount</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="ss">callback_data</span><span class="p">:</span> <span class="n">purchase</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+	<span class="n">order</span>     <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new_order</span><span class="p">)</span>
 
-<span class="c1"># Save order reference</span>
-<span class="n">purchase</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">order_id</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+	<span class="c1"># Save order reference</span>
+	<span class="n">purchase</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">order_id</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 
-<span class="c1"># Redirect customer to the payment page</span>
-<span class="n">redirect_to</span> <span class="n">client</span><span class="o">.</span><span class="n">pay_url</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+	<span class="c1"># Redirect customer to the payment page</span>
+	<span class="n">redirect_to</span> <span class="n">client</span><span class="o">.</span><span class="n">pay_url</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
