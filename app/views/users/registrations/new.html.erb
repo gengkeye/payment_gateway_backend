@@ -6,21 +6,21 @@
   <div class='form-inputs'>
     <div class="input email required user_name">
       <%= f.label class: 'string optional control-label' do %>
-        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.name') %></label>
+        <abbr title="required">*</abbr><%= User.human_attribute_name(:name) %></label>
       <% end %>
       <%= f.text_field :name, autofocus: true, class: 'string optional required' %>
     </div>
 
     <div class="input email required user_email">
       <%= f.label class: "email required control-label"  do %>
-        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.email') %></label>
+        <abbr title="required">*</abbr><%= User.human_attribute_name(:email) %></label>
       <% end %>
       <%= f.email_field :email, class: 'string email required' %>
     </div>
 
     <div class="input password required user_password">
       <%= f.label class: "password required control-label" do %>
-        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.password') %></label>
+        <abbr title="required">*</abbr><%= User.human_attribute_name(:password) %></label>
       <% end %>
       <% if @minimum_password_length %>
         <em>(<%= t('min_characters') %>)</em>
@@ -30,7 +30,7 @@
 
     <div class="input password required user_password_confirmation">
       <%= f.label class: 'password required control-label' do %>
-        <abbr title="required">*</abbr><%= t('activerecord.attributes.user.password_confirmation') %></label>
+        <abbr title="required">*</abbr><%= User.human_attribute_name(:password_confirmation) %></label>
       <% end %>
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "password required" %>
     </div>
