@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Uid
   attr_accessor :login, :regenerate_secret
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

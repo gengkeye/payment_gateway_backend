@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420062535) do
+ActiveRecord::Schema.define(version: 20170518075429) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "uid"
     t.integer  "user_id"
     t.integer  "confirmations_required",                       default: 0,       null: false
     t.integer  "last_keychain_id",                             default: 0,       null: false
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170420062535) do
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "uid"
     t.string   "address",                                                 null: false
     t.string   "tid"
     t.integer  "status",                                  default: 0,     null: false
@@ -101,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170420062535) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "uid"
     t.string   "email",                                           default: "",    null: false
     t.string   "encrypted_password",                              default: "",    null: false
     t.string   "reset_password_token"

@@ -1,4 +1,6 @@
 class Gateway < ApplicationRecord
+	include Uid
+	
 	attr_accessor :exchange_rate_adapter_name_1, :exchange_rate_adapter_name_2, :exchange_rate_adapter_name_3
 	belongs_to :user
 	has_many :orders

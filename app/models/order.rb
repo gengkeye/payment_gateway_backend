@@ -1,6 +1,8 @@
 require 'csv'
 
 class Order < ApplicationRecord
+	include Uid
+
 	belongs_to :gateway
 	enum status: {
 		unconfirmed: 1,

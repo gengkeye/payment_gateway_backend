@@ -8,7 +8,6 @@
 				<ul class="homeNav">
 					<li>
 					  <%= form_tag request.url || root_path, id:'locale_setting', method: :get do %>
-					     <%= hidden_field_tag :uid, params[:uid] %>
 					     <%= select_tag 'locale', options_for_select([['English', 'en' ], ['中文', 'zh-CN']], params[:locale]), class: 'homeLocaleSelect' %>
 					  <% end %>
 					</li>
