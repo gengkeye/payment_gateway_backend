@@ -31,7 +31,7 @@ zh-CN:
           country:
             China: '中国'
             America: '美国'
-            Philippine: '菲律宾'
+            Philippines: '菲律宾'
           exchange_rate_adapter_names:
             Huobi: '火币网'
             Btcchina: '比特币中国'

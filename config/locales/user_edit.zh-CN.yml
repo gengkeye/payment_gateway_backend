@@ -9,8 +9,8 @@ zh-CN:
       explain:
         new: "如果不想更改密码，保持为空。"
         new_again: "确认密码，保证输入正确。"
-    save_change:
-      title: '输入当前密码，以保存改动。'
+    save_changes:
+      title: "输入当前密码，以保存改动。"
       error: "不能为空"
     enable_api:
       title: '启用开发者API'

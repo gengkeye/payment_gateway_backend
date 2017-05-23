@@ -105,7 +105,7 @@
 					<label class="select required control-label" for="gateway_default_currency"><abbr title="required">*</abbr>
 						<%= Gateway.human_attribute_name(:default_currency) %>
 					</label>
-					<%= f.select :default_currency, options_for_select(Gateway.default_currencies.map{|k, v| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), v]}), class: 'select required'%>
+					<%= f.select :default_currency, options_for_select(Gateway::SUPPORT_CURRENCIES.map{|k| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), k]}), class: 'select required'%> 
 					<span class="hint"><%= t('new_gateway.explain.default_currency') %></span>
 				</div>
 
@@ -113,28 +113,28 @@
 					<label class="select optional control-label" for="gateway_convert_currency_to">
 						<%= t('new_gateway.currency_conversion_options.convert_payment') %>
 					</label>
-					<%= f.select :convert_currency_to, options_for_select(Gateway.convert_currency_tos), class: 'select required' %>
+					<%= f.select :convert_currency_to, options_for_select(Gateway::BTC_UNITS), class: 'select required' %>
 				</div>
 
 				<div class='input'>
 					<label>
 					  <%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #1:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_1, options_for_select(@providers) %>
+					<%= f.select :exchange_rate_adapter_name_1, options_for_select(@providers, selected: @providers.first) %>
 				</div>
 
 			    <div class='input'>
 					<label>
 						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #2:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_2, options_for_select(@providers) %>
+					<%= f.select :exchange_rate_adapter_name_2, options_for_select(@providers, selected: @providers.second) %>
 				</div>
 
 				<div class='input'>
 					<label>
 						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #3:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_3, options_for_select(@providers) %>
+					<%= f.select :exchange_rate_adapter_name_3, options_for_select(@providers, selected: @providers.third) %>
 					</div>
 					<span class='hint'><%= t('new_gateway.explain.exchange_rate_adapter') %>
 					</span>
@@ -226,7 +226,7 @@
 					<div class='chosenSizeLarge'>
 						<div class="input country optional gateway_country">
 							<label class="country optional control-label" for="gateway_country"><%= t('new_gateway.additional_info.country') %></label>
-							<%= f.select :country, options_for_select(Gateway.countries.map{|k, v| [t("activerecord.attributes.gateway.enum.country.#{k}"), v]})%>
+							<%= f.select :country, options_for_select(Gateway::SUPPORT_COUNTRIES.map{|k| [t("activerecord.attributes.gateway.enum.country.#{k}"), k]})%>
 						</div>
 					</div>
 					<div class="input string optional gateway_region">

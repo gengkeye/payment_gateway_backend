@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518075429) do
+ActiveRecord::Schema.define(version: 20170523100213) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "uid"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20170518075429) do
     t.boolean  "enabled_sending_mail",                            default: true
     t.integer  "role",                                            default: 1
     t.boolean  "toggle_dev_api",                                  default: false
-    t.string   "updates_email_subscription_level"
+    t.integer  "updates_email_subscription_level"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -139,6 +139,20 @@ ActiveRecord::Schema.define(version: 20170518075429) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "withdrawals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "user_id"
+    t.integer  "gateway_id"
+    t.integer  "customer_uid"
+    t.integer  "auditor_id"
+    t.decimal  "amount",                           precision: 10
+    t.integer  "status"
+    t.boolean  "approval"
+    t.text     "disapproval_reason", limit: 65535
+    t.datetime "approval_time"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_foreign_key "transactions", "orders", name: "transactions_ibfk_1", on_update: :cascade, on_delete: :cascade

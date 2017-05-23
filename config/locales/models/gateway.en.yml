@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    attributes:
+      gateway:
+        enum:
+          default_currency:
+            CNY: 'CNY'
+            PHP: 'PHP'
+            USD: 'USD'
+          country:
+            China: 'China'
+            America: 'America'
+            Philippines: 'Philippines'
+          exchange_rate_adapter_names:
+            Huobi: 'Huobi'
+            Btcchina: 'Btcchina'
+            Okcoin: 'Okcoin'

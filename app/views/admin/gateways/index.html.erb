@@ -35,7 +35,7 @@
 							<div class='columnContainer chosenSizeLarge'>
 								<label><%= Gateway.human_attribute_name(:default_currency) %></label>
 								<div class='chosenStandardWhite chosenSmallFont'>
-									<%= select_tag 'default_currency', options_for_select(Gateway.default_currencies.map{|k, v| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), v]}) %>
+									<%= select_tag 'default_currency', options_for_select(Gateway::SUPPORT_CURRENCIES.map{|k| [t("activerecord.attributes.gateway.enum.default_currency.#{k}"), k]}) %>
 								</div>
 							</div>
 							</div> 

@@ -34,10 +34,19 @@ class GatewaysController < ApplicationController
     authorize @gateway
   end
 
+  def edit
+    @gateway = Gateway.find_by(uid: params[:id])
+    @providers = @gateway.exchange_rate_adapter_nams.split(',').map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}
+  end
+
   def create
-    @gateway = current_user.gateways.create(gatway_params)
+    @gateway = current_user.gateways.new(gateway_params)
     authorize @gateway
-    if @gateway.valid?
+    @gateway.user = current_user
+    @gateway.check_signature = params[:test_mode]
+    @gateway.secret = current_user.api_secret
+    @gateway.exchange_rate_adapter_names = [params[:exchange_rate_adapter_name_1], params[:exchange_rate_adapter_name_2], params[:exchange_rate_adapter_name_3]].join(',')
+    if @gateway.save
        return redirect_to admin_gateways_path
     else
        return redirect_back fallback_location: root_path,  notice: @gateway.errors
@@ -46,8 +55,8 @@ class GatewaysController < ApplicationController
 
   private 
 
-  def gatway_params
-     params.require(:gateway).permit(:name, :confirmations_required, :pubkey, :default_currency, :callback_url, :exchange_rate_adapter_names, :orders_expiration_period, 
+  def gateway_params
+     params.require(:gateway).permit(:name, :confirmations_required, :pubkey, :default_currency, :callback_url, :exchange_rate_adapter_name_1, :exchange_rate_adapter_name_2, :exchange_rate_adapter_name_3, :orders_expiration_period, 
                                      :orders_expiration_period, :address_derivation_scheme, :test_mode, :test_pubkey, :after_payment_redirect_to, :auto_redirect, :merchant_url,
                                      :allow_links, :back_url, :custom_css_url, :donation_mode, :country, :region, :city, :description, :convert_currency_to, :receive_payments_notifications)
   end

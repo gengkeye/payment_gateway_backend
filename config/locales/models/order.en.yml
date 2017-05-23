@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    attributes:
+      order:
+        enum:
+          status:
+            unconfirmed: 'Unconfirmed'
+            paid: 'Paid'
+            underpaid: 'Underpaid' # not enough money received
+            overpaid: 'Overpaid' # too much has been received
+            expired: 'Expired' 
+            canceled: 'Canceld'
+            partially_paid: 'Partially Paid'

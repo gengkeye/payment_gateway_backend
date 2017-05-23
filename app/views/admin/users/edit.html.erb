@@ -19,7 +19,7 @@
 						</div>
 						<div class="input select optional user_updates_email_subscription_level">
 							<label class="select optional control-label" for="user_updates_email_subscription_level"><%= t('user_edit.send_me_updates') %></label>
-							<%= f.select :updates_email_subscription_level, options_for_select(User.updates_email_subscription_levels.map{|k,v| [t("activerecord.attributes.user.enum.updates_email_subscription_level.#{k}"), v]}), class: 'select optional'%>
+							<%= f.select :updates_email_subscription_level, options_for_select(User.updates_email_subscription_levels.keys.map{|k| [t("activerecord.attributes.user.enum.updates_email_subscription_level.#{k}"), k]}), class: 'select optional'%>
 						</div>
 					</div>
 				</div>
@@ -82,10 +82,10 @@
 							<div class='columnContainer'>
 								<div class="input password required user_current_password field_with_errors">
 									<label class="password required control-label" for="user_current_password"><abbr title="required">*</abbr>
-										<%= t('user_edit.save_change.title') %>
+										<%= t('user_edit.save_changes.title') %>
 									</label>
 									<input class="password required" type="password" name="user[current_password]" id="user_current_password" />
-									<span class="error" style="display: none"><%= t('user_edit.save_change.error') %></span>
+									<span class="error" style="display: none"><%= t('user_edit.save_changes.error') %></span>
 							    </div>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 										</div>
 										<div class='reveal-content'>
 											<p>
-												<%= t('user_edit.enable_api.show_api.title') %>
+												<label class="hint" for="user_toggle_dev_api"><%= t('user_edit.enable_api.show_api.title') %></label>
 												<span><%= @user.api_secret %></span>
 											</p>
 										</div>

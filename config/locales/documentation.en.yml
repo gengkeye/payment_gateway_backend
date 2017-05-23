@@ -97,18 +97,18 @@ en:
         paragraph_title5: "Code example"
       receive_order_callback:
         title: "Receiving Order Status Change Callback"
-        paragraph1: "Whenever an order status changes, Mycelium Gear issues a GET http request to the url specified in the gateway&#39;s callback field (if you filled it) or in the order&#39;s <code>callback_url</code> param. This way it lets your site know that the payment was either successful or has failed for some reason. This http request is also sometimes called a webhook, although we prefer not to use that term."
-        paragraph2: "Important information is passed in this http request as url params. Here&#39;s what a typical callback may look like:"
+        paragraph1: "Whenever an order status changes, Mycelium Gear issues a GET http request to the url specified in the gateway's callback field (if you filled it) or in the order's <code>callback_url</code> param. This way it lets your site know that the payment was either successful or has failed for some reason. This http request is also sometimes called a webhook, although we prefer not to use that term."
+        paragraph2: "Important information is passed in this http request as url params. Here's what a typical callback may look like:"
         paragraph3: "Also, request will have special header:"
         paragraph4: "The following list explains in detail the information and parameters in the GET callback request:"
-        paragraph5: "It&#39;s generated in the same way as a signature for signed API requests, except that it uses blank Nonce and Body."
+        paragraph5: "It's generated in the same way as a signature for signed API requests, except that it uses blank Nonce and Body."
         paragraph6: "In Ruby, callback signature can be verified using <code>straight-server-kit</code> gem."
         paragraph7: "Details of signature verification."
         paragraph8: "JavaScript version using"
         paragraph_title1: "Callback signature"
         ul:
           li1: "An internal id of the order. This is how you can find the corresponding purchase record in your database. It is also used for the signature."
-          li2: "This is the amount in the gateway&#39;s currency that was supposed to be paid"
+          li2: "This is the amount in the gateway's currency that was supposed to be paid"
           li3: "This is the amount in btc that was supposed to be paid"
           li4: "This is the amount in btc that has been paid"
           li5: "Returns a numerical value which can be either of the following:"
@@ -132,38 +132,38 @@ en:
       
       order_websocket:
         title: "Order Websocket"
-        paragraph1: "Another way to track order status is to be continually connected to its respective websocket. In fact, this is what the payment page that your customer is redirected to does. However, you may decide you don&#39;t want to use the Mycelium Gear payment page. Perhaps you would want to present your customer with your own customized payment page that will be on your own site. Or even if you are using a standard payment page, your backend software may still want to connect to the order&#39;s websocket instead of waiting for a callback request."
+        paragraph1: "Another way to track order status is to be continually connected to its respective websocket. In fact, this is what the payment page that your customer is redirected to does. However, you may decide you don't want to use the Mycelium Gear payment page. Perhaps you would want to present your customer with your own customized payment page that will be on your own site. Or even if you are using a standard payment page, your backend software may still want to connect to the order's websocket instead of waiting for a callback request."
         paragraph2: "To connect to the websocket, you should use the following URL:"
         paragraph3: "where 1 is your order id. When order status changes, the websocket returns you order data in json, exactly the same data that would be returned as a response to a regular http request checking order status manually."
       
       order_cancel:
         title: "Order Cancellation"
-        paragraph1: "If user cancels his purchase, it&#39;s better to cancel the Mycelium Gear order as well."
+        paragraph1: "If user cancels his purchase, it's better to cancel the Mycelium Gear order as well."
         paragraph2: "Order can be canceled by sending a signed request:"
         paragraph3: "or you can send the same request by using straight-server-kit:"
       
       receive_last_keychain:
         title: "Receiving Last Keychain ID for Gateway"
         paragraph1: "You can get last keychain id for a specific gateway with the following request:"
-        paragraph2: "Then you&#39;ll get something like this:"
+        paragraph2: "Then you'll get something like this:"
     
     developer_api:
       title: "Developer API"
       basic:
         title: "Basic"
         paragraph1: "The API is based on JSONAPI (version 1.0) implementation."
-        paragraph2: "Versioninig is done through HTTP header Accept-Version. It&#39;s possible to not set version, then last will be used. "
+        paragraph2: "Versioninig is done through HTTP header Accept-Version. It's possible to not set version, then last will be used. "
         paragraph3: "In order to use Developer API you should first enable it and get a Secret key. To do so, proceed to account section, check &quot;Enable Developers API&quot; and click &quot;Save changes&quot; button."
         paragraph4: "Each request to the API is signed usging the method described"
         paragraph4_a: "here"
-        paragraph5: "You can generate your <strong>Secret key</strong> on your account page. At the bottom of the page check &quot;Regenerate API Secret&quot; checkbox, enter your current password and click &quot;Save changes&quot; button - API Secret key will be generated for you. Please, don&#39;t forget to write it down somewhere. If you lost API Secret key, you will need to regenerate it. After this old key will no longer work."
-        paragraph6: "All errors are returned under the <em>errors</em> property in the returned object, the value of that property is as an array of errors. If there are errors in the request you&#39;ve sent, it will return the following:"     
+        paragraph5: "You can generate your <strong>Secret key</strong> on your account page. At the bottom of the page check &quot;Regenerate API Secret&quot; checkbox, enter your current password and click &quot;Save changes&quot; button - API Secret key will be generated for you. Please, don't forget to write it down somewhere. If you lost API Secret key, you will need to regenerate it. After this old key will no longer work."
+        paragraph6: "All errors are returned under the <em>errors</em> property in the returned object, the value of that property is as an array of errors. If there are errors in the request you've sent, it will return the following:"     
         paragraph7: "If there are validation errors, a response may look like this:"
         paragraph_title1: "Authentication"
         paragraph_title2: "Errors"
       gateway:
         title: "Gateways"
-        paragraph1: "With Gear&#39;s developer API, it is possible to create, update or get a list (or one) of gateways."
+        paragraph1: "With Gear's developer API, it is possible to create, update or get a list (or one) of gateways."
         paragraph2: "To create a gateway, you need to make a POST request to /api/gateways with the following body:"
         paragraph3: "Required fields:"
         paragraph4: "Optional fields:"
@@ -176,7 +176,7 @@ en:
         paragraph12: "In result a response will be:"
         paragraph13: "To fetch a list of all gateways you need to make a <strong>GET</strong> request to <code>/api/gateways</code> with an empty body."
         paragraph14: "A response to this request should be the following object:"
-        paragraph15: "By default the returned list is limited to 25 records. If you want more, you&#39;ll need to send a query parameter described in <em>Pagination</em> section."
+        paragraph15: "By default the returned list is limited to 25 records. If you want more, you'll need to send a query parameter described in <em>Pagination</em> section."
         paragraph16: "The strategy is cursor-based. The following options may be passed as query parameters:"
         paragraph17: "The resulting JSON will contain a <em>meta</em> property with the pagination info:"
         paragraph18: "Example:"
@@ -218,7 +218,7 @@ en:
 
         list:
           title: "List"
-          paragraph1: "Returns list of address providers as array of hashes. Each element of the array contains ID of address provider and its type (e.g. &#39;address_provider_cashila&#39;)."
+          paragraph1: "Returns list of address providers as array of hashes. Each element of the array contains ID of address provider and its type (e.g. 'address_provider_cashila')."
 
         cashila:
           title: "Cashila"
