@@ -5,7 +5,7 @@ zh-CN:
     attributes:
       gateway:
         default_currency: '默认货币'
-        name: '名称'
+        name: '名字'
         status: '状态'
         test_mode: '测试模式'
         receive_payments_notifications: '接收消息提醒'
@@ -22,7 +22,7 @@ zh-CN:
         donation_mode: '捐献模式'
         default_currency: '默认币种'
         test_mode: '测试模式'
-        
+        pubkey: 'BIP32公钥'
         enum:
           default_currency:
             CNY: '人民币'

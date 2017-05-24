@@ -37,7 +37,7 @@
                 <% if messages.class == String %>
                     <li class="admin-<%= message_type %>"><%= messages %></li>
                 <% else %>
-                  <% messages.map{ |k,v| [k,v[0]].join(' ')}.each do |message| %>
+                  <% messages.map{ |k,v| [k,v].join(' ')}.each do |message| %>
                       <li class="admin-<%= message_type %>"><%= message %></li>
                   <% end %>
                 <% end %>

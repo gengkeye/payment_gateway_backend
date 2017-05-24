@@ -3,9 +3,6 @@
 <div class='page gateways new'>
 	<div class='contentHeader'>
 		<h1><%= t('gateway.create_gateway') %></h1>
-<!-- 		<p class='subheading'>
-			 <%#= t('new_gateway.subheading.part1') %><a href='/fiat_payouts/new/choose'><%#= t('new_gateway.subheading.part2') %></a> <%#= t('new_gateway.subheading.part3') %>.
-		</p> -->
 	</div>
 
     <%= form_for [:admin, @gateway], class: 'simple_form' do |f| %>
@@ -14,7 +11,7 @@
 				<label class="string required control-label" for="gateway_name">
 					<abbr title="required">*</abbr> <%= Gateway.human_attribute_name(:name) %>
 				</label>
-				<input class="string required" type="text" name="gateway[name]" id="gateway_name" />
+				<%= f.text_field :name, class: "string required" %>
 				<span class="hint"><%= t('new_gateway.explain.name') %></span>
 			</div>
 
@@ -37,7 +34,7 @@
 
 			<div class="input string optional gateway_callback_url field_with_hint">
 				<label class="string optional control-label" for="gateway_callback_url"><%= Gateway.human_attribute_name(:callback_url) %></label>
-				<input class="string optional" type="text" name="gateway[callback_url]" id="gateway_callback_url" />
+				<%= f.text_field :callback_url, class: "string optional" %>
 				<span class="hint"><%= t('new_gateway.explain.callback_url') %></span>
 			</div>
 
@@ -45,7 +42,7 @@
 				<label class="integer required control-label" for="gateway_orders_expiration_period">
 					<abbr title="required">*</abbr><%= Gateway.human_attribute_name(:orders_expiration_period) %>
 				</label>
-				<input class="numeric integer required" type="text" value="900" name="gateway[orders_expiration_period]" id="gateway_orders_expiration_period" />
+				<%= f.text_field :orders_expiration_period, class: "numeric integer required" %>
 				<span class="hint"><%= t('new_gateway.explain.orders_expiration_period') %></span>
 			</div>
 				
@@ -53,13 +50,13 @@
 				<label class="string optional control-label" for="gateway_after_payment_redirect_to">
 					<%= Gateway.human_attribute_name(:after_payment_redirect_to) %>
 				</label>
-				<input class="string optional" type="text" name="gateway[after_payment_redirect_to]" id="gateway_after_payment_redirect_to" />
+				<%= f.text_field :after_payment_redirect_to, class: "string optional" %>
 				<span class="hint"><%= t('new_gateway.explain.after_payment_redirect_to') %></span>
 			</div>
 
 			<div class="input string optional gateway_back_url field_with_hint">
 				<label class="string optional control-label" for="gateway_back_url"><%= Gateway.human_attribute_name(:back_url) %></label>
-				<input class="string optional" type="text" name="gateway[back_url]" id="gateway_back_url" />
+				<%= f.text_field :back_url, class: "string optional" %>
 				<span class="hint"><%= t('new_gateway.explain.back_url') %></span>
 			</div>
 
@@ -110,7 +107,7 @@
 				</div>
 
 				<div class="input select optional gateway_convert_currency_to field_with_hint chosenSizeMedium">
-					<label class="select optional control-label" for="gateway_convert_currency_to">
+					<label class="select optional control-label" for="gateway_convert_currency_to"><abbr title="required">*</abbr>
 						<%= t('new_gateway.currency_conversion_options.convert_payment') %>
 					</label>
 					<%= f.select :convert_currency_to, options_for_select(Gateway::BTC_UNITS), class: 'select required' %>
@@ -120,21 +117,21 @@
 					<label>
 					  <%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #1:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_1, options_for_select(@providers, selected: @providers.first) %>
+					<%= f.select :exchange_rate_adapter_name_1, options_for_select(@providers) %>
 				</div>
 
 			    <div class='input'>
 					<label>
 						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #2:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_2, options_for_select(@providers, selected: @providers.second) %>
+					<%= f.select :exchange_rate_adapter_name_2, options_for_select(@providers) %>
 				</div>
 
 				<div class='input'>
 					<label>
 						<%= Gateway.human_attribute_name(:exchange_rate_adapter_names) %> #3:
 					</label>
-					<%= f.select :exchange_rate_adapter_name_3, options_for_select(@providers, selected: @providers.third) %>
+					<%= f.select :exchange_rate_adapter_name_3, options_for_select(@providers) %>
 					</div>
 					<span class='hint'><%= t('new_gateway.explain.exchange_rate_adapter') %>
 					</span>
@@ -149,7 +146,7 @@
 						<label class="string optional control-label" for="gateway_pubkey">
 							<abbr title="required">*</abbr><%= t('gateway.bip32_pubkey') %>
 					    </label>
-						<input class="string optional" placeholder="xpubxxx" type="text" name="gateway[pubkey]" id="gateway_pubkey" />
+						<%= f.text_field :pubkey, class: "string required" %>
 						<span class="hint"><%= t('new_gateway.explain.bip32') %></span>
 					</div>
 					<p class='moreFieldInfo'>
@@ -226,7 +223,7 @@
 					<div class='chosenSizeLarge'>
 						<div class="input country optional gateway_country">
 							<label class="country optional control-label" for="gateway_country"><%= t('new_gateway.additional_info.country') %></label>
-							<%= f.select :country, options_for_select(Gateway::SUPPORT_COUNTRIES.map{|k| [t("activerecord.attributes.gateway.enum.country.#{k}"), k]})%>
+							<%= f.select :country, options_for_select(Gateway::SUPPORT_COUNTRIES.map{|k| [t("activerecord.attributes.gateway.enum.country.#{k}"), k]}.unshift([t('show_all'), '']))%>
 						</div>
 					</div>
 					<div class="input string optional gateway_region">

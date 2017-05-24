@@ -23,7 +23,7 @@ en:
       auto_redirect: 'When you select this checkbox, all users who have successful payment will be automatically redirected to the specified above URL.'
       active: 'Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.'
       donation_mode: 'Accept any payment with the amount set by a user'
-      default_currency: "If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that if you don't choose BTC and none of the selected Bitcoin exchange rate providers supports selected currency, cross-rate to USD will be fetched from Forex and applied."
+      default_currency: "If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that if you don't choose BTC and none of the selected Bitcoin exchange rate providers supports selected currency, cross-rate to CNY will be fetched from Huobi and applied."
       convert_payment:
         part1: 'You can add more convertation options by configuring'
         part2: 'new exchange'

@@ -30,8 +30,8 @@ class GatewaysController < ApplicationController
 
   def new
     @gateway =  Gateway.new
-    @providers = Gateway::EXCHANGE_RATE_ADAPTER.map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}
     authorize @gateway
+    @providers = Gateway::EXCHANGE_RATE_ADAPTER.map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}.unshift([t('show_all'), ''])
   end
 
   def edit
@@ -43,20 +43,23 @@ class GatewaysController < ApplicationController
     @gateway = current_user.gateways.new(gateway_params)
     authorize @gateway
     @gateway.user = current_user
-    @gateway.check_signature = params[:test_mode]
+    @gateway.order_class = "StraightServer::Order"
+    @gateway.check_signature = Rails.env.production?
     @gateway.secret = current_user.api_secret
-    @gateway.exchange_rate_adapter_names = [params[:exchange_rate_adapter_name_1], params[:exchange_rate_adapter_name_2], params[:exchange_rate_adapter_name_3]].join(',')
+    @gateway.exchange_rate_adapter_names = [gateway_params[:exchange_rate_adapter_name_1], gateway_params[:exchange_rate_adapter_name_2], gateway_params[:exchange_rate_adapter_name_3]].join(',')
     if @gateway.save
        return redirect_to admin_gateways_path
     else
-       return redirect_back fallback_location: root_path,  notice: @gateway.errors
+       @providers = Gateway::EXCHANGE_RATE_ADAPTER.map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}
+       flash.now.alert = @gateway.errors
+       return render :new
     end
   end
 
   private 
 
   def gateway_params
-     params.require(:gateway).permit(:name, :confirmations_required, :pubkey, :default_currency, :callback_url, :exchange_rate_adapter_name_1, :exchange_rate_adapter_name_2, :exchange_rate_adapter_name_3, :orders_expiration_period, 
+     params.require(:gateway).permit(:name, :confirmations_required, :pubkey, :active, :default_currency, :callback_url, :exchange_rate_adapter_names, :exchange_rate_adapter_name_1, :exchange_rate_adapter_name_2, :exchange_rate_adapter_name_3, :orders_expiration_period, 
                                      :orders_expiration_period, :address_derivation_scheme, :test_mode, :test_pubkey, :after_payment_redirect_to, :auto_redirect, :merchant_url,
                                      :allow_links, :back_url, :custom_css_url, :donation_mode, :country, :region, :city, :description, :convert_currency_to, :receive_payments_notifications)
   end

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
    resources :orders, only: [:index]
    resources :users, only: [:edit, :update]
-   resources :gateways, only: [:index, :new, :create] do
+   resources :gateways, only: [:index, :new, :edit, :create] do
      collection do
      end
    end

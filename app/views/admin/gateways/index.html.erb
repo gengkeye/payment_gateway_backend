@@ -46,15 +46,15 @@
 			<div class='list tile data clearfix'>
 				<table class='standardWhite'>
 					<colgroup>
-					<col span='1' style='width: 31%;'>
+					<col span='1' style='width: 20%;'>
 					<col span='1' style='width: 10%;'>
 					<col span='1' style='width: 10%;'>
-					<col span='1' style='width: 31%;'>
+					<col span='1' style='width: 40%;'>
 					<col span='1' style='width: 18%;'>
 				</colgroup>
 				<thead>
 					<th><%= Gateway.human_attribute_name(:name) %></th>
-					<th><%= Gateway.human_attribute_name(:status) %></th>
+					<th><%= Gateway.human_attribute_name(:active) %></th>
 					<th><%= Gateway.human_attribute_name(:test_mode) %></th>
 					<th><%= t('gateway.bip32_pubkey') %></th>
 					<th><%= Gateway.human_attribute_name(:default_currency) %></th>
@@ -72,7 +72,7 @@
 						<% @gateways.each do |gateway| %>
 							<tr>
 								<td><%= gateway.name %></td>
-								<td><%= gateway.status %></td>
+								<td><%= gateway.active %></td>
 								<td><%= gateway.test_mode ? "Testnet" : "Mainnet" %></td>
 								<td><%= gateway.test_mode ? gateway.test_pubkey : gateway.pubkey %></td>
 								<td><%= gateway.default_currency %></td>

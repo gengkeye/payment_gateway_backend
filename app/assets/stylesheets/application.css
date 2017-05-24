@@ -35,9 +35,7 @@ li.admin-alert{
 	display: block;
 	text-align: center;
 }
-th {
-	text-align: center !important;
-}
+
 .localeContainer{
 	float: left;
 	margin-top: -6px;
