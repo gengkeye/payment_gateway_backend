@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523100213) do
+ActiveRecord::Schema.define(version: 20170524092908) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "uid"
     t.integer  "user_id"
     t.integer  "confirmations_required",                       default: 0,       null: false
     t.integer  "last_keychain_id",                             default: 0,       null: false
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170523100213) do
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "uid"
     t.string   "address",                                                 null: false
     t.string   "tid"
     t.integer  "status",                                  default: 0,     null: false
@@ -79,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170523100213) do
     t.boolean  "auto_redirect",                           default: false
     t.integer  "block_height_created_at"
     t.string   "amount_with_currency"
+    t.string   "customer_uid"
     t.index ["address"], name: "orders_address_index", using: :btree
     t.index ["id"], name: "orders_id_index", unique: true, using: :btree
     t.index ["keychain_id", "gateway_id"], name: "orders_keychain_id_gateway_id_index", using: :btree
@@ -103,7 +102,7 @@ ActiveRecord::Schema.define(version: 20170523100213) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "uid"
+    t.string   "app_id"
     t.string   "email",                                           default: "",    null: false
     t.string   "encrypted_password",                              default: "",    null: false
     t.string   "reset_password_token"

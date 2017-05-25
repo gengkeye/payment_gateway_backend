@@ -1,11 +1,14 @@
 class User < ApplicationRecord
-  include Uid
   attr_accessor :login, :regenerate_secret
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :timeoutable, :async,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :authentication_keys => [:login]
   has_many :gateways
+  has_many :orders
+
+  before_create :create_app_id
+
   validates :email, :name, :presence => true, :uniqueness => { :case_sensitive => false }
   # validates_format_of :name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
@@ -45,5 +48,11 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def create_app_id
+    begin
+      self.app_id = SecureRandom.hex(5)
+    end while self.class.exists?(app_id: self.app_id)
   end
 end

@@ -9,7 +9,7 @@
 
     def create_uid
       begin
-        self.uid = SecureRandom.hex
+        self.uid = SecureRandom.hex(10)
       end while self.class.exists?(uid: uid)
     end
   end

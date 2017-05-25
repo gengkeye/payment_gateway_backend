@@ -1,9 +1,11 @@
 require 'csv'
 
 class Order < ApplicationRecord
-	include Uid
+	include Tid
 
 	belongs_to :gateway
+	belongs_to :user
+
 	enum status: {
 		unconfirmed: 1,
 		paid: 2,
