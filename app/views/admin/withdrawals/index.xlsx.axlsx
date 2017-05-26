@@ -1,0 +1,39 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  title_cell = s.add_style  :sz => 16, :alignment => { horizontal: :center, vertical: :center }, b: true
+  center_cell = s.add_style height: 25,  :sz => 16, :alignment => { horizontal: :center, vertical: :center }
+  basic_cell = s.add_style sz: 14, height: 25, :alignment => { horizontal: :center, vertical: :center }, b: true
+  bottom_border = s.add_style border: { :style => :thin, :color => "00", :edges => [:bottom] }
+  all_border = s.add_style sz:12, height: 25, border: { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right], }, :alignment => { horizontal: :center, vertical: :center }
+  wrap_text = s.add_style   :b => true,
+  :sz => 16,
+  :border => { :style => :thin, :color => "00", :edges => [:top, :bottom, :left, :right] },
+  :alignment => { :horizontal => :center,
+    :vertical => :center,
+    :wrap_text => true}
+
+  wb.add_worksheet(name: 'Withdrawals list') do |sheet|
+    sheet.add_row Withdrawal.column_names.map{|i| Withdrawal.human_attribute_name(i.to_sym)}, height: 40
+    sheet["A1:L1"].each { |c| c.style = title_cell }
+    n = 1
+    @withdrawals.each do |withdrawal|
+      n += 1
+      sheet.add_row [
+         withdrawal.id,
+         withdrawal.user&.name,
+         withdrawal.gateway&.name,
+         withdrawal.customer_uid,
+         withdrawal.auditor&.name,
+         withdrawal.amount,
+         withdrawal.status,
+         withdrawal.approval,
+         withdrawal.disapproval_reason,
+         withdrawal.approval_time,
+         withdrawal.created_at,
+         withdrawal.updated_at
+      ],types: :string
+      sheet["A#{n}:L#{n}"].each { |c| c.style = center_cell }
+    end
+    sheet.column_widths 10,30,30,40,10,10,10,20,40,20,20,20
+  end
+end

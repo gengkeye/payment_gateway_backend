@@ -1,0 +1,25 @@
+zh-CN:
+  activerecord:
+    models:
+      withdrawal: '网关'
+    attributes:
+      withdrawal:
+        user_id: "商户名"
+        gateway_id: "网关名"
+        auditor_id: "审核人"
+        amount: "数量"
+        status: "状态"
+        approval: "审核是否通过"
+        disapproval_reason: "拒绝的理由"
+        approval_time: "通过时间"
+        customer_uid: "客户UID"
+        created_at: '申请时间'
+        updated_at: '更新时间'
+        enum:
+          status:
+            aplying: "申请中"
+            approved: "已通过审核"
+            disapproved: "审核不通过"
+            transfering: "正在转账"
+            transfered: "已转账"
+          

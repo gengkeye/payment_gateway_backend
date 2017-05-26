@@ -5,7 +5,7 @@ zh-CN:
     attributes:
       gateway:
         default_currency: '默认货币'
-        name: '名字'
+        name: '网关名'
         status: '状态'
         test_mode: '测试模式'
         receive_payments_notifications: '接收消息提醒'

@@ -1,0 +1,43 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        enum:
+          updates_email_subscription_level:
+            never: 'Never'
+            regular: 'Regular'
+            important: 'Important'
+            critical: 'Critical'
+      gateway:
+        enum:
+          default_currency:
+            CNY: 'CNY'
+            PHP: 'PHP'
+            USD: 'USD'
+          country:
+            China: 'China'
+            America: 'America'
+            Philippines: 'Philippines'
+          exchange_rate_adapter_names:
+            Huobi: 'Huobi'
+            Btcchina: 'Btcchina'
+            Okcoin: 'Okcoin'
+      order:
+        enum:
+          status:
+            unconfirmed: 'Unconfirmed'
+            paid: 'Paid'
+            underpaid: 'Underpaid' # not enough money received
+            overpaid: 'Overpaid' # too much has been received
+            expired: 'Expired' 
+            canceled: 'Canceld'
+            partially_paid: 'Partially Paid'
+      withdrawal:
+        enum:
+          status:
+            aplying: 'Aplying'
+            approved: "Approved"
+            disapproved: "Disapproved"
+            transfering: "Transfering"
+            transfered: "Transgered"
+          

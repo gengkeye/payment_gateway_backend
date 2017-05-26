@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get 'orders' => 'admin/orders#index', as: :user_root
   get 'gateways' => 'admin/gateways#index'
 
+  concern :enable_disable do
+    post 'disable'
+    post 'enable'
+  end
+
   namespace :admin do
    resources :orders, only: [:index]
    resources :users, only: [:edit, :update]
@@ -21,6 +26,7 @@ Rails.application.routes.draw do
      collection do
      end
    end
+   resources :withdrawals, concerns: :enable_disable, only: [:index]
   end
 
   get 'docs' => 'docs#introduction'  

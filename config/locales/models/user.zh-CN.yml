@@ -5,7 +5,7 @@ zh-CN:
     attributes:
       user:
         email: '邮箱'
-        name: '姓名'
+        name: '商户名'
         password: '密码'
         password_confirmation: '确认密码'
         login: '账户名'

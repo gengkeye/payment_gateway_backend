@@ -32,6 +32,7 @@ en:
   min_characters: '6 characters minimum'
   orders: 'ORDERS'
   gateways: 'GATEWAYS'
+  withdraws: "WITHDRAWS"
   account: 'ACCOUNT'
   support: 'Support'
   show_all: 'Show all...'

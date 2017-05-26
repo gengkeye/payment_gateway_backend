@@ -1,0 +1,88 @@
+<% provide(:title, t("withdrawals")) %>
+
+<div class='contentHeader marginSmall'>
+	<h1 class='pageTitle'><%= t('withdrawals') %></h1>
+</div>
+<div class='actions tile tiny'>
+	<div class='filters'>
+		<div class='pageWrapper'>
+			<div class='pure-g'>
+<!-- 				<div class='pure-u-1-3'>
+					<div class='columnContainer chosenSizeLarge'>
+						<label><%#= Gateway.human_attribute_name(:name) %></label>
+						<div class='chosenStandardWhite chosenSmallFont'>
+							<%#= text_field_tag 'user_name', params[:user_name], id: 'filter_gateway_name' %>
+						</div>
+					</div>
+				</div> -->
+				<div class='pure-u-1-3'>
+					<div class='columnContainer chosenSizeLarge'>
+						<label><%= Withdrawal.human_attribute_name(:status) %></label>
+						<div class='chosenStandardWhite chosenSmallFont'>
+							<%= select_tag  'status', options_for_select(Withdrawal.statuses.map{|k,v| [t("activerecord.attributes.withdrawal.enum.status.#{k}"), v]}.unshift([t('show_all'), '']), params[:status]), id: 'filter_status' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='list tile data clearfix'>
+	<table class='standardWhite'>
+		<colgroup>
+			<col span='1' style='width: 20%;'>
+			<col span='1' style='width: 10%;'>
+			<col span='1' style='width: 10%;'>
+			<col span='1' style='width: 10%;'>
+			<col span='1' style='width: 10%;'>
+			<col span='1' style='width: 18%;'>
+	    </colgroup>
+		<thead>
+			<th><%= Withdrawal.human_attribute_name(:customer_uid) %></th>
+			<th><%= Gateway.human_attribute_name(:name) %></th>
+			<th><%= Withdrawal.human_attribute_name(:auditor_id) %></th>
+			<th><%= Withdrawal.human_attribute_name(:amount) %></th>
+			<th><%= Withdrawal.human_attribute_name(:status) %></th>
+			<th><%= Withdrawal.human_attribute_name(:approval) %></th>
+			<th><%= Withdrawal.human_attribute_name(:created_at) %></th>
+		</thead>
+		<tbody>
+			<% if @withdrawals.blank? %>
+				<tr class="noRecords">
+					<td colspan="5">
+						<span>
+							No matching record found
+						</span>
+					</td>
+				</tr>
+			<% else %>
+				<% @withdrawals.each do |withdrawal| %>
+					<tr>
+						<td><%= withdrawal.customer_uid %></td>
+						<td><%= withdrawal.gateway&.name %></td>
+						<td><%= withdrawal.auditor&.name %></td>
+						<td><%= withdrawal.amount %></td>
+						<td><%= withdrawal.status %></td>
+						<td class="switcher-td">
+						  <% if withdrawal.approval %>
+						    <input type="checkbox" name="my-checkbox" class="switcher-box" data-method="post" data-message="是否拒绝该提现申请？" data-url="<%= admin_withdrawal_disable_path(id: withdrawal.id) %>">
+						  <% else %>
+						    <input type="checkbox" name="my-checkbox" class="switcher-box" checked  data-method="post" data-message="是否批准该提现申请？" data-url="<%= admin_withdrawal_enable_path(id: withdrawal.id) %>">
+						  <% end %>
+						  <div class="transparent-layer"></div>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+    </table>
+</div>
+<%= paginate @withdrawals %>
+<%= render 'share/export_bar', export_obj: 'withdrawals' %>
+</div>
+</div>
+<script type="text/javascript">
+	$("#filter_status").change(function(){
+		location.href = "<%= admin_withdrawals_path %>" + "&status=" + $(this).val();
+	})
+</script>

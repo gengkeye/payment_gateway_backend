@@ -11,6 +11,7 @@ zh-CN:
   min_characters: '至少6个字符'
   orders: '订单'
   gateways: '网关'
+  withdrawals: '提现列表'
   account: '个人资料'
   support: '技术支持:'
   show_all: '请选择...'
