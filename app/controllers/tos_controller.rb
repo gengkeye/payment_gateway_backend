@@ -5,5 +5,6 @@ class TosController < ApplicationController
   def index
   	skip_authorization
   	skip_policy_scope
+  	I18n.locale == 'cn' ? (render 'index_cn') : (render 'index_zh-CN')
   end
 end

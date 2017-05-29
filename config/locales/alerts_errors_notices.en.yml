@@ -1,0 +1,7 @@
+en:
+  alerts:
+    input_password: "Please input your current password."
+    approve_withdrawal: "Are you sure to approve this withdraw apply?"
+    disapprove_withdrawal: "Are you sure to disapprove this withdraw apply?"
+  notices:
+    update_success: "Update successfully."

@@ -40,7 +40,7 @@ en:
   export_to: 'Export to:'
   gateway:
     network: 'Network'
-    create_gateway: 'create gateway'
+    create_gateway: 'Create Gateway'
     bip32_pubkey: 'BIP32 Pubkey'
     mainnet: 'Mainnet'
     testnet: 'Testnet'

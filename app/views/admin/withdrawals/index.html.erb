@@ -65,9 +65,9 @@
 						<td><%= withdrawal.status %></td>
 						<td class="switcher-td">
 						  <% if withdrawal.approval %>
-						    <input type="checkbox" name="my-checkbox" class="switcher-box" data-method="post" data-message="是否拒绝该提现申请？" data-url="<%= admin_withdrawal_disable_path(id: withdrawal.id) %>">
+						    <input type="checkbox" name="my-checkbox" class="switcher-box" data-method="post" data-message="<%= t('alerts.disapprove_withdrawal') %>" data-url="<%= admin_withdrawal_disable_path(id: withdrawal.id) %>">
 						  <% else %>
-						    <input type="checkbox" name="my-checkbox" class="switcher-box" checked  data-method="post" data-message="是否批准该提现申请？" data-url="<%= admin_withdrawal_enable_path(id: withdrawal.id) %>">
+						    <input type="checkbox" name="my-checkbox" class="switcher-box" checked  data-method="post" data-message="<%= t('alerts.approve_withdrawal') %>" data-url="<%= admin_withdrawal_enable_path(id: withdrawal.id) %>">
 						  <% end %>
 						  <div class="transparent-layer"></div>
 						</td>
