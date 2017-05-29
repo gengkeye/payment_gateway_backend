@@ -15,3 +15,15 @@ en:
   resend_unluck:
     title: 'Resend unlock instructions'
     button: 'Send'
+  reset_password:
+    button: 'Send me reset password instructions'
+  change_password:
+    title: 'Change your password'
+    button: 'Change my password'
+  registration:
+    edit: "Edit"
+    cancel_account: 'Cancel my account'
+    unhappy: 'Unhappy?'
+    password_explain: "(leave blank if you don't want to change it)"
+    wait_confirmation: "Currently waiting confirmation for:"
+    current_password: "(we need your current password to confirm your changes)"

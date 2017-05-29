@@ -15,3 +15,15 @@ zh-CN:
   resend_unluck:
     title: '重新发送解锁邮件'
     button: '发送'
+  reset_password:
+    button: '发送密码重置操作指南'
+  change_password:
+    title: '更改你的密码'
+    button: '更改我的密码'
+  registration:
+    edit: "编辑"
+    cancel_account: '注销我的账户'
+    unhappy: '不开心？'
+    password_explain: "（如果你不想改变它，保留为空）"
+    wait_confirmation: "（当前需要等待确认：）"
+    current_password: "（你需要输入当前密码来保存更改）"
