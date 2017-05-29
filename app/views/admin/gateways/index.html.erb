@@ -71,7 +71,7 @@
 					<% else %>
 						<% @gateways.each do |gateway| %>
 							<tr>
-								<td><%= gateway.name %></td>
+								<td><%= link_to gateway.name, edit_admin_gateway_path(id: gateway.hashed_id) %></td>
 								<td><%= gateway.active %></td>
 								<td><%= gateway.test_mode ? "Testnet" : "Mainnet" %></td>
 								<td><%= gateway.test_mode ? gateway.test_pubkey : gateway.pubkey %></td>

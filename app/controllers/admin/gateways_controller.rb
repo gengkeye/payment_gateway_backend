@@ -35,7 +35,7 @@ class GatewaysController < ApplicationController
   end
 
   def edit
-    @gateway = Gateway.find_by(uid: params[:id])
+    @gateway = Gateway.find_by(hashed_id: params[:id])
     @providers = @gateway.exchange_rate_adapter_nams.split(',').map{|i| [I18n.t("activerecord.attributes.gateway.enum.exchange_rate_adapter_names.#{i}"), i]}
   end
 
