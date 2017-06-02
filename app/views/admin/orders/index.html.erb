@@ -11,7 +11,7 @@
 					<div class="columnContainer chosenSizeLarge">
 						<label><%= Order.human_attribute_name(:status) %></label>
 						<div class="chosenStandardWhite chosenSmallFont">
-							<%= select_tag "filter_by_status", options_for_select(Order.statuses.map{|k,v| [I18n.t("activerecord.attributes.order.enum.status.#{k}"), v]}), multiple: "multiple", 'data-placeholder' => t('show_all') %>
+							<%= select_tag "filter_by_status", options_for_select(Order.statuses.map{|k,v| [I18n.t("activerecord.attributes.order.enum.status.#{k}"), v]}, params[:statuses]&.split(',')), multiple: "multiple", 'data-placeholder' => t('show_all') %>
 							<div class="chosen-container chosen-container-multi" style="width: 161px;" title="" id="filter_by_status_chosen">
 						</div>
 						</div>

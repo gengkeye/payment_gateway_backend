@@ -179,7 +179,7 @@
 					<div class="input checkbox_with_hint optional gateway_test_mode">
 						<label><%= Gateway.human_attribute_name(:test_mode) %></label>
 						<div class="formControl checkbox">
-							<%= f.check_box :test_mode %>
+							<%= f.check_box :test_mode,{}, "testnet", "mainnet" %>
 							<label class="hint" for="gateway_test_mode">
 								<span><%= t('new_gateway.explain.test_mode') %></span>
 							</label>
