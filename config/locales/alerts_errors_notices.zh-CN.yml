@@ -27,8 +27,8 @@ zh-CN:
       already_confirmed: "已确认，请登录"
       confirmation_period_expired: "需要在%{period}之内确认，请重新申请。"
       expired: "已过期，请重新申请。"
-      not_found: "没有发现"
-      not_locked: "没有锁定"
+      not_found: "不存在"
+      not_locked: "没有被锁定"
       not_saved:
         one: "有一个错误，使得%{resource}保存失败："
         other: "有%{count}个错误，使得%{resource}保存失败："

@@ -53,10 +53,15 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "payment_gateway_backend_#{Rails.env}"
+  # config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_name_prefix = "pay"
+
+  config.active_job.queue_name_delimiter = "_"
+
   config.action_mailer.perform_caching = true
 
+  config.action_mailer.perform_deliveries = true
+  
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
@@ -67,7 +72,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.logger = nil
+  config.action_mailer.logger = "#{Rails.root}/log/mailer.log"
 
   config.action_mailer.smtp_settings = {
         address:              'smtp.gmail.com',

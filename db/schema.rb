@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524092908) do
+ActiveRecord::Schema.define(version: 20170603100808) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
@@ -86,6 +86,23 @@ ActiveRecord::Schema.define(version: 20170524092908) do
 
   create_table "schema_info", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "version", default: 0, null: false
+  end
+
+  create_table "suggestion_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.decimal "last_price",                  precision: 10
+    t.decimal "fprice1000",                  precision: 10
+    t.decimal "fprice20000",                 precision: 10
+    t.integer "suggestion"
+    t.boolean "correct"
+    t.integer "correct_num"
+    t.integer "incorrect_num"
+    t.text    "memo",          limit: 65535
+    t.decimal "high_price",                  precision: 10
+    t.decimal "low_price",                   precision: 10
+    t.decimal "buy_price",                   precision: 10
+    t.decimal "sell_price",                  precision: 10
+    t.decimal "open_price",                  precision: 10
+    t.integer "symbol"
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
