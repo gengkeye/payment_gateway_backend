@@ -1,5 +1,6 @@
 class SuggestionEmail < ApplicationRecord
-	after_create :update_nums
+	has_many :results, class_name: 'SuggestionEmailResult'
+
 	enum symbol: {
 		ltccny: 0,
 		btccny: 1,
@@ -11,6 +12,4 @@ class SuggestionEmail < ApplicationRecord
 		sell: 1,
 		keep: 2
 	}
-   def update_nums
-   end
 end

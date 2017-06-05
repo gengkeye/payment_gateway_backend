@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603100808) do
+ActiveRecord::Schema.define(version: 20170605074917) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
@@ -88,21 +88,33 @@ ActiveRecord::Schema.define(version: 20170603100808) do
     t.integer "version", default: 0, null: false
   end
 
+  create_table "suggestion_email_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "time_interval"
+    t.boolean  "correct",             default: false
+    t.integer  "suggestion_email_id"
+    t.integer  "unit",                default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["suggestion_email_id"], name: "index_suggestion_email_results_on_suggestion_email_id", using: :btree
+  end
+
   create_table "suggestion_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.decimal "last_price",                  precision: 10
-    t.decimal "fprice1000",                  precision: 10
-    t.decimal "fprice20000",                 precision: 10
-    t.integer "suggestion"
-    t.boolean "correct"
-    t.integer "correct_num"
-    t.integer "incorrect_num"
-    t.text    "memo",          limit: 65535
-    t.decimal "high_price",                  precision: 10
-    t.decimal "low_price",                   precision: 10
-    t.decimal "buy_price",                   precision: 10
-    t.decimal "sell_price",                  precision: 10
-    t.decimal "open_price",                  precision: 10
-    t.integer "symbol"
+    t.decimal  "last_price",                  precision: 10
+    t.decimal  "fprice1000",                  precision: 10
+    t.decimal  "fprice20000",                 precision: 10
+    t.integer  "suggestion"
+    t.boolean  "correct"
+    t.integer  "correct_num"
+    t.integer  "incorrect_num"
+    t.text     "memo",          limit: 65535
+    t.decimal  "high_price",                  precision: 10
+    t.decimal  "low_price",                   precision: 10
+    t.decimal  "buy_price",                   precision: 10
+    t.decimal  "sell_price",                  precision: 10
+    t.decimal  "open_price",                  precision: 10
+    t.integer  "symbol"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -171,5 +183,6 @@ ActiveRecord::Schema.define(version: 20170603100808) do
     t.datetime "updated_at",                                      null: false
   end
 
+  add_foreign_key "suggestion_email_results", "suggestion_emails"
   add_foreign_key "transactions", "orders", name: "transactions_ibfk_1", on_update: :cascade, on_delete: :cascade
 end
