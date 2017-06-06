@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605074917) do
+ActiveRecord::Schema.define(version: 20170606083057) do
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
@@ -55,26 +55,26 @@ ActiveRecord::Schema.define(version: 20170605074917) do
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "address",                                                 null: false
+    t.string   "address",                                                                          null: false
     t.string   "tid"
-    t.integer  "status",                                  default: 0,     null: false
-    t.integer  "keychain_id",                                             null: false
-    t.bigint   "amount",                                                  null: false
-    t.integer  "gateway_id",                                              null: false
+    t.integer  "status",                                                           default: 0,     null: false
+    t.integer  "keychain_id",                                                                      null: false
+    t.decimal  "amount",                                  precision: 10, scale: 2,                 null: false
+    t.integer  "gateway_id",                                                                       null: false
     t.string   "data"
     t.text     "callback_response",         limit: 65535
-    t.datetime "created_at",                                              null: false
+    t.datetime "created_at",                                                                       null: false
     t.datetime "updated_at"
     t.string   "payment_id"
     t.string   "description"
-    t.integer  "reused",                                  default: 0
+    t.integer  "reused",                                                           default: 0
     t.string   "callback_data"
-    t.bigint   "amount_paid"
+    t.decimal  "amount_paid",                             precision: 10, scale: 2
     t.text     "callback_url",              limit: 65535
     t.string   "title"
-    t.boolean  "test_mode",                               default: false
+    t.boolean  "test_mode",                                                        default: false
     t.text     "after_payment_redirect_to", limit: 65535
-    t.boolean  "auto_redirect",                           default: false
+    t.boolean  "auto_redirect",                                                    default: false
     t.integer  "block_height_created_at"
     t.string   "amount_with_currency"
     t.string   "customer_uid"
@@ -90,31 +90,32 @@ ActiveRecord::Schema.define(version: 20170605074917) do
 
   create_table "suggestion_email_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "time_interval"
-    t.boolean  "correct",             default: false
+    t.boolean  "correct",                                      default: false
     t.integer  "suggestion_email_id"
-    t.integer  "unit",                default: 0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "unit",                                         default: 0
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.decimal  "before_price",        precision: 10, scale: 2
+    t.decimal  "now_price",           precision: 10, scale: 2
+    t.decimal  "gap",                 precision: 10, scale: 2
+    t.integer  "fbase"
     t.index ["suggestion_email_id"], name: "index_suggestion_email_results_on_suggestion_email_id", using: :btree
   end
 
   create_table "suggestion_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.decimal  "last_price",                  precision: 10
-    t.decimal  "fprice1000",                  precision: 10
-    t.decimal  "fprice20000",                 precision: 10
+    t.decimal  "last_price",               precision: 10, scale: 2
     t.integer  "suggestion"
-    t.boolean  "correct"
-    t.integer  "correct_num"
-    t.integer  "incorrect_num"
-    t.text     "memo",          limit: 65535
-    t.decimal  "high_price",                  precision: 10
-    t.decimal  "low_price",                   precision: 10
-    t.decimal  "buy_price",                   precision: 10
-    t.decimal  "sell_price",                  precision: 10
-    t.decimal  "open_price",                  precision: 10
+    t.text     "memo",       limit: 65535
+    t.decimal  "high_price",               precision: 10, scale: 2
+    t.decimal  "low_price",                precision: 10, scale: 2
+    t.decimal  "buy_price",                precision: 10, scale: 2
+    t.decimal  "sell_price",               precision: 10, scale: 2
+    t.decimal  "open_price",               precision: 10, scale: 2
     t.integer  "symbol"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "fbase"
+    t.decimal  "fprice",                   precision: 10, scale: 2
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -132,35 +133,35 @@ ActiveRecord::Schema.define(version: 20170605074917) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "app_id"
-    t.string   "email",                                           default: "",    null: false
-    t.string   "encrypted_password",                              default: "",    null: false
+    t.string   "email",                                                     default: "",    null: false
+    t.string   "encrypted_password",                                        default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   default: 0,     null: false
+    t.integer  "sign_in_count",                                             default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
-    t.string   "name",                                            default: ""
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
+    t.string   "name",                                                      default: ""
     t.string   "phone"
-    t.decimal  "balance_of_btc",                   precision: 10, default: 0
-    t.boolean  "enabled_dev_api",                                 default: false
+    t.decimal  "balance_of_btc",                   precision: 10, scale: 2, default: "0.0"
+    t.boolean  "enabled_dev_api",                                           default: false
     t.string   "api_secret"
-    t.boolean  "enabled_two_factor_auth",                         default: false
+    t.boolean  "enabled_two_factor_auth",                                   default: false
     t.string   "reserve_tokens"
-    t.boolean  "enabled_sending_mail",                            default: true
-    t.integer  "role",                                            default: 1
-    t.boolean  "toggle_dev_api",                                  default: false
+    t.boolean  "enabled_sending_mail",                                      default: true
+    t.integer  "role",                                                      default: 1
+    t.boolean  "toggle_dev_api",                                            default: false
     t.integer  "updates_email_subscription_level"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "tos_agreement",                                   default: false
-    t.integer  "failed_attempts",                                 default: 0
+    t.boolean  "tos_agreement",                                             default: false
+    t.integer  "failed_attempts",                                           default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -174,13 +175,13 @@ ActiveRecord::Schema.define(version: 20170605074917) do
     t.integer  "gateway_id"
     t.integer  "customer_uid"
     t.integer  "auditor_id"
-    t.decimal  "amount",                           precision: 10
+    t.decimal  "amount",                           precision: 10, scale: 2
     t.integer  "status"
     t.boolean  "approval"
     t.text     "disapproval_reason", limit: 65535
     t.datetime "approval_time"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   add_foreign_key "suggestion_email_results", "suggestion_emails"
