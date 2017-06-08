@@ -42,6 +42,7 @@ set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets }
 set :nginx_sites_available_path, "/etc/nginx/sites-available"
 set :nginx_sites_enabled_path, "/etc/nginx/sites-enabled"
 
+
 # in order to prevent bundler from overwriting the version controlled binstubs
 set :bundle_binstubs, nil
 
