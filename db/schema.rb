@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606083057) do
+ActiveRecord::Schema.define(version: 20170609024010) do
+
+  create_table "direction_data_diffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.float    "amount_diff",      limit: 24
+    t.float    "total_value_diff", limit: 24
+    t.integer  "diff_base"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.float    "amount_sell",      limit: 24
+    t.float    "amount_buy",       limit: 24
+  end
 
   create_table "gateways", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
@@ -99,23 +109,25 @@ ActiveRecord::Schema.define(version: 20170606083057) do
     t.decimal  "now_price",           precision: 10, scale: 2
     t.decimal  "gap",                 precision: 10, scale: 2
     t.integer  "fbase"
+    t.integer  "fbase_source",                                 default: 0
     t.index ["suggestion_email_id"], name: "index_suggestion_email_results_on_suggestion_email_id", using: :btree
   end
 
   create_table "suggestion_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.decimal  "last_price",               precision: 10, scale: 2
+    t.decimal  "last_price",                 precision: 10, scale: 2
     t.integer  "suggestion"
-    t.text     "memo",       limit: 65535
-    t.decimal  "high_price",               precision: 10, scale: 2
-    t.decimal  "low_price",                precision: 10, scale: 2
-    t.decimal  "buy_price",                precision: 10, scale: 2
-    t.decimal  "sell_price",               precision: 10, scale: 2
-    t.decimal  "open_price",               precision: 10, scale: 2
+    t.text     "memo",         limit: 65535
+    t.decimal  "high_price",                 precision: 10, scale: 2
+    t.decimal  "low_price",                  precision: 10, scale: 2
+    t.decimal  "buy_price",                  precision: 10, scale: 2
+    t.decimal  "sell_price",                 precision: 10, scale: 2
+    t.decimal  "open_price",                 precision: 10, scale: 2
     t.integer  "symbol"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
     t.integer  "fbase"
-    t.decimal  "fprice",                   precision: 10, scale: 2
+    t.integer  "fbase_source",                                        default: 0
+    t.decimal  "fprice",                     precision: 10, scale: 2
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
